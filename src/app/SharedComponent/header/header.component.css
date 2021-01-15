@@ -1,0 +1,28 @@
+.site__header {
+  flex-shrink: 0;
+}
+.site-header {
+  position: relative;
+  z-index: 100;
+  background: transparent;
+  color: inherit;
+}
+.mobile-header {
+  height: 54px;
+}
+@media (max-width: 991px) {
+  .mobile-header{
+    display: block;
+  }
+  .pc-header{
+    display: none;
+  }
+}
+@media (min-width: 992px) {
+  .mobile-header{
+    display: none;
+  }
+  .pc-header{
+    display: block;
+  }
+}

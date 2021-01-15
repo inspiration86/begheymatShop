@@ -1,0 +1,125 @@
+<!-- Footer -->
+<footer class="page-footer font-small mt-3" dir="rtl">
+  <div style="background-color: #CC3333">
+    <div class="container">
+      <div class="row py-3 justify-content-center">
+        <div class="col-12 align-items-center text-center">
+          <a class="fb-ic">
+            <i class="fab fa-lg fa-facebook-f white-text"> </i>
+          </a>
+          <a class="tw-ic">
+            <i class="fab fa-lg fa-twitter white-text mr-4"> </i>
+          </a>
+          <a class="gplus-ic">
+            <i class="fab fa-lg fa-google-plus-g white-text mr-4"> </i>
+          </a>
+          <a class="li-ic">
+            <i class="fab fa-lg fa-linkedin-in white-text mr-4"> </i>
+          </a>
+          <a class="ins-ic">
+            <i class="fab fa-lg fa-instagram white-text mr-4"> </i>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer Links -->
+  <div class="container text-center text-md-left mt-5 footer-link">
+
+    <div class="row mt-3">
+
+      <div class="col-md-3 col-lg-4 col-xl-3 mb-4">
+
+        <h6 class="text-uppercase font-weight-bold titleMenu text-center">فروشگاه اینترنتی به قیمت </h6>
+        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 100%;">
+        <p style="text-align: justify;text-justify: inter-word;">فروشگاه اینترنتی به قیمت فعالیت خود را از سال 1399 در
+          حوزه فروش آنلاین انواع محصولات آغاز نموده است. به قیمت فعال در حوزه بازاریابی و فروش انواع کالاهای تولید کننده
+          ها و همچنین برای اولین بار طرف قرارداد پست می باشد. ارسال سریع و آسان به تمام نقاط ایران، تامین کالاهای با
+          کیفیت از برند های معتبر ایرانی و مشاوره تخصصی در حوزه خرید، از ابتدا جزء مهم ترین
+          اهداف به قیمت بوده است. در این فروشگاه تنوع کاملی از محصولات در حوزه های مختلف را پیدا خواهید کرد. </p>
+
+      </div>
+
+      <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+
+        <h6 class="text-uppercase font-weight-bold titleMenu text-center">دسته بندی محصولات</h6>
+        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 100%;">
+        <ul>
+          <li class="text-right" *ngFor="let cat of categories">
+            <a class="text-white" (click)="goProduct(cat._id, 0,0)">
+              <i class="fas fa-chevron-left ml-3"></i> {{cat.title}}
+            </a>
+          </li>
+        </ul>
+
+      </div>
+
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        <h6 class="text-uppercase font-weight-bold titleMenu text-center"> خدمات مشتریان</h6>
+        <hr class="mb-4 mt-0 d-inline-block mx-auto" style="width: 100%;">
+        <p class="text-right">
+          <i class="fas fa-credit-card ml-3 text-white"></i> پرداخت آنلاین
+        </p>
+        <p class="text-right">
+          <i class="fas fa-motorcycle ml-3 text-white"></i> تحویل اکسپرس
+        </p>
+        <p class="text-right">
+          <i class="fas fa-support ml-3 text-white"></i>پشتیبانی 24 ساعته
+        </p>
+        <p class="text-right">
+          <i class="fas fa-check ml-3 text-white"></i> ضمانت اصل بودن کالاها
+        </p>
+        <p class="text-right">
+          <i class="fas fa-undo ml-3 text-white"></i> 7 روز ضمانت تعویض
+        </p>
+
+      </div>
+
+      <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+        <h6 class="text-uppercase font-weight-bold titleMenu text-center">ارتباط با ما</h6>
+        <hr class="text-white mb-4 mt-0 d-inline-block mx-auto" style="width: 100%;">
+        <p class="text-right">
+          <i class="fas fa-home ml-3 text-white"></i> تهران ، نیاوران، بعد از چهار راه کامرانیه
+        </p>
+        <p class="text-right pointer">
+          <i class="fas fa-envelope ml-3 text-white"></i> info@begheymat.com
+        </p>
+        <p class="text-right pointer">
+          <i class="fas fa-phone ml-3 text-white"></i> 021-26156548
+        </p>
+        <p class="text-right pointer">
+          <i class="fas fa-phone ml-3 text-white"></i> 021-26156619
+        </p>
+
+      </div>
+
+      <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+        <h6 class="text-uppercase font-weight-bold titleMenu text-center"> نماد اعتماد الکترونیکی
+        </h6>
+        <hr class="text-white mb-4 mt-0 d-inline-block mx-auto" style="width: 100%">
+        <div class="d-flex justify-content-center">
+          <img src="./assets/bootstrap/img/enamad.png">
+          <img src="https://cdn.zarinpal.com/badges/trustLogo/1.svg">
+        </div>
+
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center text-white py-3">
+    <p>
+      تمامی حقوق سایت مربوط به شرکت <a class="text-white font-weight-bold" href="https://arkainvent.com/">دانش بنیان
+      محاسبات نرم فناوری اطلاعات و ارتباطات آرکا</a> میباشد و هر نوع کپی برداری تخلف می باشد و پیگرد قانونی دارد.
+    </p>
+    <p>
+      Designed & developed by <a class="text-white font-weight-bold font-italic" href="https://arkainvent.com/">arkainvent.com</a>
+    </p>
+  </div>
+  <!-- Copyright -->
+
+</footer>

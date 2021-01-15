@@ -1,0 +1,27 @@
+
+h2, h4{
+  font-family: IRANSans_Bold;
+}
+b{
+  font-size: larger;
+  font-family: IRANSans_Bold;
+  color: #EF2B2F;
+}
+
+.left{
+  background-color: #ffffff;
+  height: 100vh;
+  width: 100%;
+}
+/*::ng-deep mat-vertical-stepper{*/
+/*  border-radius: 20px;*/
+/*}*/
+::ng-deep .mat-step-text-label{
+  font-family: IRANSans_Bold;
+}
+::ng-deep .mat-step-header .mat-step-icon-selected,
+::ng-deep .mat-step-header .mat-step-icon-state-done,
+::ng-deep .mat-step-header .mat-step-icon-state-edit {
+  background-color: #EF2B2F!important;
+  color: #fff;
+}

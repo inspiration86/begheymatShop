@@ -1,0 +1,57 @@
+mat-expansion-panel{
+  border: #ffffff 1px solid;
+  box-sizing: unset;
+  border-radius: 0px;
+  transition: none;
+  box-shadow: none;
+}
+mat-expansion-panel-header{
+  font-size: 15px;
+  font-weight: 600;
+  height: 60px;
+
+}
+mat-expansion-panel.mat-expanded{
+  border: none;
+
+}
+
+mat-expansion-panel.mat-expanded mat-expansion-panel-header{
+  background-color: #EF2B2F;
+  color: #ffffff;
+
+}
+mat-expansion-panel.mat-expanded mat-expansion-panel-header mat-panel-title ,mat-expansion-panel.mat-expanded mat-expansion-panel-header .mat-expansion-indicator  {
+  color: #ffffff;
+}
+mat-expansion-panel.mat-expanded p{
+  text-align: right;
+  font-size: 14px;
+  padding: 20px 5px 5px 20px;
+  margin-bottom: 0;
+  color: #4d4d4d;
+}
+:host::ng-deep mat-expansion-panel.mat-expanded .mat-expansion-indicator:after {
+  color: white;
+}
+mat-expansion-panel-header:hover {
+  background: #999999!important;
+}
+mat-expansion-panel-header:hover mat-panel-title{
+  color: #ffffff!important;
+}
+::ng-deep mat-expansion-panel-header:hover .mat-expansion-indicator:after {
+  color: white;
+}
+.mat-accordion .mat-expansion-panel:last-of-type {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+.mat-accordion .mat-expansion-panel:first-of-type {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+mat-expansion-panel{
+  margin-bottom: 30px;
+}

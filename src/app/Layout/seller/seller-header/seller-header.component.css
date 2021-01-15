@@ -1,0 +1,272 @@
+.site-mobile-menu {
+  width: 300px;
+  position: fixed;
+  right: 0;
+  z-index: 2000;
+  padding-top: 20px;
+  background: #ffffff;
+  height: calc(100vh);
+  -webkit-transform: translateX(100%);
+  -ms-transform: translateX(100%);
+  transform: translateX(100%);
+  -webkit-transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
+  -o-transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
+  transition: 0.8s all cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+.site-mobile-menu .site-mobile-menu-header {
+  width: 100%;
+  float: left;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.site-mobile-menu-close {
+  display: block;
+  position: relative;
+  height: 30px;
+  width: 30px;
+  z-index: 99;
+  cursor: pointer;
+  top: -20px;
+}
+
+.site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close {
+  float: right;
+  margin-top: 8px;
+}
+
+.site-mobile-menu-close > span {
+  cursor: pointer;
+  display: block;
+  position: absolute;
+  height: 30px;
+  width: 30px;
+}
+
+.site-mobile-menu .site-mobile-menu-header .site-mobile-menu-close span {
+  font-size: 30px;
+  display: inline-block;
+  padding-left: 10px;
+  padding-right: 0px;
+  line-height: 1;
+  cursor: pointer;
+  -webkit-transition: .3s all ease;
+  -o-transition: .3s all ease;
+  transition: .3s all ease;
+}
+
+.site-mobile-menu-close > span:before {
+  -webkit-transform: rotate(45deg);
+  -ms-transform: rotate(45deg);
+  transform: rotate(45deg);
+}
+
+.site-mobile-menu-close > span:before, .site-mobile-menu-close > span:after {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 30px;
+  background: #000000;
+}
+
+.site-mobile-menu-close > span:after {
+  -webkit-transform: rotate(-45deg);
+  -ms-transform: rotate(-45deg);
+  transform: rotate(-45deg);
+}
+
+.site-mobile-menu-close > span:before, .site-mobile-menu-close > span:after {
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 30px;
+  background: #000000;
+}
+
+.site-mobile-menu .site-mobile-menu-body {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  position: relative;
+  padding: 0 20px 20px 20px;
+  height: calc(100vh - 52px);
+  padding-bottom: 150px;
+}
+
+.site-mobile-menu .site-nav-wrap {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+}
+
+.site-mobile-menu .site-nav-wrap > li {
+  display: block;
+  position: relative;
+  float: left;
+  width: 100%;
+}
+
+.site-mobile-menu .site-nav-wrap li.active > a {
+  color: #CC3333;
+}
+
+.site-mobile-menu .site-nav-wrap > li > a {
+  padding-left: 20px;
+  font-size: 14px;
+}
+
+.site-mobile-menu .site-nav-wrap a {
+  padding: 5px 20px;
+  display: block;
+  position: relative;
+  color: #000000;
+}
+
+.site-mobile-menu .site-nav-wrap {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  position: relative;
+}
+
+
+.site-nav {
+  padding-top: 20px;
+  padding-bottom: 20px;
+}
+
+.intro h1 {
+  font-family: IRANSans_Bold;
+  font-size: 36px;
+  line-height: 40px;
+}
+
+.intro p {
+  font-family: IRANSans_Bold;
+  font-size: 16px;
+  line-height: 30px;
+  text-align: justify;
+  direction: rtl;
+}
+
+.site-nav {
+  position: absolute;
+  top: 0;
+  z-index: 9;
+  width: 100%;
+}
+
+.logo {
+  font-size: 30px;
+  color: #ffffff;
+  font-weight: 700;
+  font-family: Kalameh;
+}
+
+.site-nav .site-navigation .site-menu {
+  margin-bottom: 0;
+}
+
+.site-nav .site-navigation .site-menu > li {
+  display: inline-block;
+}
+
+.site-nav .site-navigation .site-menu > li.active > a {
+  color: #CC3333;
+}
+
+.site-nav .site-navigation .site-menu > li > a {
+  font-size: 14px;
+  padding: 10px 15px;
+  display: inline-block;
+  text-decoration: none !important;
+  color: #ffffff;
+}
+
+.site-nav .site-navigation .site-menu {
+  margin-bottom: 0;
+}
+
+.site-nav .site-navigation .site-menu > li {
+  display: inline-block;
+}
+
+.site-nav .site-navigation .site-menu > li.cta-button a {
+  padding: 6px 20px;
+  border: 2px solid #ffffff;
+  color: #ffffff;
+  border-radius: 30px;
+}
+
+.site-nav .site-navigation .site-menu > li.cta-button a:hover {
+  background-color: #ffffff;
+  border: 2px solid #ffffff;
+  color: #CC3333;
+}
+
+.hero {
+  background: #CC3333;
+  position: relative;
+}
+
+.hero, .hero > .container > .row {
+  min-height: 750px;
+}
+
+.hero .intro {
+  position: relative;
+  z-index: 2;
+}
+
+.hero .slant {
+  position: absolute;
+  width: calc(100% + 2px);
+  height: 380px;
+  bottom: -2px;
+  left: -2px;
+  z-index: 1;
+  background-size: cover;
+  background-position: left top;
+  background-repeat: no-repeat;
+}
+
+ul.mobile-menu {
+  list-style: none;
+  margin-top: 25px;
+  padding: 0;
+}
+
+ul.mobile-menu li {
+  padding: 15px;
+  border-bottom: #e3e3e3 solid 2px;
+}
+
+ul.mobile-menu li a {
+  color: #4d4d4d;
+}
+
+ul.mobile-menu li a:hover, ul.mobile-menu li a:focus, ul.mobile-menu li a:active {
+  color: #CC3333;
+}
+
+:host ::ng-deep .p-sidebar.p-sidebar-close {
+  left: 0;
+}
+
+
+@media only screen and (max-width: 768px) {
+  .pt-sm-only {
+    padding-top: 100px
+  }
+
+  .intro h1 {
+    font-size: 24px;
+    line-height: 40px;
+  }
+
+  .intro p {
+    font-size: 12px;
+    line-height: 30px;
+  }
+}

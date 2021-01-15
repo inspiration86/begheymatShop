@@ -1,0 +1,16 @@
+<form class="example-form" dir="rtl">
+  <div class="c-search" dir="rtl">
+    <mat-chip-list #chipList dir="rtl">
+      <input dir="rtl" #autocompleteInput type="text" [(ngModel)]="textSearch" placeholder="جستجو در به قیمت ..."
+             aria-label="Number" [formControl]="myControl"
+             [matAutocomplete]="auto" [matChipInputFor]="chipList">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of autoCompleteList" [value]="option"
+                    (onSelectionChange)="filterPostList($event)">
+          {{option.title}}
+        </mat-option>
+      </mat-autocomplete>
+    </mat-chip-list>
+    <i class="pi pi-search" (click)="advenceSearch()" style="margin-top: -31px;margin-right:-2rem;position: absolute;font-size: 1.2rem"></i>
+  </div>
+</form>

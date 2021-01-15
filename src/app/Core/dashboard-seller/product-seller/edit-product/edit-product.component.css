@@ -1,0 +1,44 @@
+.titlepage a{
+  font-size: 15px;
+  color: #4d4d4d;
+}
+.titlepage span{
+  font-size: 15px;
+  color: #a2a2a2;
+}
+form{
+  font-family: IRANSans_Light;
+}
+:host::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: #cc3333;
+}
+:host::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #cc3333;
+}
+:host::ng-deep .p-dropdown{
+  height: 38px;
+}
+:host::ng-deep .p-dropdown-items-wrapper {
+  text-align: right!important;
+  direction: rtl;
+}
+:host::ng-deep .p-dropdown-items {
+  text-align: right!important;
+  direction: rtl;
+}
+:host ::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-message-text{
+  margin: 0 1rem 0 0!important;
+}
+:host ::ng-deep .p-toast .p-toast-message.p-toast-message-error {
+  border-width: 0 6px 0 0px!important;
+}
+:host ::ng-deep .p-toast .p-toast-message.p-toast-message-success {
+  border-width: 0 6px 0 0px!important;
+}
+label,input{
+  font-family: IRANSans_Light;
+}
+:host::ng-deep .p-button .p-button-icon-left {
+  margin-right: unset;
+  margin-left: 0.5rem;
+}

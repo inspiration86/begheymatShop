@@ -1,0 +1,42 @@
+.sidenav-container {
+  height: 100%;
+  width: 100%;
+}
+
+.sidenav {
+ /*bottom:100px!important;*/
+  width: 250px;
+  background: #37474f;
+  border-left: none;
+}
+.title-sidebar{
+  font-family: IRANSans_Bold;
+  font-size: 16px;
+  color: #FFFFFF;
+  padding-right: 40px;
+  text-align: center;
+}
+.sidenav .mat-toolbar {
+  background: inherit;
+}
+
+
+
+mat-nav-list a{
+  font-family:IRANSans_Light;
+  font-size: 16px;
+  color: #FFFFFF;
+}
+
+:host::ng-deep.mat-list-item-content{
+  font-family:  IRANSans_Light;
+  color: white;
+}
+:host::ng-deep.p-toolbar {
+  background: #37474f!important;
+  height: 55px;
+}
+.mat-icon-button {
+  margin-top: -15px;
+  color: antiquewhite;
+}

@@ -1,0 +1,100 @@
+<p-toast position="center"></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+
+<div class="pnl-content p-3">
+    <div class="box text-right" dir="rtl">
+      <p-table #dt
+               [value]="advices"
+               dataKey="id"
+               [rows]="5"
+               [showCurrentPageReport]="true"
+               [rowsPerPageOptions]="[10, 25, 50]"
+               [paginator]="true"
+               currentPageReportTemplate="نمایش {first} تا {last} از {totalRecords} صفحه"
+               [filterDelay]="0"
+               [globalFilterFields]="[
+          'User.mobile',
+          'question'
+        ]">
+        <ng-template pTemplate="caption">
+          <div class="table-header row">
+            <div class="col-sm-12">لیست مشاوره ها</div>
+          </div>
+          <div class="col-sm-12">
+              <span class="p-input-icon-left w-100 mt-3">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  class="w-100"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  placeholder="جستجو کلی"
+                />
+              </span>
+          </div>
+        </ng-template>
+        <ng-template pTemplate="header">
+          <tr class="title-table">
+            <th class="text-center"></th>
+            <th class="text-center">ردیف</th>
+            <th class="text-center">کاربر</th>
+            <th class="text-center">نام و نام خانوادگی</th>
+            <th class="text-center">محصول</th>
+            <th class="text-center">سوال</th>
+            <th class="text-center"></th>
+            <th class="text-center">عملیات</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-advice let-rowIndex="rowIndex" let-expanded="expanded">
+          <tr>
+            <td>
+              <button type="button" pButton pRipple [pRowToggler]="advice" [disabled]="advice.answer === null"
+                      class="p-button-text p-button-rounded p-button-plain"
+                      [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+            </td>
+            <td class="text-center">{{rowIndex + 1}}</td>
+            <td class="text-center">{{advice.User[0].mobile}}</td>
+            <td class="text-center">{{advice.User[0].firstName + ' ' + advice.User[0].lastName}}</td>
+            <td class="text-center">{{advice.Product[0].title}}</td>
+            <td class="text-center">{{advice.question}}</td>
+            <td>
+              <button pButton pRipple label="ثبت پاسخ" [disabled]="advice.answer !== null"
+                      (click)="showAddAnswerAdviceDialog(advice._id, advice.answer)"
+                      class="p-button-success p-ml-2 text-white"></button>
+            </td>
+            <td class="text-center">
+              <button pButton pRipple icon="pi pi-eye"
+                      (click)="viewProduct(advice._id)"
+                      class="p-button-rounded p-button-info p-ml-2 text-white"></button>
+              <button pButton pRipple icon="pi pi-check"
+                      (click)="active(advice._id)" [disabled]="advice.active === true"
+                      class="p-button-rounded p-button-success p-ml-2 text-white"></button>
+              <button pButton pRipple (click)="delete(advice._id)"
+                      icon="pi pi-trash" class="p-button-rounded p-button-danger text-white"></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-advice>
+          <tr>
+            <td colspan="7">
+              پاسخ: {{advice.answer}}
+            </td>
+            <td>
+              <button pButton pRipple icon="pi pi-pencil"
+                      (click)="showEditAnswerAdviceDialog(advice._id, advice.answer)"
+                      class="p-button-rounded p-button-warning p-ml-2 text-white"></button>
+              <button pButton pRipple (click)="deleteAnswer(advice._id)"
+                      icon="pi pi-trash" class="p-button-rounded p-button-danger text-white"></button>
+            </td>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="8">هیچ رکوردی یافت نشد.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </div>
+</div>

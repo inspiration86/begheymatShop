@@ -1,0 +1,14 @@
+.seller-footer{
+  padding-top: 15px;
+  background-color: #4d4d4d;
+}
+.seller-footer p{
+  color: white;
+  font-size: 12px;
+  font-family: IRANSans_Bold;
+}
+.seller-footer a{
+  color: white;
+  text-decoration: none;
+  font-size: 12px;
+}

@@ -1,0 +1,6 @@
+.bg-light-table tr th, .bg-light-table tr td{
+  background-color: #fbfbfb;
+}
+.bg-dark-table tr th, .bg-dark-table tr td{
+  background-color: #f1f1f1;
+}

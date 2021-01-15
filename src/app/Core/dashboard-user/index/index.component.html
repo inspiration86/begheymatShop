@@ -1,0 +1,61 @@
+
+<mat-sidenav-container class="sidenav-container" dir="rtl">
+  <mat-sidenav
+      #drawer
+      class="sidenav"
+      fixedInViewport="true"
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="!(isHandset$ | async)">
+    <mat-toolbar class="title-sidebar">{{firstName}}  {{lastName}}</mat-toolbar>
+    <hr style="margin-top: -10px"/>
+    <mat-nav-list>
+
+<!--      <p-accordion>-->
+<!--        <p-accordionTab header="وضعیت">-->
+          <mat-list>
+            <mat-list-item [routerLink]="['/user/profile']"> <i class="pi pi-user p-pl-4 text-white" style="font-size: 1rem"></i> اطلاعات کاربری</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item [routerLink]="['/user/payment']"><i class="pi pi-money-bill p-pl-4 text-white" style="font-size: 1rem"></i>تراکنش های پرداخت </mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item [routerLink]="['/user/purchasesMy']" ><i class="pi pi-shopping-cart p-pl-4 text-white" style="font-size: 1rem"></i>خریدهای من</mat-list-item>
+            <mat-divider></mat-divider>
+            <mat-list-item ><i class="pi pi-comments p-pl-4 text-white" style="font-size: 1rem"></i>درخواست لغو </mat-list-item>
+            <mat-divider></mat-divider>
+          </mat-list>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+
+    <p-toolbar>
+      <div class="ui-toolbar-group-right">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <div class="pi pi-bars"></div>
+        </button>
+      </div>
+
+      <div class="p-d-flex justify-content-center">
+<!--        <div class="p-ml-5 text-white text-center">آخرین بازدید : 13 شهریور 1399 ( 10:59 )</div>-->
+        <div class="p-mr-5">
+          <p class="text-white" (click)="exitUser()"><i class="pi pi-power-off text-white pl-2" style="font-size: 1rem" ></i>خروج کاربر</p>
+        </div>
+
+      </div>
+    </p-toolbar>
+
+
+    <ng-content>
+
+    </ng-content>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

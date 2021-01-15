@@ -1,0 +1,1054 @@
+<app-header dir="rtl"></app-header>
+<p-toast [baseZIndex]="999999999" dir="rtl" position="center"></p-toast>
+
+<nav aria-label="breadcrumb" dir="rtl">
+  <ol class="breadcrumb">
+    <li class="breadcrumb-item"><a href="#">صفحه اصلی</a></li>
+    <li class="breadcrumb-item active" aria-current="page">سفارش محصول</li>
+  </ol>
+</nav>
+<form [formGroup]="formGroup" class="pc">
+
+  <mat-horizontal-stepper labelPosition="bottom" linear #stepper1 formArrayName="formArray" dir="rtl"
+                          class="white border-stepper mb-5">
+    <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+
+      <ng-template matStepLabel>لیست سفارشات</ng-template>
+      <p-panel styleClass="mb-3 pt-2" dir="rtl">
+        <p-header>
+          <p class="TitlePanel">لطفا قبل از ثبت سفارش از نوع , تعداد و قیمت محصولات مورد درخواست خود اطمینان حاصل
+            نمایید .</p>
+        </p-header>
+        <p-table [value]="items" selectionMode="single" #dt [columns]="cols" [rows]="4">
+          <ng-template pTemplate="header">
+            <tr class="title-table">
+              <th style="width: 7%" class="text-center">ردیف</th>
+              <th style="width: 70%" class="text-center">عنوان</th>
+              <th style="width: 20%" class="text-center">تعداد</th>
+              <th style="width: 20%" class="text-center">قیمت واحد</th>
+              <th style="width: 30%" class="text-center">قیمت کل</th>
+              <th style="width: 10%" class="text-center">حذف</th>
+
+            </tr>
+          </ng-template>
+          <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+            <tr>
+              <td class="text-center">{{rowIndex + 1}}</td>
+              <td class="text-center">{{product['product']['cartList'].title}}</td>
+              <td class="text-center">
+                <input   type="text"  style="width: 100px" value="{{product['product'].number}}"   (change)="addCart(items[rowIndex],$event.target)"/>
+              </td>
+              <td class="text-center" *ngIf="product['product']['cartList'].offer">{{product['product']['cartList'].price-((product['product']['cartList'].price *product['product']['cartList'].offerPercent)/100)|number}}</td>
+              <td class="text-center" *ngIf="product['product']['cartList'].offer">{{(product['product']['cartList'].price-((product['product']['cartList'].price *product['product']['cartList'].offerPercent)/100)) * product['product'].number|number}}</td>
+
+              <td class="text-center" *ngIf="!product['product']['cartList'].offer">{{product['product']['cartList'].price|number}}</td>
+              <td class="text-center" *ngIf="!product['product']['cartList'].offer">{{product['product']['cartList'].price * product['product'].number|number}}</td>
+
+              <td class="text-center"><i class="fas fa-times  text-danger" (click)="deleteCart(product)"></i></td>
+
+            </tr>
+          </ng-template>
+
+        </p-table>
+
+        <p-footer>
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+              <ul class="list-group" style="list-style-type: none" dir="rtl">
+                <li class="list-group-item ">
+                  <div class="d-flex flex-row justify-content-center">
+                    <div>جمع کل:</div>
+                    <div class="mr-auto">{{sumPrice|number}} تومان </div>
+                  </div>
+                </li>
+
+                <li class="list-group-item">
+                  <div class="d-flex flex-row justify-content-center">
+                    <div>مبلغ قابل پرداخت:</div>
+                    <div class="mr-auto">{{sumPrice|number}} تومان </div>
+                  </div>
+                </li>
+
+              </ul>
+
+
+            </div>
+          </div>
+        </p-footer>
+      </p-panel>
+      <div>
+<!--        <button class="mt-5 ml-5 p-button-success" pButton type="button" label="به روز رسانی سبد خرید "-->
+<!--                icon="pi pi-refresh" iconPos="left" (click)="refreshCart()"></button>-->
+<!--        [disabled]="formArray.get([0]).invalid"-->
+
+        <button matStepperNext class="mt-5 p-button-danger" pButton type="button" label="مرحله بعدی"
+                icon="pi pi-angle-left" iconPos="right"   [disabled]="formArray.get([0]).invalid"></button>
+      </div>
+
+    </mat-step>
+    <mat-step formGroupName="1" [stepControl]="formArray?.get([1])" *ngIf="successLogin">
+
+      <ng-template matStepLabel>ورود/ثبت نام</ng-template>
+      <div class="row " dir="rtl">
+
+        <div class="col-6 align-items center">
+          <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a aria-controls="login" aria-selected="false" class="nav-link active" data-toggle="tab" href="#login"
+                 id="attorney-tab"
+                 role="tab">ورود</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a aria-controls="register" aria-selected="true" class="nav-link" data-toggle="tab" href="#register"
+                 id="user-tab"
+                 role="tab">ثبت نام</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="loginTab">
+            <div aria-labelledby="login-tab" class="tab-pane fade show active" id="login" role="tabpanel">
+              <form (ngSubmit)="loginUser()" [formGroup]="formUser" class="w-100">
+                <div class="row login-wrap rtl">
+                  <div class="col-12 text-center">
+                    <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input [(ngModel)]="userRegister.mobile" class="form-control" formControlName="mobile" maxlength="11"
+                         minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>                  </span>
+
+                    </div>
+                  </div>
+                  <div class="col-12 text-center">
+                    <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                    </div>
+                  </div>
+                  <div class="col-12 text-right">
+                <span class="float-right text-right login-link pointer">
+                  <i class="pi pi-key text-dark ml-3"></i> کلمه عبور خود را فراموش کرده ام
+                </span>
+                  </div>
+                  <div class="col-md-12 col-lg-12 pt-4">
+                    <div class="text-center">
+                      <button pButton label="ورود" [disabled]="formUser.invalid" class="btn  btn-primary"
+                              type="submit">
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div aria-labelledby="register-tab" class="tab-pane fade" id="register" role="tabpanel">
+              <form (ngSubmit)="registerUser()" [formGroup]="formUser" class="w-100">
+                <div class="row login-wrap rtl">
+                  <div class="col-12 text-center">
+                    <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input [(ngModel)]="userRegister.mobile" class="form-control"
+                         formControlName="mobile" maxlength="11" minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>                  </span>
+
+                    </div>
+                  </div>
+                  <div class="col-12 text-center">
+                    <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-lg-12 pt-4">
+                    <div class="text-center">
+                      <button pButton label="ثبت نام" [disabled]="formUser.invalid" class="btn  btn-primary"
+                              type="submit">
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="row rule-area justify-content-center mt-2">
+                <div class="col-12 text-right align-self-center">
+                  <p>
+                    با ثبت نام در فروشگاه اینترنتی به قیمت، شما <a style="color: red">شرایط و قوانین</a> استفاده از
+                    سرویس
+                    های سایت به قیمت و<a style="color: red"> قوانین حریم خصوصی</a> آن را پذیرفته اید.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--    <div class="mt-4">-->
+        <!--      <span class="p-input-icon-right w-100">-->
+        <!--        <i class="pi pi-user text-dark"></i>-->
+        <!--        <input type="text" pInputText class="w-100 text-right" placeholder="نام کاربری">-->
+        <!--      </span>-->
+        <!--    </div>-->
+        <!--    <div class="mt-4">-->
+        <!--      <span class=" p-input-icon-right w-100">-->
+        <!--        <i class="pi pi-eye text-dark"></i>-->
+        <!--        <input type="password" pInputText class="w-100" placeholder="رمز عبور">-->
+        <!--      </span>-->
+        <!--      <span (click)="showModalDialogForgetPassword()" class="mt-1 float-right text-right login-link">-->
+        <!--        <i class="pi pi-key text-dark ml-3 mt-1"></i> کلمه عبور خود را فراموش کرده ام</span>-->
+        <!--    </div>-->
+
+      </div>
+
+      <div>
+        <button matStepperNext class="mt-5 p-button-danger float-left" pButton type="button" label="مرحله بعدی"
+                icon="pi pi-angle-left" iconPos="left" [disabled]="successLogin"></button>
+
+        <!--          <button matStepperNext class="btn primary-color btn-rounded float-left text-white"-->
+        <!--                  [disabled]="formArray.get([1]).invalid"-->
+        <!--          >مرحله بعدی <i class="fab fa-1x text-white fa-angle-left ml-3"></i>-->
+        <!--          </button>-->
+        <button matStepperPrevious class="mt-5 p-button-danger float-right" pButton type="button" label="برگشت "
+                icon="pi pi-angle-right" iconPos="left"></button>
+
+        <!--          <button matStepperPrevious class="btn primary-color btn-rounded  float-right text-white "><i-->
+        <!--            class="fas fa-1x text-white fa-angle-right mr-3"></i>برگشت-->
+        <!--          </button>-->
+      </div>
+
+    </mat-step>
+    <mat-step formGroupName="2" [stepControl]="formArray?.get([2])">
+
+      <ng-template matStepLabel>اطلاعات خریدار</ng-template>
+      <p-card dir="rtl" class="pt-4 mb-2">
+        <p-header>
+          <p class="text-right pr-5 pt-3 titleCard">
+            اطلاعات خریدار
+          </p>
+          <p class="text-right pr-5 subTitleCard"> اطلاعات فرد تحویل گیرنده را به دقت وارد نمایید
+          </p>
+        </p-header>
+        <div class="p-grid p-fluid">
+          <div class="p-md-6">
+            <div class="p-field p-grid">
+              <label for="title" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">نام:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="title" type="text" pInputText [(ngModel)]="userInfo.firstName" formControlName="firstName">
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">نام خانوادگی:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="type" type="text" pInputText [(ngModel)]="userInfo.lastName" formControlName="lastName">
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شماره همراه:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="type" type="text" pInputText [(ngModel)]="userInfo.mobile" formControlName="mobile">
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </p-card>
+      <p-card dir="rtl" class="pt-4">
+        <p-header>
+          <p class="text-right pr-5 pt-3 titleCard">
+            آدرس تحویل گیرنده
+          </p>
+          <p class="text-right pr-5 subTitleCard"> آدرس و اطلاعات محل تحویل را به دقت وارد نمایید .
+          </p>
+        </p-header>
+        <div class="p-grid p-fluid">
+          <div class="p-md-6">
+            <div class="p-field p-grid">
+              <label for="title" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شماره تلفن ثابت:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="title" type="text" [(ngModel)]="userInfo.phone" pInputText formControlName="phone">
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">استان:</label>
+              <div class="p-col-12 p-md-9">
+<!--                <p-dropdown appendTo="body" emptyFilterMessage="نتیجه ای یافت نشد"-->
+<!--                            [options]="states"-->
+<!--                            formControlName="state"-->
+<!--                            [(ngModel)]="userInfo.state"-->
+<!--                            optionLabel="label" [filter]="true"-->
+<!--                            (onChange)="stateOnChange($event)"-->
+<!--                ></p-dropdown>-->
+
+                  <select id="inputState1" class="form-control" (change)="stateOnChange($event.target)" formControlName="state" [(ngModel)]="userInfo.state">
+                  <option *ngFor="let i of states" value="{{i.Code}}">{{i.pName}}</option>
+
+                </select>
+
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شهر:</label>
+              <div class="p-col-12 p-md-9">
+<!--                <p-dropdown appendTo="body" emptyFilterMessage="نتیجه ای یافت نشد"-->
+<!--                            [options]="cities"-->
+<!--                            formControlName="city"-->
+<!--                            [(ngModel)]="userInfo.city"-->
+<!--                            optionLabel="label" [filter]="true"-->
+<!--                            (onChange)="cityOnChange($event)"-->
+<!--                >-->
+<!--                </p-dropdown>-->
+                <select id="inputState" class="form-control" formControlName="city" [(ngModel)]="userInfo.city">
+                  <option *ngFor="let i of cities " [value]="i.Code">{{i.pName}}</option>
+
+                </select>
+
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">آدرس:</label>
+              <div class="p-col-12 p-md-9">
+                <textarea [rows]="5" [cols]="30" pInputTextarea [(ngModel)]="userInfo.address" autoResize="autoResize"
+                          formControlName="address"></textarea>
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">کد پستی:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="type" type="text" [(ngModel)]="userInfo.postalCode" pInputText formControlName="postalCode">
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">پلاک :</label>
+              <div class="p-col-12 p-md-9">
+                <input id="type" type="text" [(ngModel)]="userInfo.plaque" pInputText formControlName="plaque">
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </p-card>
+      <div class="alert alert-warning mt-5">
+
+        <div class="text-right text-dark"><i class="pi pi-info-circle pl-1"></i>توجه</div>
+        <ul class="text-right" style="list-style-type: none">
+          <li>
+            1- قبل از ادامه , از صحت و دقت اطلاعات تحویل گیرنده اطمینان حاصل فرمایید , اطلاعات اشتباه منجر به کسر هزینه
+            و تاخیر در تحویل سفارش شما خواهد شد .
+
+          </li>
+
+          <li>2- جهت سهولت در ثبت سفارشات آینده می توانید آدرس یا آدرسهای منتخب خود را در صفحه کاربری نیز ثبت نمایید .
+          </li>
+        </ul>
+      </div>
+      <div>
+        <button matStepperNext class="mt-5 p-button-danger float-left" pButton type="button" label="مرحله بعدی"
+                icon="pi pi-angle-left" iconPos="right" (click)="deliveryPrice(0)"  [disabled]="formArray.get([2]).invalid"></button>
+
+        <button matStepperPrevious class="mt-5 p-button-danger float-right" pButton type="button" label="برگشت "
+                icon="pi pi-angle-right" iconPos="left"></button>
+
+      </div>
+
+    </mat-step>
+    <mat-step formGroupName="3" [stepControl]="formArray?.get([3])" >
+      <ng-template matStepLabel>نحوه ارسال</ng-template>
+
+      <p-card>
+        <p class="text-right pr-5 pt-3 titleCard">
+          نحوه ارسال
+        </p>
+        <p class="text-right pr-5 subTitleCard">نحوه ارسال سفارش خود را با توجه به هزینه و شرایط آن مشخص نمایید .
+        </p>
+        <div class="row">
+
+          <div class="col-md-12">
+            <ul class="list-group" style="list-style-type: none" dir="rtl">
+              <li class="list-group-item">
+                <div class="row justify-content-center">
+                  <div class="col-md-3">
+<!--                    <div class="p-field-radiobutton">-->
+<!--                      <p-radioButton name="city" value="0" [(ngModel)]="ServiceType" inputId="city1"></p-radioButton>-->
+<!--                      <label for="city1">سفارشی</label>-->
+<!--                    </div>-->
+<!--                    <div class="p-field-radiobutton">-->
+<!--                      <p-radioButton name="city" value="1" [(ngModel)]="ServiceType" inputId="city2"></p-radioButton>-->
+<!--                      <label for="city2">پیشتاز</label>-->
+<!--                    </div>-->
+                    <mat-radio-group
+                      aria-labelledby="example-radio-group-label"
+                      class="example-radio-group"
+                      [(ngModel)]="ServiceType">
+                      <mat-radio-button class="example-radio-button" checked="true" [value]="0" (click)="deliveryPrice(0)"> پست سفارشی
+                      </mat-radio-button>
+                      <mat-radio-button class="example-radio-button" [value]="1" (click)="deliveryPrice(1)"> پست پیشتاز
+                      </mat-radio-button>
+                    </mat-radio-group>
+
+                  </div>
+                  <div class="col-md-9">
+                    <p class="postText">هزینه ارسال سفارش شما  {{pricePost/10|number}} تومان می باشد</p>
+
+                  </div>
+                </div>
+              </li>
+
+
+            </ul>
+
+
+          </div>
+        </div>
+      </p-card>
+
+
+      <br/>
+      <br/>
+      <div>
+        <button matStepperNext class=" p-button-danger float-left" pButton type="button" label="بعدی"
+                icon="pi pi-angle-left" iconPos="right" [disabled]="formArray.get([3]).invalid"></button>
+
+        <button matStepperPrevious class="p-button-danger float-right" pButton type="button" label="برگشت"
+                icon="pi pi-angle-right" iconPos="left"></button>
+      </div>
+    </mat-step>
+    <mat-step formGroupName="4" [stepControl]="formArray?.get([4])">
+      <ng-template matStepLabel>پیش فاکتور</ng-template>
+      <div class="mt-5">
+        <p-accordion>
+
+
+          <p-accordionTab header="خلاصه سفارش" [selected]="true">
+            <p-table [value]="items" selectionMode="single" #dt [columns]="cols" [rows]="4">
+              <ng-template pTemplate="header">
+                <tr class="title-table">
+                  <th style="width: 7%" class="text-center">ردیف</th>
+                  <th style="width: 70%" class="text-center">عنوان</th>
+                  <th style="width: 10%" class="text-center">تعداد</th>
+                  <th style="width: 30%" class="text-center">قیمت واحد</th>
+                  <th style="width: 30%" class="text-center">قیمت کل</th>
+
+                </tr>
+              </ng-template>
+              <ng-template pTemplate="body" let-product let-rowIndex="rowIndex">
+                <tr>
+                  <td class="text-center">{{rowIndex + 1}}</td>
+                  <td class="text-center">{{product['product']['cartList'].title}}</td>
+                  <td class="text-center">{{product['product'].number}}</td>
+
+                  <td class="text-center" *ngIf="product['product']['cartList'].offer">{{product['product']['cartList'].price-((product['product']['cartList'].price *product['product']['cartList'].offerPercent)/100)|number}}</td>
+                  <td class="text-center" *ngIf="product['product']['cartList'].offer">{{(product['product']['cartList'].price-((product['product']['cartList'].price *product['product']['cartList'].offerPercent)/100)) * product['product'].number|number}}</td>
+
+                  <td class="text-center" *ngIf="!product['product']['cartList'].offer">{{product['product']['cartList'].price|number}}</td>
+                  <td class="text-center" *ngIf="!product['product']['cartList'].offer">{{product['product']['cartList'].price * product['product'].number|number}}</td>
+
+
+<!--                  <td class="text-center">{{product['product']['cartList'].price|number}}</td>-->
+<!--                  <td class="text-center">{{product['product']['cartList'].price * product['product'].number|number}}</td>-->
+
+
+                </tr>
+              </ng-template>
+
+            </p-table>
+            <div class="row">
+              <div class="col-md-6"></div>
+              <div class="col-md-6">
+                <ul class="list-group" style="list-style-type: none" dir="rtl">
+                  <li class="list-group-item ">
+                    <div class="d-flex flex-row justify-content-center">
+                      <div>جمع کل:</div>
+                      <div class="mr-auto">{{sumPrice|number}} تومان </div>
+                    </div>
+                  </li>
+                  <li class="list-group-item ">
+                    <div class="d-flex flex-row justify-content-center">
+                      <div>هزینه پست:</div>
+                      <div class="mr-auto">{{(pricePost/10|number)}} تومان </div>
+                    </div>
+                  </li>
+
+                  <li class="list-group-item">
+                    <div class="d-flex flex-row justify-content-center">
+                      <div>مبلغ قابل پرداخت:</div>
+                      <div class="mr-auto">{{(sumPrice+pricePost/10)|number}} تومان </div>
+                    </div>
+                  </li>
+
+                </ul>
+
+
+              </div>
+            </div>
+
+
+          </p-accordionTab>
+
+
+        </p-accordion>
+      </div>
+      <div>
+        <button matStepperNext class=" p-button-danger float-left" pButton type="button" label="مرحله بعدی"
+                icon="pi pi-angle-left" iconPos="right" [disabled]="formArray.get([4]).invalid"></button>
+
+        <button matStepperPrevious class=" p-button-danger float-right" pButton type="button" label="برگشت"
+                icon="pi pi-angle-right" iconPos="left"></button>
+
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>پرداخت</ng-template>
+
+      <h4 class="text-success text-center mt-2">
+        کاربر محترم جهت پرداخت هزینه روی دکمه پرداخت کلیک کنید.
+      </h4>
+
+
+      <div>
+        <button class=" p-button-danger" pButton type="button" label="پرداخت " (click)="onRegister()"></button>
+
+      </div>
+      <!--      </div>-->
+    </mat-step>
+  </mat-horizontal-stepper>
+</form>
+
+<form [formGroup]="formGroup" class="mobile">
+
+  <mat-vertical-stepper labelPosition="bottom" linear #stepper1 formArrayName="formArray" dir="rtl"
+                        class="white border-stepper mb-5">
+    <mat-step formGroupName="0" [stepControl]="formArray?.get([0])">
+
+      <ng-template matStepLabel>لیست سفارشات</ng-template>
+      <p-panel styleClass="mb-3 pt-2" dir="rtl">
+        <p-header>
+          <p class="TitlePanel">لطفا قبل از ثبت سفارش از نوع , تعداد و قیمت محصولات مورد درخواست خود اطمینان حاصل
+            نمایید .</p>
+        </p-header>
+
+        <p-orderList [value]="items" [listStyle]="{'height':'auto'}"
+                      dragdrop="true">
+          <ng-template let-product let-i="index" pTemplate="item">
+            <div class="product-item">
+              <div class="image-container">
+                <i class="pi pi-trash text-danger" (click)="deleteCart(product)"></i>
+                <img [src]="product['product']['cartList'].image" class="product-image"/>
+              </div>
+              <div class="product-list-detail">
+                <h5 class="p-mb-2 text-center">{{product['product']['cartList'].title}}</h5>
+              </div>
+              <div class="d-flex justify-content-center mb-1">
+                <div>
+                  تعداد:
+                </div>
+                <div>
+                  <input   type="text"  style="width: 40%;margin-left: 20px" value="{{product['product'].number}}"   (change)="addCart(items[i],$event.target)"/>
+
+<!--                  <input style="width: 40%;margin-left: 20px" value="{{product['product'].number}}">-->
+                </div>
+              </div>
+              <div class="product-list-action">
+                <div class="d-flex flex-row">
+                  <div class="mr-auto">
+                    <small class="text-danger mr-3"
+                                *ngIf="product['product']['cartList'].offer===true">{{product['product']['cartList'].price|number}}</small>
+                    <b class="text-muted"
+                       *ngIf="product['product']['cartList'].offer===true">{{product['product']['cartList'].price - (product['product']['cartList'].price * product['product']['cartList'].offerPercent) / 100|number}}</b>
+                    تومان
+
+                  </div>
+                  <div>
+                    <b  class="text-muted"
+                      *ngIf="product['product']['cartList'].offer===false">{{product['product']['cartList'].price|number}}</b>
+                  </div>
+                </div>
+                <!--                <h6 class="p-mb-2">تومان{{product['product']['cartList'].price}}</h6>-->
+              </div>
+            </div>
+           <mat-divider></mat-divider>
+          </ng-template>
+        </p-orderList>
+
+        <p-footer>
+          <div class="row">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+              <ul class="list-group" style="list-style-type: none" dir="rtl">
+                <li class="list-group-item ">
+                  <div class="d-flex flex-row justify-content-center">
+                    <div>جمع کل:</div>
+                    <div class="mr-auto">{{sumPrice|number}}</div>
+                  </div>
+                </li>
+
+                <li class="list-group-item">
+                  <div class="d-flex flex-row justify-content-center">
+                    <div class="text-right">مبلغ قابل پرداخت:</div>
+                    <div class="ml-auto">{{sumPrice|number}}</div>
+                  </div>
+                </li>
+
+              </ul>
+
+
+            </div>
+          </div>
+        </p-footer>
+      </p-panel>
+      <div>
+<!--        <button class="mt-5 ml-5 p-button-success" pButton type="button" label="به روز رسانی سبد خرید "-->
+<!--                icon="pi pi-refresh" iconPos="left" (click)="refreshCart()"></button>-->
+
+        <button matStepperNext class="mt-5 p-button-danger" pButton type="button" label="مرحله بعدی"
+                icon="pi pi-angle-left" iconPos="right" [disabled]="formArray.get([0]).invalid"></button>
+      </div>
+
+    </mat-step>
+    <mat-step formGroupName="1" [stepControl]="formArray?.get([1])" *ngIf="successLogin">
+
+      <ng-template matStepLabel>ورود/ثبت نام</ng-template>
+      <div class="row " dir="rtl">
+
+        <div class="col-12 align-items center">
+          <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+            <li class="nav-item" role="presentation">
+              <a aria-controls="login" aria-selected="false" class="nav-link active" data-toggle="tab" href="#login"
+                 id="attorney-tab"
+                 role="tab">ورود</a>
+            </li>
+            <li class="nav-item" role="presentation">
+              <a aria-controls="register" aria-selected="true" class="nav-link" data-toggle="tab" href="#register"
+                 id="user-tab"
+                 role="tab">ثبت نام</a>
+            </li>
+          </ul>
+          <div class="tab-content" id="loginTab">
+            <div aria-labelledby="login-tab" class="tab-pane fade show active" id="login" role="tabpanel">
+              <form (ngSubmit)="loginUser()" [formGroup]="formUser" class="w-100">
+                <div class="row login-wrap rtl">
+                  <div class="col-12 text-center">
+                    <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input [(ngModel)]="userRegister.mobile" class="form-control" formControlName="mobile" maxlength="11"
+                         minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>                  </span>
+
+                    </div>
+                  </div>
+                  <div class="col-12 text-center">
+                    <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                    </div>
+                  </div>
+                  <div class="col-12 text-right">
+                <span class="float-right text-right login-link pointer">
+                  <i class="pi pi-key text-dark ml-3"></i> کلمه عبور خود را فراموش کرده ام
+                </span>
+                  </div>
+                  <div class="col-md-12 col-lg-12 pt-4">
+                    <div class="text-center">
+                      <button pButton label="ورود" [disabled]="formUser.invalid" class="btn  btn-primary"
+                              type="submit">
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+            </div>
+            <div aria-labelledby="register-tab" class="tab-pane fade" id="register" role="tabpanel">
+              <form (ngSubmit)="registerUser()" [formGroup]="formUser" class="w-100">
+                <div class="row login-wrap rtl">
+                  <div class="col-12 text-center">
+                    <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input [(ngModel)]="userRegister.mobile" class="form-control"
+                         formControlName="mobile" maxlength="11" minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>                  </span>
+
+                    </div>
+                  </div>
+                  <div class="col-12 text-center">
+                    <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                    </div>
+                  </div>
+                  <div class="col-md-12 col-lg-12 pt-4">
+                    <div class="text-center">
+                      <button pButton label="ثبت نام" [disabled]="formUser.invalid" class="btn  btn-primary"
+                              type="submit">
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </form>
+
+              <div class="row rule-area justify-content-center mt-2">
+                <div class="col-12 text-right align-self-center">
+                  <p>
+                    با ثبت نام در فروشگاه اینترنتی به قیمت، شما <a style="color: red">شرایط و قوانین</a> استفاده از
+                    سرویس
+                    های سایت به قیمت و<a style="color: red"> قوانین حریم خصوصی</a> آن را پذیرفته اید.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+
+        <!--    <div class="mt-4">-->
+        <!--      <span class="p-input-icon-right w-100">-->
+        <!--        <i class="pi pi-user text-dark"></i>-->
+        <!--        <input type="text" pInputText class="w-100 text-right" placeholder="نام کاربری">-->
+        <!--      </span>-->
+        <!--    </div>-->
+        <!--    <div class="mt-4">-->
+        <!--      <span class=" p-input-icon-right w-100">-->
+        <!--        <i class="pi pi-eye text-dark"></i>-->
+        <!--        <input type="password" pInputText class="w-100" placeholder="رمز عبور">-->
+        <!--      </span>-->
+        <!--      <span (click)="showModalDialogForgetPassword()" class="mt-1 float-right text-right login-link">-->
+        <!--        <i class="pi pi-key text-dark ml-3 mt-1"></i> کلمه عبور خود را فراموش کرده ام</span>-->
+        <!--    </div>-->
+
+      </div>
+
+      <div>
+        <button matStepperNext class="mt-5 p-button-danger float-left" pButton type="button" label="مرحله بعدی"
+                icon="pi pi-angle-left" iconPos="left" [disabled]="successLogin"></button>
+
+        <!--          <button matStepperNext class="btn primary-color btn-rounded float-left text-white"-->
+        <!--                  [disabled]="formArray.get([1]).invalid"-->
+        <!--          >مرحله بعدی <i class="fab fa-1x text-white fa-angle-left ml-3"></i>-->
+        <!--          </button>-->
+        <button matStepperPrevious class="mt-5 p-button-danger float-right" pButton type="button" label="برگشت "
+                icon="pi pi-angle-right" iconPos="left"></button>
+
+        <!--          <button matStepperPrevious class="btn primary-color btn-rounded  float-right text-white "><i-->
+        <!--            class="fas fa-1x text-white fa-angle-right mr-3"></i>برگشت-->
+        <!--          </button>-->
+      </div>
+
+    </mat-step>
+    <mat-step formGroupName="2" [stepControl]="formArray?.get([2])">
+
+      <ng-template matStepLabel>اطلاعات خریدار</ng-template>
+      <p-card dir="rtl" class="pt-4 mb-2">
+        <p-header>
+          <p class="text-right pr-5 pt-3 titleCard">
+            اطلاعات خریدار
+          </p>
+          <p class="text-right pr-5 subTitleCard"> اطلاعات فرد تحویل گیرنده را به دقت وارد نمایید
+          </p>
+        </p-header>
+        <div class="p-grid p-fluid">
+          <div class="p-md-6">
+            <div class="p-field p-grid">
+              <label for="title" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">نام:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="title" type="text" pInputText [(ngModel)]="userInfo.firstName" formControlName="firstName">
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">نام خانوادگی:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="type" type="text" pInputText [(ngModel)]="userInfo.lastName" formControlName="lastName">
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شماره همراه:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="type" type="text" pInputText [(ngModel)]="userInfo.mobile" formControlName="mobile">
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </p-card>
+      <p-card dir="rtl" class="pt-4">
+        <p-header>
+          <p class="text-right pr-5 pt-3 titleCard">
+            آدرس تحویل گیرنده
+          </p>
+          <p class="text-right pr-5 subTitleCard"> آدرس و اطلاعات محل تحویل را به دقت وارد نمایید .
+          </p>
+        </p-header>
+        <div class="p-grid p-fluid">
+          <div class="p-md-6">
+            <div class="p-field p-grid">
+              <label for="title" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شماره تلفن ثابت:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="title" type="text" [(ngModel)]="userInfo.phone" pInputText formControlName="phone">
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">استان:</label>
+              <div class="p-col-12 p-md-9">
+                <select id="inputState1" class="form-control" (change)="stateOnChange($event.target)" formControlName="state" [(ngModel)]="userInfo.state">
+                  <option *ngFor="let i of states" value="{{i.Code}}">{{i.pName}}</option>
+
+                </select>
+
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شهر:</label>
+              <div class="p-col-12 p-md-9">
+                <select id="inputState" class="form-control" formControlName="city" [(ngModel)]="userInfo.city">
+                  <option *ngFor="let i of cities " [value]="i.Code">{{i.pName}}</option>
+
+                </select>
+
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">آدرس:</label>
+              <div class="p-col-12 p-md-9">
+                <textarea [rows]="5" [cols]="30" pInputTextarea [(ngModel)]="userInfo.address" autoResize="autoResize"
+                          formControlName="address"></textarea>
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">کد پستی:</label>
+              <div class="p-col-12 p-md-9">
+                <input id="type" type="text" [(ngModel)]="userInfo.postalCode" pInputText formControlName="postalCode">
+              </div>
+            </div>
+            <div class="p-field p-grid">
+              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">پلاک :</label>
+              <div class="p-col-12 p-md-9">
+                <input id="type" type="text" [(ngModel)]="userInfo.plaque" pInputText formControlName="plaque">
+              </div>
+            </div>
+          </div>
+
+
+        </div>
+
+      </p-card>
+      <div class="alert alert-warning mt-5">
+
+        <div class="text-right text-dark"><i class="pi pi-info-circle pl-1"></i>توجه</div>
+        <ul class="text-right" style="list-style-type: none">
+          <li>
+            1- قبل از ادامه , از صحت و دقت اطلاعات تحویل گیرنده اطمینان حاصل فرمایید , اطلاعات اشتباه منجر به کسر هزینه
+            و تاخیر در تحویل سفارش شما خواهد شد .
+
+          </li>
+
+          <li>2- جهت سهولت در ثبت سفارشات آینده می توانید آدرس یا آدرسهای منتخب خود را در صفحه کاربری نیز ثبت نمایید .
+          </li>
+        </ul>
+      </div>
+      <div>
+        <button matStepperNext (click)="deliveryPrice(0)" class="mt-5 p-button-danger float-left" pButton type="button" label="مرحله بعدی"
+                icon="pi pi-angle-left" iconPos="right" [disabled]="formArray.get([2]).invalid"></button>
+
+        <button matStepperPrevious class="mt-5 p-button-danger float-right" pButton type="button" label="برگشت "
+                icon="pi pi-angle-right" iconPos="left"></button>
+
+      </div>
+
+    </mat-step>
+    <mat-step formGroupName="3" [stepControl]="formArray?.get([3])" >
+      <ng-template matStepLabel>نحوه ارسال</ng-template>
+
+      <p-card>
+        <p class="text-right pr-5 pt-3 titleCard">
+          نحوه ارسال
+        </p>
+        <p class="text-right pr-5 subTitleCard">نحوه ارسال سفارش خود را با توجه به هزینه و شرایط آن مشخص نمایید .
+        </p>
+        <div class="row">
+
+          <div class="col-md-12">
+            <ul class="list-group" style="list-style-type: none" dir="rtl">
+              <li class="list-group-item">
+                <div class="row justify-content-center">
+                  <div class="col-md-3">
+                    <!--                    <div class="p-field-radiobutton">-->
+                    <!--                      <p-radioButton name="city" value="0" [(ngModel)]="ServiceType" inputId="city1"></p-radioButton>-->
+                    <!--                      <label for="city1">سفارشی</label>-->
+                    <!--                    </div>-->
+                    <!--                    <div class="p-field-radiobutton">-->
+                    <!--                      <p-radioButton name="city" value="1" [(ngModel)]="ServiceType" inputId="city2"></p-radioButton>-->
+                    <!--                      <label for="city2">پیشتاز</label>-->
+                    <!--                    </div>-->
+                    <mat-radio-group
+                      aria-labelledby="example-radio-group-label"
+                      class="example-radio-group"
+                      [(ngModel)]="ServiceType">
+                      <mat-radio-button class="example-radio-button" checked="true" [value]="0" (click)="deliveryPrice(0)"> پست سفارشی
+                      </mat-radio-button>
+                      <mat-radio-button class="example-radio-button" [value]="1" (click)="deliveryPrice(1)"> پست پیشتاز
+                      </mat-radio-button>
+                    </mat-radio-group>
+
+                  </div>
+                  <div class="col-md-9">
+                    <p class="postText">هزینه ارسال سفارش شما  {{pricePost/10|number}} تومان می باشد</p>
+
+                  </div>
+                </div>
+              </li>
+
+
+            </ul>
+
+
+          </div>
+
+        </div>
+      </p-card>
+
+
+      <br/>
+      <br/>
+      <div>
+        <button matStepperNext class=" p-button-danger float-left" pButton type="button" label="بعدی"
+                icon="pi pi-angle-left" iconPos="right" [disabled]="formArray.get([3]).invalid"></button>
+
+        <button matStepperPrevious class="p-button-danger float-right" pButton type="button" label="برگشت"
+                icon="pi pi-angle-right" iconPos="left"></button>
+      </div>
+    </mat-step>
+    <mat-step formGroupName="4" [stepControl]="formArray?.get([4])">
+      <ng-template matStepLabel>پیش فاکتور</ng-template>
+      <div class="mt-5">
+        <p-orderList [value]="items" [listStyle]="{'height':'auto'}"
+                     dragdrop="true">
+          <ng-template let-product pTemplate="item">
+            <div class="product-item">
+              <div class="image-container">
+                <i class="pi pi-trash text-danger" (click)="deleteCart(product)"></i>
+                <img [src]="product['product']['cartList'].image" class="product-image"/>
+              </div>
+              <div class="product-list-detail">
+                <h5 class="p-mb-2 text-center">{{product['product']['cartList'].title}}</h5>
+              </div>
+              <div class="d-flex justify-content-center mb-1">
+                <div>
+                  تعداد:
+                </div>
+                <div>
+                  <input style="width: 40%;margin-left: 20px" value="{{product['product'].number}}" disabled>
+                </div>
+              </div>
+              <div class="product-list-action">
+                <div class="d-flex flex-row">
+                  <div class="mr-auto">
+                    <small class=" text-danger mr-3"
+                           *ngIf="product['product']['cartList'].offer===true">{{product['product']['cartList'].price|number}}</small>
+                    <b class="text-muted"
+                       *ngIf="product['product']['cartList'].offer===true">{{product['product']['cartList'].price - (product['product']['cartList'].price * product['product']['cartList'].offerPercent) / 100|number}}</b>
+                    تومان
+
+                  </div>
+                  <div>
+                    <b  class="text-muted"
+                        *ngIf="product['product']['cartList'].offer===false">{{product['product']['cartList'].price|number}}</b>
+                  </div>
+                </div>
+                <!--                <h6 class="p-mb-2">تومان{{product['product']['cartList'].price}}</h6>-->
+              </div>
+            </div>
+            <mat-divider></mat-divider>
+          </ng-template>
+        </p-orderList>
+        <p-footer>
+          <div class="row">
+            <div class="col-12">
+              <ul class="list-group" style="list-style-type: none" dir="rtl">
+                <li class="list-group-item ">
+                  <div class="d-flex flex-row justify-content-center">
+                    <div>جمع کل:</div>
+                    <div class="mr-auto">{{sumPrice|number}} تومان </div>
+                  </div>
+                </li>
+                <li class="list-group-item ">
+                  <div class="d-flex flex-row justify-content-center">
+                    <div>هزینه پست:</div>
+                    <div class="mr-auto">{{(pricePost/10|number)}} تومان </div>
+                  </div>
+                </li>
+
+                <li class="list-group-item">
+                  <div class="d-flex flex-row justify-content-center">
+                    <div>مبلغ قابل پرداخت:</div>
+                    <div class="mr-auto">{{(sumPrice+pricePost/10)|number}} تومان </div>
+                  </div>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </p-footer>
+      </div>
+      <div>
+        <button matStepperNext class=" p-button-danger float-left" pButton type="button" label="مرحله بعدی"
+                icon="pi pi-angle-left" iconPos="right" [disabled]="formArray.get([4]).invalid"></button>
+
+        <button matStepperPrevious class=" p-button-danger float-right" pButton type="button" label="برگشت"
+                icon="pi pi-angle-right" iconPos="left"></button>
+
+      </div>
+    </mat-step>
+    <mat-step>
+      <ng-template matStepLabel>پرداخت</ng-template>
+
+      <h4 class="text-success text-center mt-2">
+        کاربر محترم جهت پرداخت هزینه روی دکمه پرداخت کلیک کنید.
+      </h4>
+
+
+      <div>
+        <button class=" p-button-danger" pButton type="button" label="پرداخت " (click)="onRegister()"></button>
+
+      </div>
+      <!--      </div>-->
+    </mat-step>
+  </mat-vertical-stepper>
+</form>
+
+<app-footer></app-footer>
+<ngx-spinner bdColor = "rgba(0, 0, 0, 0.8)"
+             size = "large"
+             color = "#fff"
+             type = "ball-fussion"
+             [fullScreen] = "true">
+  <p style="color: white" >منتظر بمانید</p>
+</ngx-spinner>

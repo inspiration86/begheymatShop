@@ -1,0 +1,35 @@
+.block-features__list {
+  border: none;
+  display: flex;
+  justify-content: space-around;
+}
+.col{
+  padding: 0px;
+}
+.features-item {
+  background: #ffffff;
+  max-width: 200px;
+  border-radius: 5px;
+  text-align: center;
+  align-items: center;
+  padding: 20px 20px 20px;
+  margin-left: 5px!important;
+  margin-right: 5px !important;
+}
+
+.features-icon {
+  margin-left: 0;
+}
+.features-icon {
+   margin-bottom: 10px;
+ }
+.features-icon {
+  flex-shrink: 0;
+  width: 100px;
+  height: 50px;
+  fill: #EF2B2F;
+}
+.logo{
+  width: 100px;
+  height: 50px;
+}

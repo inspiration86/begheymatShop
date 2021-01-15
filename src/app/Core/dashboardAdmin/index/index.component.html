@@ -1,0 +1,105 @@
+<mat-sidenav-container class="sidenav-container" dir="rtl">
+  <mat-sidenav
+    #drawer
+    class="sidenav"
+    fixedInViewport="true"
+    [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+    [mode]="(isHandset$ | async) ? 'over' : 'side'"
+    [opened]="!(isHandset$ | async)">
+    <mat-toolbar class="title-sidebar">
+          <img [src]="localStorage.userJson.image" class="img-fluid d-block mx-auto" width="50px">
+    </mat-toolbar>
+    <hr style="margin-top: -10px"/>
+    <mat-nav-list>
+
+      <!--      <p-accordion>-->
+      <!--        <p-accordionTab header="وضعیت">-->
+      <mat-list>
+        <mat-list-item [routerLink]="['/admin/index']"><i class="pi pi-home p-pl-4 text-white"
+                                                          style="font-size: 1rem"></i> پیشخوان
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/product']"><i class="pi pi-file-o p-pl-4 text-white"
+                                                            style="font-size: 1rem"></i> مدیریت محصولات
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/category']"><i class="pi pi-list p-pl-4 text-white"
+                                                             style="font-size: 1rem"></i> مدیریت دسته بندی ها
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/feature']"><i class="pi pi-tags p-pl-4 text-white"
+                                                            style="font-size: 1rem"></i> مدیریت ویژگی محصولات
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/comment']"><i class="pi pi-comments p-pl-4 text-white"
+                                                            style="font-size: 1rem"></i>مدیریت دیدگاه ها
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/advice']"><i class="pi pi-question p-pl-4 text-white"
+                                                           style="font-size: 1rem"></i>مدیریت مشاوره ها
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/seller']"><i class="pi pi-users p-pl-4 text-white"
+                                                           style="font-size: 1rem"></i>مدیریت فروشنده ها
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="[]"><i class="pi pi-money-bill p-pl-4 text-white" style="font-size: 1rem"></i>تراکنش
+          های مالی
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+
+        <mat-list-item [routerLink]="['/admin/homepage']"><i class="pi pi-desktop p-pl-4 text-white"
+                                                             style="font-size: 1rem"></i>مدیریت صفحه اصلی سایت
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/user']"><i class="pi pi-users p-pl-4 text-white"
+                                                         style="font-size: 1rem"></i>مدیریت کاربران
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item [routerLink]="['/admin/notification']"><i class="pi pi-info p-pl-4 text-white"
+                                                         style="font-size: 1rem"></i>مدیریت اطلاعیه ها
+        </mat-list-item>
+        <mat-divider></mat-divider>
+        <mat-list-item routerLink="[]"><i class="pi pi-comments p-pl-4 text-white" style="font-size: 1rem"></i>تنظیمات
+        </mat-list-item>
+        <mat-divider></mat-divider>
+
+
+      </mat-list>
+
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+
+
+    <p-toolbar>
+      <div class="ui-toolbar-group-right">
+        <button
+          type="button"
+          aria-label="Toggle sidenav"
+          mat-icon-button
+          (click)="drawer.toggle()"
+        >
+          <div class="pi pi-bars"></div>
+        </button>
+      </div>
+
+      <div class="p-d-flex justify-content-center">
+        <div class="p-ml-5 text-white text-center">آخرین بازدید : 13 شهریور 1399 ( 10:59 )</div>
+        <div class="p-mr-5">
+          <a class="text-white" (click)="logOut()"><i class="pi pi-power-off text-white pl-2"></i>خروج کاربر</a>
+        </div>
+
+      </div>
+    </p-toolbar>
+
+
+    <ng-content>
+
+    </ng-content>
+
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+

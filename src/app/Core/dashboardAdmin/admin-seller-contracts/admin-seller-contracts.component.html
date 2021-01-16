@@ -1,0 +1,96 @@
+<p-toast position="center"></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<div class="pnl-content p-3">
+  <div class="box text-right" dir="rtl">
+
+    <p-table #dt
+             [value]="contracts"
+             dataKey="id"
+             [rows]="5"
+             [showCurrentPageReport]="true"
+             [rowsPerPageOptions]="[10, 25, 50]"
+             [paginator]="true"
+             currentPageReportTemplate="نمایش {first} تا {last} از {totalRecords} صفحه"
+             [filterDelay]="0"
+             [globalFilterFields]="[
+          'userName',
+          'startDate',
+          'endDate'
+        ]">
+
+      <ng-template pTemplate="caption">
+        <div class="table-header row">
+          <div class="col-sm-12">لیست قرارداد های فروشنده</div>
+        </div>
+        <div class="col-sm-12">
+              <span class="p-input-icon-left w-100 mt-3">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  class="w-100"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  placeholder="جستجو کلی"
+                />
+              </span>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header">
+        <tr class="title-table">
+          <th class="text-center">ردیف</th>
+          <th class="text-center">کد قرارداد</th>
+          <th class="text-center">لوگو</th>
+          <th class="text-center">فروشنده</th>
+          <th class="text-center">تاریخ شروع</th>
+          <th class="text-center">تاریخ پایان</th>
+          <th class="text-center">وضعیت</th>
+          <th class="text-center"></th>
+          <th class="text-center">عملیات</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-contract let-rowIndex="rowIndex">
+        <tr>
+          <td class="text-center">{{rowIndex + 1}}</td>
+          <td class="text-center">{{contract.ContractCode}}</td>
+          <td class="text-center"><img [src]="contract.Seller[0].logo" class="img-fluid"> </td>
+          <td class="text-center">{{contract.Seller[0].shopName}}</td>
+          <td class="text-center">{{contract.startDate}}</td>
+          <td class="text-center">{{contract.endDate}}</td>
+          <td class="text-center" *ngIf="contract.active">
+            <button pButton pRipple icon="pi pi-check" label="فعال"
+                    class="p-button-link text-success"></button>
+          </td>
+          <td class="text-center" *ngIf="contract.active!==true">
+            <button pButton pRipple icon="pi pi-times" label="غیرفعال"
+                    class="p-button-link text-danger"></button></td>
+          <td class="text-center">
+            <button pButton pRipple  (click)="downloadFile(contract.ContractText)" label="دانلود"
+                    class="p-button-outlined p-button-success ml-2"></button>
+          </td>
+
+          <td class="text-center">
+            <button pButton pRipple icon="pi pi-check"
+                    (click)="active(contract._id)" [disabled]="contract.active === true"
+                    class="p-button-outlined p-button-success ml-2"></button>
+            <button pButton pRipple icon="pi pi-times"
+                    (click)="deactive(contract._id)" [disabled]="contract.active === false"
+                    class="p-button-outlined p-button-danger ml-2"></button>
+            <button pButton pRipple icon="pi pi-pencil"
+                    (click)="showEditDialog(contract._id)"
+                    class="p-button-outlined p-button-warning ml-2"></button>
+            <button pButton pRipple (click)="delete(contract._id)"
+                    icon="pi pi-trash" class="p-button-outlined p-button-danger"></button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="8">هیچ رکوردی یافت نشد.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+</div>

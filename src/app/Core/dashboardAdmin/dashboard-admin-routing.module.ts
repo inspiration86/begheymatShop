@@ -17,6 +17,7 @@ import {AdminEditUserComponent} from './admin-users/admin-edit-user/admin-edit-u
 import {AdminAddUserComponent} from './admin-users/admin-add-user/admin-add-user.component';
 import {AdminLoginComponent} from './admin-login/admin-login.component';
 import {AdminNotificationsComponent} from './admin-notifications/admin-notifications.component';
+import {AdminSellerContractsComponent} from './admin-seller-contracts/admin-seller-contracts.component';
 
 const routes: Routes = [
   {
@@ -145,6 +146,14 @@ const routes: Routes = [
     children: [{
       path: 'notification',
       component: AdminNotificationsComponent
+    }]
+  },
+  {
+    path: '',
+    component: IndexComponent,
+    children: [{
+      path: 'contract',
+      component: AdminSellerContractsComponent
     }]
   }
 ];

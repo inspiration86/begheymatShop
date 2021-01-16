@@ -1,0 +1,77 @@
+<p-toast position="center"></p-toast>
+<div style="direction: rtl; text-align: right">
+  <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100 mt-3">
+
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label for="startDate">تاریخ شروع</label>
+        <input id="startDate" type="text" pInputText
+               formControlName="startDate">
+        <ul class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.startDate">
+          <li class="font-small text-danger font-title-bold list-inline-item"
+              *ngIf="form.get('startDate').hasError(error.type)
+                            && (form.get('startDate').dirty
+                            || form.get('startDate').touched)">
+            {{ error.message }}
+          </li>
+        </ul>
+      </div>
+      <div class="p-field p-col">
+        <label for="endDate">تاریخ پایان</label>
+        <input id="endDate" type="text" pInputText
+               formControlName="endDate">
+        <ul class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.endDate">
+          <li class="font-small text-danger font-title-bold list-inline-item"
+              *ngIf="form.get('endDate').hasError(error.type)
+                            && (form.get('endDate').dirty
+                            || form.get('endDate').touched)">
+            {{ error.message }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label>آپلود فایل قرارداد</label>
+        <p-fileUpload
+          chooseLabel="انتخاب فایل"
+          uploadLabel="آپلود فایل"
+          cancelLabel="انصراف"
+          customUpload="true"
+          (uploadHandler)="fileUploader($event)"
+          accept=".pdf, .docx, .doc"
+        >
+        </p-fileUpload>
+
+        <ul
+          class="mt-1 text-right list-inline"
+          *ngFor="let error of errorMessages.ContractText"
+        >
+          <li
+            class="font-small text-danger font-weight-bold list-inline-item"
+            *ngIf="
+                      form
+                        .get('ContractText')
+                        .hasError(error.type) &&
+                      (form.get('ContractText').dirty ||
+                        form.get('ContractText').touched)
+                    "
+          >
+            {{ error.message }}
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <div class="float-left">
+          <button pButton label="ثبت" class="ui-button-success"
+                  icon="pi pi-check" iconPos="left" [disabled]="form.invalid"></button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

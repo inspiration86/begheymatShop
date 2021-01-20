@@ -23,7 +23,7 @@ export class ProfileComponent implements OnInit {
   shop: any[] = [];
   contact: any[] = [];
   personal: any[] = [];
-
+  public constractUrl:string="http://194.5.175.25:3005/public/uploads/contractSeller/4189900125.docx";
   public shopForm: FormGroup;
   public contactForm: FormGroup;
   public businessForm: FormGroup;
@@ -1166,5 +1166,26 @@ export class ProfileComponent implements OnInit {
 
   isCompanyOnChange(): void {
     this.isCompany = !this.isCompany;
+  }
+  generateContractSeller(){
+    let data={
+      startDate:'1399/10/28',
+      endDate:'1400/10/27',
+      firstName:'رسول',
+      lastName:'صیدی',
+      nationalCode: '4189900125',
+      mobile:'09166996165',
+      startYear:'1399',
+      endYear:'1400',
+      address:'لرستان-الشتر',
+      postalCode:'6896143533'
+    }
+    this.sellerService.generateContractSeller(data).subscribe((response)=>{
+      if(response['success']===true){
+        console.log(response);
+        this.constractUrl=response['ContractText']
+      }
+
+    })
   }
 }

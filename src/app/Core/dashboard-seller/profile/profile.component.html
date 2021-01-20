@@ -162,7 +162,7 @@
                   emptyFilterMessage="نتیجه ای یافت نشد"
                   [options]="states"
                   formControlName="state"
-                  optionLabel="name"
+                  optionLabel="state"
                   [filter]="true"
                   (onChange)="
                     stateOnChange(contactForm.controls['state'].value.code)
@@ -819,6 +819,17 @@
               </button>
             </div>
           </form>
+        </mat-step>
+        <mat-step label="قرارداد">
+          <button (click)="generateContractSeller()">مشاهده فرم قرار داد</button>
+
+
+          <iframe style="height: 45vh; width:100%; display: block;"
+                  ngx-document src="http://194.5.175.25:3005/public/uploads/contractSeller/4189900125.docx"
+                  provider="microsoft"
+                  ></iframe>
+
+<!--          <iframe src="http://194.5.175.25:3005/public/uploads/contractSeller/4189900125.docx"></iframe>-->
         </mat-step>
       </mat-horizontal-stepper>
     </div>

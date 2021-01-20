@@ -3,7 +3,9 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+  URL_BASE: 'http://194.5.175.25:',
+  PORT: 3005,
 };
 
 /*

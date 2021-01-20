@@ -29,6 +29,7 @@ import {PurchasesComponent} from './purchasesSeller/purchases.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { NotificationComponent } from './notification/notification.component';
 
+
 @NgModule({
   declarations: [
     IndexComponent,
@@ -62,7 +63,8 @@ import { NotificationComponent } from './notification/notification.component';
     ListboxModule,
     DpDatePickerModule,
     InputMaskModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+
   ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA

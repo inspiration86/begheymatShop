@@ -92,7 +92,6 @@ export class SearchBarComponent implements OnInit {
     };
     this.dataService.allProductBySearch(data).subscribe((response) => {
       if (response['success'] === true) {
-
         this.dataService.resultSearchBox = response['data'];
         this.router.navigate(['/home/resultSearch']);
       }

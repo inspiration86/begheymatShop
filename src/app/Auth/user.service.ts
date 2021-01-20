@@ -12,15 +12,19 @@ export class UserService {
   onRegister(data: any) {
     return this.http.post('http://194.5.175.25:3005/api/v1/user/register', data);
   }
+
   onLogin(data: any) {
     return this.http.post('http://194.5.175.25:3005/api/v1/user/login', data);
   }
+
   onfindUser(data: any) {
     return this.http.post('http://194.5.175.25:3005/api/v1/user/user', data);
   }
+
   onSendSMS(data: any) {
-    return this.http.post('http://194.5.175.25:3005/api/v1/user/sendSMS',data);
+    return this.http.post('http://194.5.175.25:3005/api/v1/user/sendSMS', data);
   }
+
   getTokenSms() {
     let data = {
       UserApiKey: 'f2a1c337366e0cd3ddffc337',
@@ -28,12 +32,13 @@ export class UserService {
     };
     return this.http.post('https://RestfulSms.com/api/Token', data);
   }
-  sendSms(data:any,token:any) {
+
+  sendSms(data: any, token: any) {
     const headers = {
       'content-type': 'application/json',
-      'x-sms-ir-secure-token':token
+      'x-sms-ir-secure-token': token
     }
 
-    return this.http.post('https://RestfulSms.com/api/Token', data,{'headers': headers});
+    return this.http.post('https://RestfulSms.com/api/UltraFastSend', data, {'headers': headers});
   }
 }

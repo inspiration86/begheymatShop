@@ -44,8 +44,6 @@ import { AdminNotificationsComponent } from './admin-notifications/admin-notific
 import { NotificationAddDialogComponent } from './admin-notifications/notification-add-dialog/notification-add-dialog.component';
 import { NotificationEditDialogComponent } from './admin-notifications/notification-edit-dialog/notification-edit-dialog.component';
 import { NotificationDetailDialogComponent } from './admin-notifications/notification-detail-dialog/notification-detail-dialog.component';
-import { AdminSellerContractsComponent } from './admin-seller-contracts/admin-seller-contracts.component';
-import { SellerContractEditDialogComponent } from './admin-seller-contracts/seller-contract-edit-dialog/seller-contract-edit-dialog.component';
 
 @NgModule({
   declarations: [
@@ -82,9 +80,7 @@ import { SellerContractEditDialogComponent } from './admin-seller-contracts/sell
     AdminNotificationsComponent,
     NotificationAddDialogComponent,
     NotificationEditDialogComponent,
-    NotificationDetailDialogComponent,
-    AdminSellerContractsComponent,
-    SellerContractEditDialogComponent
+    NotificationDetailDialogComponent
   ],
     imports: [
         CommonModule,
@@ -119,8 +115,7 @@ import { SellerContractEditDialogComponent } from './admin-seller-contracts/sell
     SellerDetailDialogComponent,
     NotificationAddDialogComponent,
     NotificationEditDialogComponent,
-    NotificationDetailDialogComponent,
-    SellerContractEditDialogComponent
+    NotificationDetailDialogComponent
   ]
 })
 export class DashboardAdminModule {

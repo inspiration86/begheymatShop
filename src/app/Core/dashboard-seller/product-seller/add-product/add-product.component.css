@@ -1,0 +1,13 @@
+:host::ng-deep.p-listbox-list-wrapper{
+  font-size: 12px;
+  color: #777777;
+}
+:host::ng-deep.p-accordion-header-text {
+  font-size: 15px!important;
+  font-family: Yekan!important;
+  font-size: 1.143rem!important;
+}
+label{
+  font-family: Yekan!important;
+}
+

@@ -17,7 +17,7 @@
 
         <div class="col-sm-12 col-md-8">
           <div class="box">
-            <form (ngSubmit)="register()" [formGroup]="form" class="w-100">
+            <form (ngSubmit)="sendSMS()" [formGroup]="form" class="w-100">
               <div class="row">
                 <div class="col-12 text-center">
                   <div class="form-group">
@@ -105,3 +105,35 @@
     </div>
   </div>
 </div>
+<p-dialog [(visible)]="display">
+  <p-header class="headerPanel">
+    اعتبارسنجی شماره همراه
+  </p-header>
+  <label class="text-titleboxsms mt-4 mb-4">کد ارسال شده به شماره همراه در کادر زیر وارد
+    نمائید</label>
+  <br>
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid ">
+    <div class="ui-grid-row dialog">
+
+      <div>
+        <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="{length:6,allowNumbersOnly:true}"
+                      dir="ltr"
+                      style="font-family: IRANSansWeb" class="text-center"></ng-otp-input>
+        <!--        <p-inputMask mask="9999" class="inputSMS"></p-inputMask>-->
+      </div>
+    </div>
+  </div>
+  <div *ngIf="resendSMS">
+    <a class="text-titleboxsms mt-5 mb-5" (click)="sendSMS()">ارسال مجدد کد</a>
+  </div>
+  <div class="alert alert-danger mt-4 mb-3 text-center" *ngIf="invalidSMS" style="font-family: IRANSansWeb_Bold">کد وارد
+    شده اشتباه می باشد
+  </div>
+  <p-footer dir="rtl" class="text-left mt-5 ">
+    <button pButton  type="submit" class="p-button-danger" label="ثبت نام " cornerStyleClass="text-center" [disabled]="validationBtnPay"
+    ></button>
+    <button pButton type="submit" class="p-button-danger" label="مدت زمان باقیمانده:{{timeLeft}}"
+            cornerStyleClass="text-center"
+    ></button>
+  </p-footer>
+</p-dialog>

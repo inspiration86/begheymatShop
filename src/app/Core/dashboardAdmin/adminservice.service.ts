@@ -246,30 +246,10 @@ export class AdminserviceService {
   editNotification(id: any, data: any): any {
     return this.http.put('http://194.5.175.25:3005/api/v1/admin/updateNotification/' + id, data);
   }
+
   deleteNotification(id: any): any {
     return this.http.delete('http://194.5.175.25:3005/api/v1/admin/deleteNotification/' + id);
   }
 
-  //#endregion
-
-  //# region ContractSeller-Apis
-  getAllSellerContracts(): any {
-    return this.http.get('http://194.5.175.25:3005/api/v1/admin/allContractSellerbe');
-  }
-  getSellerContractById(id: any): any {
-    return this.http.get('http://194.5.175.25:3005/api/v1/admin/singleContractSellerbe/' + id);
-  }
-  editSellerContract(id: any, data: any): any {
-    return this.http.put('http://194.5.175.25:3005/api/v1/admin/updateContractSellerbe/' + id, data);
-  }
-  deleteSellerContract(id: any): any {
-    return this.http.delete('http://194.5.175.25:3005/api/v1/admin/deleteContractSellerbe/' + id);
-  }
-  activeSellerContract(id: any): any {
-    return this.http.put('http://194.5.175.25:3005/api/v1/admin/activeContractSellerbe/' + id, null);
-  }
-  deactiveSellerContract(id: any): any {
-    return this.http.put('http://194.5.175.25:3005/api/v1/admin/deactiveContractSellerbe/' + id, null);
-  }
   //#endregion
 }

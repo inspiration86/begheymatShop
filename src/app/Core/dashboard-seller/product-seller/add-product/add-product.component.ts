@@ -16,6 +16,10 @@ import {OverlayService} from '../../../../overlay.service';
 })
 export class AddProductComponent implements OnInit {
   public form: FormGroup;
+  index: number = 0;
+  titleCategory: string[] = [];
+  commissionPersent: string;//حق کمیسیون
+  activeState: boolean[] = [true, true, true];
   errorMessages = {
     title: [
       {type: 'required', message: 'عنوان محصول را وارد کنید.'},
@@ -66,11 +70,12 @@ export class AddProductComponent implements OnInit {
   subCategory: any[] = [];
   subSubCategory: any[] = [];
   features: any[] = [];
-  featuresID:any;
-  featuresValueID:any;
-  featuresTitle:any;
+  featuresID: any;
+  featuresValueID: any;
+  featuresTitle: any;
   values: any[] = [];
   showSelectedFeatures: any[] = [];
+
   constructor(private formBuilder: FormBuilder,
               private localstorage: LocalStorageService,
               private sellerService: SellerService,
@@ -231,7 +236,12 @@ export class AddProductComponent implements OnInit {
   }
 
   getSubCategory(e: any) {
+    this.titleCategory[1] = '';
+    this.titleCategory[2] = '';
     let category = e.value;
+    this.getCommission(category._id);
+    this.form.patchValue({categoryID: category._id});
+    this.titleCategory[0] = category.title
     this.subCategory = category.SubCategory;
   }
 
@@ -246,8 +256,20 @@ export class AddProductComponent implements OnInit {
   }
 
   onSubSubCategory(e: any) {
+
+    this.titleCategory[2] = '';
     let category = e.value;
+    this.getCommission(category._id)
+    this.form.patchValue({subCategory: category._id})
+    this.titleCategory[1] = category.title
     this.subSubCategory = category.SubSubCategory;
+  }
+
+  onSubSubSubCategory(e: any) {
+    let category = e.value;
+    this.titleCategory[2] = category.title;
+    this.getCommission(category._id);
+    this.form.patchValue({subSubCategory: category._id})
   }
 
   getFeatures(): any {
@@ -266,9 +288,9 @@ export class AddProductComponent implements OnInit {
     const subcategory = this.form.controls.subCategory.value;
     const subSubCategory = this.form.controls.subSubCategory.value;
     this.form.controls.sellerID.setValue(this.localstorage.userJson['_id']);
-    this.form.controls.categoryID.setValue(category._id);
-    this.form.controls.subCategory.setValue(subcategory._id);
-    this.form.controls.subSubCategory.setValue(subSubCategory._id);
+    // this.form.controls.categoryID.setValue(category._id);
+    // this.form.controls.subCategory.setValue(subcategory._id);
+    // this.form.controls.subSubCategory.setValue(subSubCategory._id);
     console.log(this.form.value);
     this.sellerService.addProduct(this.form.value).subscribe((response) => {
 
@@ -280,7 +302,7 @@ export class AddProductComponent implements OnInit {
         };
         console.log(value);
         this.sellerService.addProductFeature(value).subscribe((res) => {
-         console.log(res)
+          console.log(res)
           if (res.success === true) {
             console.log(res.success);
           } else {
@@ -296,22 +318,54 @@ export class AddProductComponent implements OnInit {
 
   getFeatureValues(event): void {
     this.values = event.value['FeaturesValue'];
-    this.featuresID=event.value['_id'];
-    this.featuresTitle=event.value['titleFarsi']
+    this.featuresID = event.value['_id'];
+    this.featuresTitle = event.value['titleFarsi']
   }
+
   addSelectedValues(event: any): void {
     const parent = this.values.find(x => x.value === event.value)._id;
-      this.showSelectedFeatures.push(
-        {
-          featuresID: this.featuresID,
-          title: this.featuresTitle,
-          valueID: parent,
-          value: event.value
-        }
-      );
+    this.showSelectedFeatures.push(
+      {
+        featuresID: this.featuresID,
+        title: this.featuresTitle,
+        valueID: parent,
+        value: event.value
+      }
+    );
 
   }
-  deleteFeature(item:any){
-    this.showSelectedFeatures.splice(item,1)
+
+  deleteFeature(item: any) {
+    this.showSelectedFeatures.splice(item, 1)
+  }
+
+  onTabClose(event) {
+    this.messageService.add({severity: 'info', summary: 'Tab Closed', detail: 'Index: ' + event.index})
+  }
+
+  onTabOpen(event) {
+    this.messageService.add({severity: 'info', summary: 'Tab Expanded', detail: 'Index: ' + event.index});
+  }
+
+  toggle(index: number) {
+    this.activeState[index] = !this.activeState[index];
+    console.log(this.activeState)
+  }
+
+  openNext(e) {
+    this.index = (this.index === e.index) ? 0 : this.index + 1;
+  }
+  openPrev(e) {
+    this.index = (this.index === e.index) ? 2 : this.index - 1;
+  }
+
+
+  getCommission(id) {
+    this.sellerService.getSearchCommission(id).subscribe((response) => {
+      if (response['success'] === true) {
+        let data: any[] = response['data'][0];
+        this.commissionPersent = data['percent']
+      }
+    })
   }
 }

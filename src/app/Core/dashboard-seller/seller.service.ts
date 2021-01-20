@@ -93,25 +93,36 @@ export class SellerService {
   uploadFiles(data: any): any {
     return this.http.post('http://194.5.175.25:3005/api/v1/seller/multipleimage', data);
   }
-  deleteGallery(id:any,data: any): any {
-    return this.http.post('http://194.5.175.25:3005/api/v1/admin/deleteGallery/'+id, data);
+
+  deleteGallery(id: any, data: any): any {
+    return this.http.post('http://194.5.175.25:3005/api/v1/admin/deleteGallery/' + id, data);
   }
-  deleteImage(data: any){
+
+  deleteImage(data: any) {
     return this.http.post('http://194.5.175.25:3005/api/v1/admin/deleteImage/', data);
 
   }
-  onDisplayBasket(data:any){
-    return this.http.post('http://194.5.175.25:3005/api/v1/seller/basketList',data);
+
+  onDisplayBasket(data: any) {
+    return this.http.post('http://194.5.175.25:3005/api/v1/seller/basketList', data);
   }
-  deleteProductFeature(id:any){
-    return this.http.delete('http://194.5.175.25:3005/api/v1/seller/deleteProductFeature/'+id);
+
+  deleteProductFeature(id: any) {
+    return this.http.delete('http://194.5.175.25:3005/api/v1/seller/deleteProductFeature/' + id);
   }
-  registerProductFeatureSingle(data:any){
-    return this.http.post('http://194.5.175.25:3005/api/v1/seller/storeProductFeatureSingle',data);
+
+  registerProductFeatureSingle(data: any) {
+    return this.http.post('http://194.5.175.25:3005/api/v1/seller/storeProductFeatureSingle', data);
   }
 
   getNotifications(): any {
     return this.http.get('http://194.5.175.25:3005/api/v1/admin/allNotification');
   }
 
+  getSearchCommission(id: any) {
+    return this.http.get('http://194.5.175.25:3005/api/v1/admin/searchCommission/' + id);
+  }
+  generateContractSeller(data:any) {
+    return this.http.post('http://194.5.175.25:3005/api/v1/seller/generateContractSellerbe',data);
+  }
 }

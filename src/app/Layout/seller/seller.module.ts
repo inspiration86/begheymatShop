@@ -15,6 +15,9 @@ import {ToastModule} from 'primeng/toast';
 import {CardModule} from 'primeng/card';
 import {TimelineModule} from 'primeng/timeline';
 import { SellerHelpComponent } from './seller-help/seller-help.component';
+import {DialogModule} from "primeng/dialog";
+import {NgOtpInputModule} from "ng-otp-input";
+import {ButtonModule} from "primeng/button";
 
 
 @NgModule({
@@ -25,16 +28,19 @@ import { SellerHelpComponent } from './seller-help/seller-help.component';
     SellerFeatureComponent,
     SellerComponent,
     SellerHelpComponent],
-    imports: [
-        CommonModule,
-        SellerRoutingModule,
-        ReactiveFormsModule,
-        MatExpansionModule,
-        SidebarModule,
-        ToastModule,
-        CardModule,
-        TimelineModule
-    ],
+  imports: [
+    CommonModule,
+    SellerRoutingModule,
+    ReactiveFormsModule,
+    MatExpansionModule,
+    SidebarModule,
+    ToastModule,
+    CardModule,
+    TimelineModule,
+    DialogModule,
+    NgOtpInputModule,
+    ButtonModule
+  ],
   // exports: [
   //   SellerRegisterComponent,
   //   SellerFooterComponent,

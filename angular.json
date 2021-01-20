@@ -51,7 +51,8 @@
             "scripts": [
               "src/assets/bootstrap/js/jquery.min.js",
               "src/assets/bootstrap/js/bootstrap.min.js",
-              "src/assets/bootstrap/js/custom.js"
+              "src/assets/bootstrap/js/custom.js",
+              "node_modules/mammoth/mammoth.browser.min.js"
 
             ]
           },

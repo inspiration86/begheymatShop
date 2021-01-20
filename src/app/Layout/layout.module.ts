@@ -55,6 +55,7 @@ import {MatRadioModule} from '@angular/material/radio';
 import { PaymentHelpComponent } from './payment-help/payment-help.component';
 import {TimelineModule} from 'primeng/timeline';
 import {NgImageFullscreenViewModule} from 'ng-image-fullscreen-view';
+import {NgOtpInputModule} from "ng-otp-input";
 
 @NgModule({
   declarations: [IndexComponent,
@@ -115,7 +116,8 @@ import {NgImageFullscreenViewModule} from 'ng-image-fullscreen-view';
     PanelMenuModule,
     MatRadioModule,
     TimelineModule,
-    NgImageFullscreenViewModule
+    NgImageFullscreenViewModule,
+    NgOtpInputModule
   ],
   exports: [
     IndexComponent,

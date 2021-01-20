@@ -18,6 +18,10 @@ import {AdminAddUserComponent} from './admin-users/admin-add-user/admin-add-user
 import {AdminLoginComponent} from './admin-login/admin-login.component';
 import {AdminNotificationsComponent} from './admin-notifications/admin-notifications.component';
 import {AdminSellerContractsComponent} from './admin-seller-contracts/admin-seller-contracts.component';
+<<<<<<< Updated upstream
+=======
+import {AdminCommissionComponent} from './admin-commission/admin-commission.component';
+>>>>>>> Stashed changes
 
 const routes: Routes = [
   {
@@ -152,6 +156,17 @@ const routes: Routes = [
     path: '',
     component: IndexComponent,
     children: [{
+<<<<<<< Updated upstream
+=======
+      path: 'commission',
+      component: AdminCommissionComponent
+    }]
+  },
+  {
+    path: '',
+    component: IndexComponent,
+    children: [{
+>>>>>>> Stashed changes
       path: 'contract',
       component: AdminSellerContractsComponent
     }]

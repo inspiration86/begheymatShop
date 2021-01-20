@@ -46,6 +46,13 @@ import { NotificationEditDialogComponent } from './admin-notifications/notificat
 import { NotificationDetailDialogComponent } from './admin-notifications/notification-detail-dialog/notification-detail-dialog.component';
 import { AdminSellerContractsComponent } from './admin-seller-contracts/admin-seller-contracts.component';
 import { SellerContractEditDialogComponent } from './admin-seller-contracts/seller-contract-edit-dialog/seller-contract-edit-dialog.component';
+<<<<<<< Updated upstream
+=======
+import { AdminCommissionComponent } from './admin-commission/admin-commission.component';
+import { CommissionAddDialogComponent } from './admin-commission/commission-add-dialog/commission-add-dialog.component';
+import { CommissionEditDialogComponent } from './admin-commission/commission-edit-dialog/commission-edit-dialog.component';
+import {SplitButtonModule} from 'primeng/splitbutton';
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -84,7 +91,14 @@ import { SellerContractEditDialogComponent } from './admin-seller-contracts/sell
     NotificationEditDialogComponent,
     NotificationDetailDialogComponent,
     AdminSellerContractsComponent,
+<<<<<<< Updated upstream
     SellerContractEditDialogComponent
+=======
+    SellerContractEditDialogComponent,
+    AdminCommissionComponent,
+    CommissionAddDialogComponent,
+    CommissionEditDialogComponent
+>>>>>>> Stashed changes
   ],
     imports: [
         CommonModule,
@@ -97,7 +111,8 @@ import { SellerContractEditDialogComponent } from './admin-seller-contracts/sell
         MatStepperModule,
         MatRadioModule,
         InputMaskModule,
-        EditorModule
+        EditorModule,
+        SplitButtonModule
     ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -120,7 +135,13 @@ import { SellerContractEditDialogComponent } from './admin-seller-contracts/sell
     NotificationAddDialogComponent,
     NotificationEditDialogComponent,
     NotificationDetailDialogComponent,
+<<<<<<< Updated upstream
     SellerContractEditDialogComponent
+=======
+    SellerContractEditDialogComponent,
+    CommissionAddDialogComponent,
+    CommissionEditDialogComponent
+>>>>>>> Stashed changes
   ]
 })
 export class DashboardAdminModule {

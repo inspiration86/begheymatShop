@@ -18,6 +18,7 @@ import {SearchService} from '../../search.service';
 })
 export class ProductsComponent implements OnInit {
   items = [];
+  rangeValues: number[] = [20, 80];
   pageOfItems: Array<any>;
   categories: any[] = [];
   menuCategories: MenuItem[] = [];

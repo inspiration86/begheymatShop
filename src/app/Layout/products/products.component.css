@@ -957,3 +957,19 @@ img.image__tag {
   padding: .5em 1em;
   cursor: pointer;
 }
+
+:host ::ng-deep .p-slider .p-slider-handle {
+  height: 1.143rem;
+  width: 1.143rem;
+  background: #ffffff;
+  border: 2px solid #CC3333;
+  border-radius: 50%;
+  transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+}
+:host ::ng-deep .p-slider .p-slider-range {
+  background: #CC3333;
+}
+:host ::ng-deep .p-slider:not(.p-disabled) .p-slider-handle:hover {
+  background: #CC3333;
+  border-color: #CC3333;
+}

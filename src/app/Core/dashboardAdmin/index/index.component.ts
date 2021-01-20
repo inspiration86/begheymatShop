@@ -16,6 +16,13 @@ export class IndexComponent implements OnInit {
       map(result => result.matches),
       shareReplay()
     );
+  isExpanded1 = true;
+  showSubmenu1 = false;
+  isShowing1 = false;
+
+  isExpanded2 = true;
+  showSubmenu2 = false;
+  isShowing2 = false;
 
   isLogged = false;
 
@@ -33,8 +40,9 @@ export class IndexComponent implements OnInit {
     }
   }
 
-  logOut(): void{
+  logOut(): void {
     this.localStorage.removeCurrentUser();
     this.router.navigateByUrl('/');
   }
+
 }

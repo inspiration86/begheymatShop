@@ -9,107 +9,69 @@
         ></i>
           اطلاعیه
         </ng-template>
-        <div #table dir="rtl">
-          <p-table
-            [value]="notifications"
-            selectionMode="single"
-            #dt
-            [paginator]="true"
-            [rows]="4"
-          >
-            <ng-template pTemplate="caption">
-              <div class="table-header row">
-                <div class="col-sm-12 text-right">اطلاعیه ها</div>
-                <div class="col-sm-12">
-                    <span class="p-input-icon-left w-100 mt-3">
-                      <i class="pi pi-search"></i>
-                      <input
-                        pInputText
-                        type="text"
-                        class="w-100"
-                        (input)="
-                          dt.filterGlobal($event.target.value, 'contains')
-                        "
-                        placeholder="جستجو کلی"
-                      />
-                    </span>
-                </div>
-              </div>
-            </ng-template>
 
-            <ng-template pTemplate="header">
-              <tr class="title-table">
-                <th class="text-center">ردیف</th>
-                <th class="text-center">عنوان</th>
-                <th class="text-center">توضیحات</th>
-                <th class="text-center">تاریخ</th>
-              </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-info let-rowIndex="rowIndex">
-              <tr>
-                <td class="text-center">{{ rowIndex + 1 }}</td>
-                <td class="text-center">{{ info.title }}</td>
-                <td class="text-center">{{ info.description }}</td>
-                <td class="text-center">{{ info.date }}</td>
+        <mat-accordion *ngIf="notifications.length>0">
+          <mat-expansion-panel *ngFor="let item of notifications" (opened)="panelOpenState = true"
+                               (closed)="panelOpenState = false">
+            <mat-expansion-panel-header>
+              <mat-panel-title>
+                {{item.title}}
+              </mat-panel-title>
+              <mat-panel-description>
+                {{item.date}}
+              </mat-panel-description>
+            </mat-expansion-panel-header>
+            {{item.description}}
+          </mat-expansion-panel>
+        </mat-accordion>
 
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
-      </p-tabPanel>
-      <p-tabPanel>
-        <ng-template pTemplate="header"
-        ><i
-          class="pi pi-comments p-pl-3 text-white"
-          style="font-size: 1rem"
-        ></i>
-          قوانین
-        </ng-template>
-        <div #table dir="rtl">
-          <p-table
-            [value]="notifications"
-            selectionMode="single"
-            #dt
-            [paginator]="true"
-            [rows]="4"
-          >
-            <ng-template pTemplate="caption">
-              <div class="table-header row">
-                <div class="col-sm-12 text-right">قوانین</div>
-                <div class="col-sm-12">
-                    <span class="p-input-icon-left w-100 mt-3">
-                      <i class="pi pi-search"></i>
-                      <input
-                        pInputText
-                        type="text"
-                        class="w-100"
-                        (input)="
-                          dt.filterGlobal($event.target.value, 'contains')
-                        "
-                        placeholder="جستجو کلی"
-                      />
-                    </span>
-                </div>
-              </div>
-            </ng-template>
+        <!--        <div #table dir="rtl">-->
+        <!--          <p-table-->
+        <!--            [value]="notifications"-->
+        <!--            selectionMode="single"-->
+        <!--            #dt-->
+        <!--            [paginator]="true"-->
+        <!--            [rows]="4"-->
+        <!--          >-->
+        <!--            <ng-template pTemplate="caption">-->
+        <!--              <div class="table-header row">-->
+        <!--                <div class="col-sm-12 text-right">اطلاعیه ها</div>-->
+        <!--                <div class="col-sm-12">-->
+        <!--                    <span class="p-input-icon-left w-100 mt-3">-->
+        <!--                      <i class="pi pi-search"></i>-->
+        <!--                      <input-->
+        <!--                        pInputText-->
+        <!--                        type="text"-->
+        <!--                        class="w-100"-->
+        <!--                        (input)="-->
+        <!--                          dt.filterGlobal($event.target.value, 'contains')-->
+        <!--                        "-->
+        <!--                        placeholder="جستجو کلی"-->
+        <!--                      />-->
+        <!--                    </span>-->
+        <!--                </div>-->
+        <!--              </div>-->
+        <!--            </ng-template>-->
 
-            <ng-template pTemplate="header">
-              <tr class="title-table">
-                <th class="text-center">ردیف</th>
-                <th class="text-center">عنوان</th>
-                <th class="text-center">توضیحات</th>
-                <th class="text-center">تاریخ</th>
-            </ng-template>
-            <ng-template pTemplate="body" let-rule let-rowIndex="rowIndex">
-              <tr>
-                <td class="text-center">{{ rowIndex + 1 }}</td>
-                <td class="text-center">{{ rule.title }}</td>
-                <td class="text-center">{{ rule.description }}</td>
-                <td class="text-center">{{ rule.date }}</td>
-              </tr>
-            </ng-template>
-          </p-table>
-        </div>
+        <!--            <ng-template pTemplate="header">-->
+        <!--              <tr class="title-table">-->
+        <!--                <th class="text-center">ردیف</th>-->
+        <!--                <th class="text-center">عنوان</th>-->
+        <!--                <th class="text-center">توضیحات</th>-->
+        <!--                <th class="text-center">تاریخ</th>-->
+        <!--              </tr>-->
+        <!--            </ng-template>-->
+        <!--            <ng-template pTemplate="body" let-info let-rowIndex="rowIndex">-->
+        <!--              <tr>-->
+        <!--                <td class="text-center">{{ rowIndex + 1 }}</td>-->
+        <!--                <td class="text-center">{{ info.title }}</td>-->
+        <!--                <td class="text-center">{{ info.description }}</td>-->
+        <!--                <td class="text-center">{{ info.date }}</td>-->
+
+        <!--              </tr>-->
+        <!--            </ng-template>-->
+        <!--          </p-table>-->
+        <!--        </div>-->
       </p-tabPanel>
     </p-tabView>
   </div>

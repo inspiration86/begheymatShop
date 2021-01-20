@@ -1,0 +1,81 @@
+<p-toast position="center"></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<div class="pnl-content p-3">
+  <div class="box text-right" dir="rtl">
+
+    <p-table #dt
+             [value]="commissions"
+             dataKey="id"
+             [rows]="5"
+             [showCurrentPageReport]="true"
+             [rowsPerPageOptions]="[10, 25, 50]"
+             [paginator]="true"
+             currentPageReportTemplate="نمایش {first} تا {last} از {totalRecords} صفحه"
+             [filterDelay]="0"
+             [globalFilterFields]="[
+          'percent'
+        ]">
+
+      <ng-template pTemplate="caption">
+        <div class="table-header row">
+          <div class="col-sm-6">لیست کمیسون ها</div>
+          <div class="col-sm-6 text-left">
+            <button
+              pButton
+              pRipple
+              label="جدید"
+              icon="pi pi-plus"
+              class="p-button-success p-mr-2 p-button-icon-right"
+              (click) = "showCommissionAddDialog()"
+            ></button>
+          </div>
+        </div>
+        <div class="col-sm-12">
+              <span class="p-input-icon-left w-100 mt-3">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  class="w-100"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  placeholder="جستجو کلی"
+                />
+              </span>
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header">
+        <tr class="title-table">
+          <th class="text-center">ردیف</th>
+          <th class="text-center">دسته بندی</th>
+          <th class="text-center">درصد</th>
+          <th class="text-center">عملیات</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-commission let-rowIndex="rowIndex">
+        <tr>
+          <td class="text-center">{{rowIndex + 1}}</td>
+          <td class="text-center" *ngIf="commission.Category.length > 0">{{commission.Category[0].title}}</td>
+          <td class="text-center" *ngIf="commission.SubCategory.length > 0">{{commission.SubCategory[0].title}}</td>
+          <td class="text-center" *ngIf="commission.SubSubCategory.length > 0">{{commission.SubSubCategory[0].title}}</td>
+          <td class="text-center">{{commission.percent}}</td>
+
+          <td class="text-center">
+            <button pButton pRipple icon="pi pi-pencil"
+                    (click)="showCommissionEditDialog(commission._id)"
+                    class="p-button-outlined p-button-warning ml-2"></button>
+            <button pButton pRipple (click)="delete(commission._id)"
+                    icon="pi pi-trash" class="p-button-outlined p-button-danger"></button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4">هیچ رکوردی یافت نشد.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+</div>

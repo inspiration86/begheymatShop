@@ -28,6 +28,7 @@ import { AddProductComponent } from './product-seller/add-product/add-product.co
 import {PurchasesComponent} from './purchasesSeller/purchases.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { NotificationComponent } from './notification/notification.component';
+import {MatExpansionModule} from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -44,26 +45,27 @@ import { NotificationComponent } from './notification/notification.component';
     PurchasesComponent,
     NotificationComponent
   ],
-  imports: [
-    CommonModule,
-    DashboardSellerRoutingModule,
-    SharedmoduleModule,
-    SharedcomponentModule,
-    ReactiveFormsModule,
-    DropdownModule,
-    FormsModule,
-    MatStepperModule,
-    MatRadioModule,
-    MatDatepickerModule,
-    MatNativeDateModule,
-    InputSwitchModule,
-    DynamicDialogModule,
-    ConfirmDialogModule,
-    ListboxModule,
-    DpDatePickerModule,
-    InputMaskModule,
-    ProgressSpinnerModule
-  ],
+    imports: [
+        CommonModule,
+        DashboardSellerRoutingModule,
+        SharedmoduleModule,
+        SharedcomponentModule,
+        ReactiveFormsModule,
+        DropdownModule,
+        FormsModule,
+        MatStepperModule,
+        MatRadioModule,
+        MatDatepickerModule,
+        MatNativeDateModule,
+        InputSwitchModule,
+        DynamicDialogModule,
+        ConfirmDialogModule,
+        ListboxModule,
+        DpDatePickerModule,
+        InputMaskModule,
+        ProgressSpinnerModule,
+        MatExpansionModule
+    ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
   ],

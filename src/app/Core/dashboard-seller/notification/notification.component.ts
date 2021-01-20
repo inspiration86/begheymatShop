@@ -8,6 +8,7 @@ import {SellerService} from '../seller.service';
 })
 export class NotificationComponent implements OnInit {
   notifications: any[] = [];
+  panelOpenState = false;
   constructor(private service: SellerService) { }
 
   ngOnInit(): void {

@@ -1,0 +1,328 @@
+<p-toast position="center"></p-toast>
+
+<div class="pnl-content p-3">
+  <div class="box text-right" dir="rtl">
+
+    <div class="row border-bottom pb-2 titlepage">
+      <div class="col-sm-12">
+        <a routerLink='/admin/user'>لیست کاربران</a>
+        /
+        <span>ویرایش کاربر</span>
+      </div>
+    </div>
+
+    <form [formGroup]="form"  class="w-100 mt-3" (ngSubmit)="submitForm()">
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+          <label for="firstName">نام</label>
+          <input id="firstName" type="text" pInputText
+                 formControlName="firstName">
+          <ul class="mt-1 text-right list-inline"
+              *ngFor="let error of errorMessages.firstName">
+            <li class="font-small text-danger font-weight-bold list-inline-item"
+                *ngIf="form.get('firstName').hasError(error.type)
+                            && (form.get('firstName').dirty
+                            || form.get('firstName').touched)">
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+        <div class="p-field p-col">
+          <label class="d-block">نام خانوادگی</label>
+          <input id="lastName" type="text" pInputText
+                 formControlName="lastName">
+          <ul class="mt-1 text-right list-inline"
+              *ngFor="let error of errorMessages.lastName">
+            <li class="font-small text-danger font-weight-bold list-inline-item"
+                *ngIf="form.get('lastName').hasError(error.type)
+                            && (form.get('lastName').dirty
+                            || form.get('lastName').touched)">
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+          <label for="nationalCode">کد ملی</label>
+          <input
+            id="nationalCode"
+            pKeyFilter="int" maxlength="10"
+            minlength="10"
+            name="nationalCode"
+            type="text"
+            pInputText
+            formControlName="nationalCode"
+          />
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.nationalCode"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                      form.get('nationalCode').hasError(error.type) &&
+                      (form.get('nationalCode').dirty ||
+                        form.get('nationalCode').touched)
+                    "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+        <div class="p-field p-col">
+          <label for="phone">تلفن</label>
+          <input
+            id="phone"
+            pKeyFilter="int" maxlength="10"
+            minlength="10"
+            name="phone"
+            type="text"
+            pInputText
+            formControlName="phone"
+          />
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.phone"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                      form.get('phone').hasError(error.type) &&
+                      (form.get('phone').dirty ||
+                        form.get('phone').touched)
+                    "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+          <label class="d-block">استان</label>
+
+          <p-dropdown
+            appendTo="body"
+            emptyFilterMessage="نتیجه ای یافت نشد"
+            [options]="states"
+            formControlName="state"
+            optionLabel="name"
+            [filter]="true"
+            filterBy="name"
+            (onChange)="
+                    stateOnChange(form.controls['state'].value.code)
+                  "
+          >
+            <ng-template pTemplate="selectedItem">
+              <div
+                class="state-item state-item-value"
+                *ngIf="form.controls['state'].value"
+              >
+                <div>{{ form.controls["state"].value.name }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-state pTemplate="item">
+              <div class="state-item text-right">
+                <div class="text-right">{{ state.name }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.state"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                      form.get('state').hasError(error.type) &&
+                      (form.get('state').dirty ||
+                        form.get('state').touched)
+                    "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+        <div class="p-field p-col">
+          <label class="d-block">شهر</label>
+          <p-dropdown
+            appendTo="body"
+            emptyFilterMessage="نتیجه ای یافت نشد"
+            [options]="cities"
+            formControlName="city"
+            optionLabel="name"
+            [filter]="true"
+            filterBy="name"
+          >
+            <ng-template pTemplate="selectedItem">
+              <div
+                class="city-item city-item-value"
+                *ngIf="form.controls['city'].value"
+              >
+                <div>{{ form.controls["city"].value.name }}</div>
+              </div>
+            </ng-template>
+            <ng-template let-city pTemplate="item">
+              <div class="city-item text-right">
+                <div class="text-right">{{ city.name }}</div>
+              </div>
+            </ng-template>
+          </p-dropdown>
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.city"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                      form.get('city').hasError(error.type) &&
+                      (form.get('city').dirty ||
+                        form.get('city').touched)
+                    "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+          <label for="address">آدرس</label>
+          <textarea
+            rows="5"
+            cols="30"
+            pInputTextarea
+            id="address"
+            autoResize="autoResize"
+            formControlName="address"
+          >
+                </textarea>
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.address"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                      form.get('address').hasError(error.type) &&
+                      (form.get('address').dirty ||
+                        form.get('address').touched)
+                    "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+          <label for="plaque">پلاک</label>
+          <input
+            id="plaque"
+            name="plaque"
+            type="text"
+            pInputText
+            formControlName="plaque"
+          />
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.plaque"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                      form.get('plaque').hasError(error.type) &&
+                      (form.get('plaque').dirty ||
+                        form.get('plaque').touched)
+                    "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+        <div class="p-field p-col">
+          <label for="phone">کدپستی</label>
+          <input
+            id="postalCode"
+            pKeyFilter="int" maxlength="10"
+            minlength="10"
+            name="postalCode"
+            type="text"
+            pInputText
+            formControlName="postalCode"
+          />
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.postalCode"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                      form.get('postalCode').hasError(error.type) &&
+                      (form.get('postalCode').dirty ||
+                        form.get('postalCode').touched)
+                    "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+          <label>آپلود تصویر</label>
+          <p-fileUpload
+            chooseLabel="انتخاب تصویر"
+            uploadLabel="آپلود تصویر"
+            cancelLabel="انصراف"
+            customUpload="true"
+            (uploadHandler)="imageUploader($event)"
+            invalidFileSizeMessageDetail="حداکثر سایز فایل 2 مگابایت می باشد"
+            invalidFileSizeMessageSummary="اندازه فایل بیش از حد مجاز می باشد"
+            accept="image/jpeg,image/png"
+            maxFileSize="2000000"
+          >
+          </p-fileUpload>
+        </div>
+      </div>
+
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+          <label for="nationalCode">شماره کارت</label>
+          <input
+            id="cardNumber"
+            name="cardNumber"
+            type="text"
+            pInputText
+            formControlName="cardNumber"
+          />
+        </div>
+        <div class="p-field p-col">
+          <label for="phone">شماره حساب</label>
+          <input
+            id="accountNumber"
+            name="accountNumber"
+            type="text"
+            pInputText
+            formControlName="accountNumber"
+          />
+        </div>
+      </div>
+
+      <div class="p-fluid p-formgrid p-grid pt-3">
+        <div class="p-field p-col">
+          <div class="float-left">
+            <button pButton label="ثبت" class="ui-button-success"
+                    icon="pi pi-check" iconPos="left" ></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

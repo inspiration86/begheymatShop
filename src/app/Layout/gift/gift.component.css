@@ -20,9 +20,9 @@
 .is-button-pink {
   line-height: 35px;
   border-radius: 5px;
-  border: 1px solid #CC3333;
+  border: 1px solid #EF2B2F;
   background-color: #fff;
-  color: #CC3333;
+  color: #EF2B2F;
   cursor: pointer;
   text-align: center;
   margin: 20px auto 0;
@@ -59,7 +59,7 @@ img{
 }
 .direct-gift:hover .is-button-pink {
   transition: border-color .3s;
-  background-color: #CC3333;
+  background-color: #EF2B2F;
   color: #fff;
   text-decoration: none!important;
 }

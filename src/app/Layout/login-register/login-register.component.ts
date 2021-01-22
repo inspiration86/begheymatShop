@@ -17,8 +17,11 @@ export class LoginRegisterComponent implements OnInit {
   loginForm: FormGroup;
   registerForm: FormGroup;
   mobileRegix = /^0?9[123]\d{8}$/;
+  passwordRegix = /^(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{9,}$/;
   display: boolean = false;
-  public getCodeSmS:string;
+  displayForgetPassword: boolean = false;
+  forgetPasswordMobile: string;
+  public getCodeSmS: string;
   otdCode: '';
   loginErrorMessages = {
     mobile: [
@@ -44,11 +47,12 @@ export class LoginRegisterComponent implements OnInit {
     ],
     password: [
       {type: 'required', message: 'کلمه عبور را وارد کنید.'},
-      {type: 'minlength', message: 'کلمه عبور نمی تواند کمتر از 6 کاراکتر باشد.'}
+      {type: 'minlength', message: 'کلمه عبور نمی تواند کمتر از 8 کاراکتر باشد.'},
+      {type: 'pattern', message: 'کلمه عبور باید شامل حروف کوچک و بزرگ لاتین و اعداد و اشکال باشد..'}
     ],
     confirmPassword: [
       {type: 'required', message: 'تکرار کلمه عبور را وارد کنید.'},
-      {type: 'minlength', message: 'تکرار کلمه عبور نمی تواند کمتر از 6 کاراکتر باشد.'}
+      {type: 'minlength', message: 'تکرار کلمه عبور نمی تواند کمتر از 8 کاراکتر باشد.'}
     ],
   };
   public validationBtnPay: boolean = true;
@@ -73,14 +77,15 @@ export class LoginRegisterComponent implements OnInit {
           null,
           Validators.compose([
             Validators.required,
-            Validators.minLength(6)
+            Validators.minLength(8),
+            Validators.pattern(this.passwordRegix)
           ])
         ),
         confirmPassword: new FormControl(
           null,
           Validators.compose([
             Validators.required,
-            Validators.minLength(6)
+            Validators.minLength(8)
           ])
         ),
       }, {
@@ -120,11 +125,11 @@ export class LoginRegisterComponent implements OnInit {
 
       }
 
-    })
+    });
     this.authService.onLogin(this.loginForm.value).subscribe((response) => {
       if (response['success'] === true) {
         this.localStorage.saveCurrentUser(JSON.stringify(response['data']));
-        this.route.navigate(['/'])
+        this.route.navigate(['/']);
       } else {
         this.messageService.add({severity: 'error', summary: ' ورود ', detail: response['data']});
       }
@@ -141,25 +146,25 @@ export class LoginRegisterComponent implements OnInit {
         this.display = true;
         this.authService.getTokenSms().subscribe((res) => {
           if (res['IsSuccessful'] === true) {
-            this.getCodeSmS = this.randomNumber()
-            let token = res['TokenKey']
+            this.getCodeSmS = this.randomNumber();
+            let token = res['TokenKey'];
             let data = {
               ParameterArray: [
-                {Parameter: "VerificationCode", ParameterValue:   this.getCodeSmS}
+                {Parameter: 'VerificationCode', ParameterValue: this.getCodeSmS}
               ],
               Mobile: this.registerForm.get('mobile').value,
-              TemplateId: "40640"
+              TemplateId: '40640'
 
-            }
+            };
             this.authService.sendSms(data, token).subscribe((res1) => {
               if (res['IsSuccessful'] === true) {
                 this.startTimer();
               }
-            })
+            });
           }
-        })
+        });
       }
-    })
+    });
 
   }
 
@@ -190,8 +195,12 @@ export class LoginRegisterComponent implements OnInit {
     this.display = true;
   }
 
+  showDialogForgetPassword() {
+    this.displayForgetPassword = true;
+  }
+
   startTimer() {
-    this.interval=70;
+    this.interval = 70;
     clearInterval(this.interval);
     this.interval = setInterval(() => {
       if (this.timeLeft > 0) {
@@ -205,43 +214,44 @@ export class LoginRegisterComponent implements OnInit {
   }
 
   randomNumber() {
-    var text = "";
-    var possible = "123456789";
+    var text = '';
+    var possible = '123456789';
     for (var i = 0; i < 6; i++) {
       var sup = Math.floor(Math.random() * possible.length);
-      text += i > 0 && sup == i ? "0" : possible.charAt(sup);
+      text += i > 0 && sup == i ? '0' : possible.charAt(sup);
     }
     return text;
   }
+
   forgetPassword() {
-
-    this.authService.onfindUser(this.registerForm.value).subscribe((result) => {
-      if (result['success'] === true) {
-        this.messageService.add({severity: 'error', summary: 'ثبت نام ', detail: result['data']});
-
+    let data = {mobile: this.forgetPasswordMobile};
+    this.authService.onfindUser(data).subscribe((result) => {
+      if (result['success'] !== true) {
+        this.messageService.add({severity: 'error', summary: 'فراموشی رمز ', detail: result['data']});
       } else {
-        this.display = true;
         this.authService.getTokenSms().subscribe((res) => {
           if (res['IsSuccessful'] === true) {
-            this.getCodeSmS = this.randomNumber()
-            let token = res['TokenKey']
+            this.getCodeSmS = this.randomNumber();
+            let token = res['TokenKey'];
             let data = {
               ParameterArray: [
-                {Parameter: "VerificationCode", ParameterValue:   this.getCodeSmS}
+                {Parameter: 'VerificationCode', ParameterValue: this.getCodeSmS}
               ],
-              Mobile: this.registerForm.get('mobile').value,
-              TemplateId: "40830"
+              Mobile: this.forgetPasswordMobile,
+              TemplateId: '40830'
 
-            }
+            };
             this.authService.sendSms(data, token).subscribe((res1) => {
-              if (res['IsSuccessful'] === true) {
+              if (res1['IsSuccessful'] === true) {
+                this.displayForgetPassword = false;
+                this.messageService.add({severity: 'success', summary: 'فراموشی رمز ', detail: 'رمز عبور جدید به شماره همراه پیامک شد'});
 
               }
-            })
+            });
           }
-        })
+        });
       }
-    })
+    });
 
   }
 

@@ -8,7 +8,7 @@ import {SellerFooterComponent} from './seller-footer/seller-footer.component';
 import {SellerHeaderComponent} from './seller-header/seller-header.component';
 import {SellerFeatureComponent} from './seller-feature/seller-feature.component';
 import {SellerComponent} from './seller.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatExpansionModule} from '@angular/material/expansion';
 import {SidebarModule} from 'primeng/sidebar';
 import {ToastModule} from 'primeng/toast';
@@ -18,6 +18,7 @@ import { SellerHelpComponent } from './seller-help/seller-help.component';
 import {DialogModule} from "primeng/dialog";
 import {NgOtpInputModule} from "ng-otp-input";
 import {ButtonModule} from "primeng/button";
+import {InputTextModule} from 'primeng/inputtext';
 
 
 @NgModule({
@@ -39,7 +40,9 @@ import {ButtonModule} from "primeng/button";
     TimelineModule,
     DialogModule,
     NgOtpInputModule,
-    ButtonModule
+    ButtonModule,
+    InputTextModule,
+    FormsModule
   ],
   // exports: [
   //   SellerRegisterComponent,

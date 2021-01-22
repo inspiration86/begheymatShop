@@ -1,0 +1,70 @@
+.feature-row{
+  /*background-color: white;*/
+  /*border-radius: 20px;*/
+}
+
+img{
+  max-height: 70px;
+  display: block;
+  margin: 0 auto;
+}
+p{
+  color: #4D4D4D;
+  padding-top: 20px;
+  text-align: center;
+}
+.box{
+  /*background-color: white;*/
+  border-radius: 20px;
+  box-shadow: 0 0 11px rgba(44,44,44,.2);
+  margin: 15px;
+  padding: 15px;
+}
+
+/* featcher*/
+.block-features__list {
+  border: none;
+  display: flex;
+  justify-content: space-around;
+}
+.col{
+  padding: 0px;
+}
+.features-item {
+  background: #ffffff;
+  max-width: 200px;
+  border-radius: 5px;
+  text-align: center;
+  align-items: center;
+  padding: 10px 20px 20px;
+  margin-left: 5px!important;
+  margin-right: 5px !important;
+}
+
+.features-icon {
+  margin-left: 0;
+}
+.features-icon {
+  margin-bottom: 10px;
+}
+.block-features__content {
+  padding-top: 2px;
+}
+.features-title {
+  font-size: 16px;
+  line-height: 24px;
+  font-weight: 700;
+  font-family: IRANSans_Bold;
+  direction: rtl;
+}
+.features-subtitle {
+  font-size: 13px;
+  font-family: IRANSans_Bold;
+  direction: rtl;
+}
+.features-icon {
+  flex-shrink: 0;
+  width: 45px;
+  height: 45px;
+  fill: #cc3333;
+}

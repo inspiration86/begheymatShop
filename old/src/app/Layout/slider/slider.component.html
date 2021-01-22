@@ -1,0 +1,44 @@
+<div class="container-fluid mt-4">
+  <div class="row slider" dir="rtl">
+    <div class="col-sm-12 col-md-8 col-lg-8">
+
+      <owl-carousel-o [options]="customOptions" dir="ltr" style="border-radius: 20px">
+        <ng-template carouselSlide *ngFor="let item of sliders">
+          <a [href]="item.link">
+            <img [src]="item.imageurl" [alt]="item.tag" class="slider-image">
+          </a>
+        </ng-template>
+      </owl-carousel-o>
+      <!--    <carousel style="border-radius: 20px">-->
+      <!--      <slide>-->
+      <!--        <img src="./assets/bootstrap/img/2.jpg" alt="first slide" class="slider-image">-->
+      <!--        <div class="carousel-caption d-none d-md-block">-->
+      <!--          <h3>First slide label</h3>-->
+      <!--          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
+      <!--        </div>-->
+      <!--      </slide>-->
+      <!--      <slide>-->
+      <!--        <img src="./assets/bootstrap/img/3.jpg" alt="second slide" class="slider-image">-->
+      <!--        <div class="carousel-caption d-none d-md-block">-->
+      <!--          <h3>First slide label</h3>-->
+      <!--          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>-->
+      <!--        </div>-->
+      <!--      </slide>-->
+      <!--      <slide>-->
+      <!--        <img src="./assets/bootstrap/img/1.jpg" alt="third slide" class="slider-image">-->
+      <!--      </slide>-->
+      <!--    </carousel>-->
+    </div>
+    <div class="col-sm-12 col-md-4 col-lg-4">
+      <div class="row">
+        <div class="col-sm-6 col-md-12 col-lg-12">
+          <img src="./assets/bootstrap/img/banner/image-side1.jpg" class="image-box">
+        </div>
+        <div class="col-sm-6 col-md-12 col-lg-12 mt-2">
+          <img src="./assets/bootstrap/img/banner/image-side2.jpg" class="image-box">
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

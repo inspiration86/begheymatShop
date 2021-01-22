@@ -1,0 +1,80 @@
+<p-toast position="center"></p-toast>
+
+<div class="pnl-content p-3">
+  <div class="box text-right" dir="rtl">
+
+    <div class="row border-bottom pb-2 titlepage">
+      <div class="col-sm-12">
+        <a routerLink='/admin/product2'>لیست محصولات</a>
+        /
+        <span>ثبت محصول جدید</span>
+      </div>
+    </div>
+
+    <form [formGroup]="registerForm"  class="w-100 mt-3" (ngSubmit)="submitRegisterForm()">
+      <div class="p-fluid p-formgrid p-grid">
+        <div class="p-field p-col">
+          <label for="mobile">شماره موبایل</label>
+          <input
+            id="mobile"
+            pKeyFilter="int" maxlength="11"
+            minlength="11"
+            name="mobile"
+            type="text"
+            pInputText
+            formControlName="mobile"
+          />
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of registerErrorMessages.mobile"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                                  registerForm.get('mobile').hasError(error.type) &&
+                                  (registerForm.get('mobile').dirty ||
+                                    registerForm.get('mobile').touched)
+                                "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+        <div class="p-field p-col">
+          <label for="password">رمز عبور</label>
+          <input
+            id="password"
+            type="text"
+            pInputText
+            formControlName="password"
+          />
+          <ul
+            class="mt-1 text-right list-inline"
+            *ngFor="let error of registerErrorMessages.password"
+          >
+            <li
+              class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="
+                                  registerForm.get('password').hasError(error.type) &&
+                                  (registerForm.get('password').dirty ||
+                                    registerForm.get('password').touched)
+                                "
+            >
+              {{ error.message }}
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="p-fluid p-formgrid p-grid pt-3">
+        <div class="p-field p-col">
+          <div class="float-left">
+            <button pButton label="ثبت" class="ui-button-success"
+                    icon="pi pi-check" iconPos="left" ></button>
+          </div>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+

@@ -1,0 +1,30 @@
+.page-footer {
+  background-color: #4D4D4D;
+}
+
+.titleMenu {
+  font-family: IRANSans_Bold;
+  font-size: 13px;
+}
+
+p {
+  font-family: IRANSans_Light;
+  font-size: 12px;
+}
+.footer-link ul {
+   list-style: none;
+ }
+.footer-link ul li {
+  font-family: IRANSans_Light;
+  font-size: 12px;
+  margin: 0 0 12px;
+}
+.footer-link ul li a {
+  font-family: IRANSans_Light;
+  font-size: 12px;
+}
+.footer-copyright {
+  font-size: 12px;
+  font-family: IRANSans_Bold;
+}
+

@@ -1,0 +1,5 @@
+:host ::ng-deep .p-dialog.p-dynamic-dialog {
+  direction: rtl;
+  background-color: rgba(0, 0, 0, 0.4);
+}
+

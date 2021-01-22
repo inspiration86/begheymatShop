@@ -4,6 +4,7 @@ import {LayoutService} from '../../layout.service';
 import {MessageService} from 'primeng/api';
 import {Router} from '@angular/router';
 import {LocalStorageService} from '../../../Auth/localStorageLogin/local-storage.service';
+import {UserService} from '../../../Auth/user.service';
 
 @Component({
   selector: 'app-seller-login',
@@ -26,12 +27,14 @@ export class SellerLoginComponent implements OnInit {
       { type: 'required', message: 'کلمه عبور را وارد کنید.' }
     ]
   };
-
+  displayForgetPassword: boolean = false;
+  forgetPasswordMobile: string;
+  public getCodeSmS: string;
   constructor(private formBuilder: FormBuilder,
               private layoutService: LayoutService,
               private messageService: MessageService,
               private router: Router,
-              private localStorage: LocalStorageService) { }
+              private localStorage: LocalStorageService,private authService: UserService,) { }
 
   ngOnInit(): void {
     this.form = this.formBuilder.group(
@@ -66,5 +69,47 @@ export class SellerLoginComponent implements OnInit {
       }
     });
   }
+  forgetPassword() {
+    let data = {mobile: this.forgetPasswordMobile};
+    this.layoutService.onfindSeller(data).subscribe((result) => {
+      if (result['success'] !== true) {
+        this.messageService.add({severity: 'error', summary: 'فراموشی رمز ', detail: result['data']});
+      } else {
+        this.authService.getTokenSms().subscribe((res) => {
+          if (res['IsSuccessful'] === true) {
+            this.getCodeSmS = this.randomNumber();
+            let token = res['TokenKey'];
+            let data = {
+              ParameterArray: [
+                {Parameter: 'VerificationCode', ParameterValue: this.getCodeSmS}
+              ],
+              Mobile: this.forgetPasswordMobile,
+              TemplateId: '40830'
 
+            };
+            this.authService.sendSms(data, token).subscribe((res1) => {
+              if (res1['IsSuccessful'] === true) {
+                this.displayForgetPassword = false;
+                this.messageService.add({severity: 'success', summary: 'فراموشی رمز ', detail: 'رمز عبور جدید به شماره همراه پیامک شد'});
+
+              }
+            });
+          }
+        });
+      }
+    });
+
+  }
+  randomNumber() {
+    var text = '';
+    var possible = '123456789';
+    for (var i = 0; i < 6; i++) {
+      var sup = Math.floor(Math.random() * possible.length);
+      text += i > 0 && sup == i ? '0' : possible.charAt(sup);
+    }
+    return text;
+  }
+  showDialogForgetPassword() {
+    this.displayForgetPassword = true;
+  }
 }

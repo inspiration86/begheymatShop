@@ -1,0 +1,219 @@
+<p-toast [baseZIndex]="999999999" dir="rtl" position="center"></p-toast>
+<div class="container" dir="rtl">
+
+  <div class="row justify-content-center align-content-around" style="height: 100vh">
+
+    <div class="col-sm-12 col-md-8 align-items-center">
+
+      <div class="box">
+        <ul class="nav nav-tabs text-center" id="SellerTab" role="tablist">
+          <li class="nav-item" role="presentation">
+            <a aria-controls="login" aria-selected="false" class="nav-link active"
+               data-toggle="tab" href="#login"
+               id="login-tab"
+               role="tab">ورود</a>
+          </li>
+          <li class="nav-item" role="presentation">
+            <a aria-controls="register" aria-selected="true" class="nav-link"
+               data-toggle="tab" href="#register"
+               id="register-tab"
+               role="tab">ثبت نام</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div aria-labelledby="login-tab" class="tab-pane fade show active" id="login" role="tabpanel">
+            <div class="row justify-content-center">
+              <div class="col-12 text-center mx-auto align-self-center mt-4">
+                <a routerLink="/">
+                  <img src="../../../assets/bootstrap/img/svg/logo-side.svg" alt="Logo" height="45px">
+                </a>
+              </div>
+            </div>
+            <form (ngSubmit)="login()" [formGroup]="loginForm" class="w-100">
+              <div class="row justify-content-center p-4">
+                <div class="col-12 text-center">
+                  <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input pKeyFilter="int" class="form-control" formControlName="mobile" maxlength="11"
+                         minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>
+
+                  </span>
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of loginErrorMessages.mobile">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="loginForm.get('mobile').hasError(error.type)
+                            && (loginForm.get('mobile').dirty
+                            || loginForm.get('mobile').touched)">
+                        {{ error.message }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of loginErrorMessages.password">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="loginForm.get('password').hasError(error.type)
+                            && (loginForm.get('password').dirty
+                            || loginForm.get('password').touched)">
+                        {{ error.message }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 text-right">
+                <span class="float-right text-right login-link pointer">
+                  <i class="pi pi-key text-dark ml-3"></i> کلمه عبور خود را فراموش کرده ام
+                </span>
+                </div>
+                <div class="col-md-6 pt-4">
+                  <div class="text-center">
+                    <button [disabled]="loginForm.invalid" class="btn btn-block btn-primary" mat-raised-button
+                            type="submit">ورود
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+          <div aria-labelledby="register-tab" class="tab-pane fade" id="register" role="tabpanel">
+            <div class="row justify-content-center">
+              <div class="col-12 text-center mx-auto align-self-center mt-4">
+                <a routerLink="/">
+                  <img src="../../../assets/bootstrap/img/svg/logo-side.svg" alt="Logo" height="45px"> </a>
+              </div>
+            </div>
+            <form (ngSubmit)="sendSMS()" [formGroup]="registerForm" class="w-100">
+              <div class="row justify-content-center p-4">
+                <div class="col-12 text-center">
+                  <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input pKeyFilter="int" class="form-control"
+                         formControlName="mobile" maxlength="11" minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>
+                  </span>
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of registerErrorMessages.mobile">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="registerForm.get('mobile').hasError(error.type)
+                            && (registerForm.get('mobile').dirty
+                            || registerForm.get('mobile').touched)">
+                        {{ error.message }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of registerErrorMessages.password">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="registerForm.get('password').hasError(error.type)
+                            && (registerForm.get('password').dirty
+                            || registerForm.get('password').touched)">
+                        {{ error.message }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input class="form-control" formControlName="confirmPassword"
+                         minlength="6"
+                         name="confirmPassword" pInputText
+                         placeholder="تکرار کلمه عبور" required type="password">
+                  </span>
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of registerErrorMessages.confirmPassword">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="registerForm.get('confirmPassword').hasError(error.type)
+                            && (registerForm.get('confirmPassword').dirty
+                            || registerForm.get('confirmPassword').touched)">
+                        {{ error.message }}
+                      </li>
+                    </ul>
+                    <ul class="mt-0 text-right list-inline">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="registerForm.errors?.passwordNotMatch
+                            && (registerForm.get('confirmPassword').dirty
+                            || registerForm.get('confirmPassword').touched)">
+                        تکرار کلمه عبور مطابقت ندارد.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-md-6 pt-4">
+                  <div class="text-center">
+                    <button [disabled]="registerForm.invalid" class="btn btn-block btn-primary" mat-raised-button
+                            type="submit">ثبت نام
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+
+            <div class="row rule-area justify-content-center mt-2 p-4">
+              <div class="col-12 text-right align-self-center">
+                <p>
+                  با ثبت نام در فروشگاه اینترنتی به قیمت، شما <a style="color: #CC0000">شرایط و قوانین</a> استفاده از
+                  سرویس
+                  های سایت به قیمت و<a style="color: #CC0000"> قوانین حریم خصوصی</a> آن را پذیرفته اید.
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+<p-dialog [(visible)]="display">
+  <p-header class="headerPanel">
+    اعتبارسنجی شماره همراه
+  </p-header>
+  <label class="text-titleboxsms mt-4 mb-4">کد ارسال شده به شماره همراه در کادر زیر وارد
+    نمائید</label>
+  <br>
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid ">
+    <div class="ui-grid-row dialog">
+
+      <div>
+        <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="{length:6,allowNumbersOnly:true}"
+                      dir="ltr"
+                      style="font-family: IRANSansWeb" class="text-center"></ng-otp-input>
+        <!--        <p-inputMask mask="9999" class="inputSMS"></p-inputMask>-->
+      </div>
+    </div>
+  </div>
+  <div *ngIf="resendSMS">
+    <a class="text-titleboxsms mt-5 mb-5" (click)="sendSMS()">ارسال مجدد کد</a>
+  </div>
+  <div class="alert alert-danger mt-4 mb-3 text-center" *ngIf="invalidSMS" style="font-family: IRANSansWeb_Bold">کد وارد
+    شده اشتباه می باشد
+  </div>
+  <p-footer dir="rtl" class="text-left mt-5 ">
+    <button pButton  type="submit" class="p-button-danger" label="ثبت نام " cornerStyleClass="text-center" [disabled]="validationBtnPay"
+    ></button>
+    <button pButton type="submit" class="p-button-danger" label="مدت زمان باقیمانده:{{timeLeft}}"
+            cornerStyleClass="text-center"
+    ></button>
+  </p-footer>
+</p-dialog>

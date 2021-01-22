@@ -1,0 +1,79 @@
+<div class="container-fluid no-gutters p-0" dir="rtl">
+  <div class="row no-gutters justify-content-center">
+
+    <div class="col-sm-4 align-items-center text-center align-self-center">
+      <h2>
+        به خانواده بزرگ فروشندگان <b>به قیمت</b> بپیوندید
+      </h2>
+      <h4>
+        به قیمت، فروشگاه بیش از ۱۰۰ هزار کسب و کار ایرانی
+      </h4>
+    </div>
+    <div class="col-sm-8 no-gutters align-items-center align-self-center left">
+
+      <mat-vertical-stepper [linear]="true" #stepper>
+        <mat-step [stepControl]="form">
+          <form (ngSubmit)="register()" [formGroup]="form" class="w-100">
+            <ng-template matStepLabel>ثبت نام فروشنده</ng-template>
+            <div class="row login-wrap rtl">
+              <div class="col-12 text-center">
+                <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input class="form-control" formControlName="mobile" maxlength="11"
+                         minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>
+                  </span>
+
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                </div>
+              </div>
+
+            </div>
+          </form>
+          <div>
+            <button mat-button [disabled]="form.invalid" (click)="stepper.next()">ثبت و ادامه</button>
+          </div>
+        </mat-step>
+
+        <mat-step [stepControl]="form">
+          <ng-template matStepLabel>اطلاعات فروشنده</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button [disabled]="form.invalid" (click)="stepper.next()">ثبت و ادامه</button>
+          </div>
+        </mat-step>
+
+        <mat-step>
+          <ng-template matStepLabel>بارگذاری مدارک</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>برگشت</button>
+            <button mat-button (click)="stepper.next()">ثبت و ادامه</button>
+          </div>
+        </mat-step>
+        <mat-step>
+          <ng-template matStepLabel>اتمام ثبت نام</ng-template>
+          <p>You are now done.</p>
+          <div>
+            <button mat-button matStepperPrevious>برگشت</button>
+            <button mat-button (click)="stepper.reset()">ثبت</button>
+          </div>
+        </mat-step>
+      </mat-vertical-stepper>
+
+    </div>
+
+  </div>
+</div>

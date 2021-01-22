@@ -1,0 +1,28 @@
+.seller-login .box{
+  border-radius: 0 0 8px 8px;
+  margin-bottom: 30px;
+  transition: all .5s ease;
+  background-color: white;
+  border-radius: 20px;
+  padding: 25px;
+}
+
+h2, h4{
+  font-family: IRANSans_Bold;
+}
+.seller-login b{
+  font-size: larger;
+  font-family: IRANSans_Bold;
+  color: #EF2B2F;
+}
+.seller-login a{
+  color: #4d4d4d;
+}
+
+:host ::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-message-text{
+  margin: 0 1rem 0 0!important;
+}
+
+:host ::ng-deep .p-toast .p-toast-message.p-toast-message-error {
+  border-width: 0 6px 0 0px!important;
+}

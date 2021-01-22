@@ -1,0 +1,115 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<div class="pnl-content p-3">
+  <div class="box text-right" dir="rtl">
+
+    <p-table #dt [value]="features" dataKey="id"
+             [rows]="10" [showCurrentPageReport]="true"
+             [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+             styleClass="p-datatable-customers"
+             [paginator]="true"
+             currentPageReportTemplate="نمایش {first} تا {last} از {totalRecords} صفحه"
+             [filterDelay]="0"
+             [globalFilterFields]="['titleFarsi','titleLatin']">
+      <ng-template pTemplate="caption">
+        <div class="table-header row">
+          <div class="col-sm-6"> لیست ویژگی های محصول
+          </div>
+          <div class="col-sm-6 text-left">
+            <button pButton (click)="showAddFeatureDialog()" pRipple label="جدید" icon="pi pi-plus" class="p-button-success p-mr-2 p-button-icon-right"></button>
+          </div>
+          <div class="col-sm-12">
+              <span class="p-input-icon-left w-100 mt-3">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                       placeholder="جستجو کلی"/>
+              </span>
+          </div>
+
+        </div>
+      </ng-template>
+
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem"></th>
+          <th pSortableColumn="titleFarsi">عنوان فارسی
+            <p-sortIcon field="titleFarsi"></p-sortIcon>
+          </th>
+          <th pSortableColumn="titleLatin">عنوان انگلیسی
+            <p-sortIcon field="titleLatin"></p-sortIcon>
+          </th>
+          <th>عملیات</th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-feature let-expanded="expanded">
+        <tr>
+          <td>
+            <button type="button" pButton pRipple [pRowToggler]="feature"
+                    class="p-button-text p-button-rounded p-button-plain"
+                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+          </td>
+          <td>
+            {{feature.titleFarsi}}
+          </td>
+          <td>
+            {{feature.titleLatin}}
+          </td>
+          <td>
+            <button pButton pRipple label="ثبت مقدار"
+                    (click)="showAddFeatureValueDialog(feature.id, feature.titleFarsi, feature.titleLatin)"
+                    class="p-button-outlined p-button-success ml-2"></button>
+            <button pButton pRipple icon="pi pi-pencil"
+                    (click)="showEditFeatureDialog(feature.id, feature.titleFarsi, feature.titleLatin)"
+                    class="p-button-outlined p-button-warning ml-2"></button>
+            <button pButton pRipple (click)="deleteFeature(0)"
+                    icon="pi pi-trash" class="p-button-outlined p-button-danger"></button>
+          </td>
+        </tr>
+      </ng-template>
+
+
+      <ng-template pTemplate="rowexpansion" let-feature>
+        <tr>
+          <td colspan="4">
+            <div class="p-p-3">
+              <p-table [value]="feature.FeaturesValue" dataKey="id" class="bg-light-table mr-4">
+
+                <ng-template pTemplate="header">
+        <tr>
+          <th pSortableColumn="value">مقدار <p-sortIcon field="value"></p-sortIcon></th>
+          <th>عملیات</th>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="body" let-value>
+        <tr>
+          <td>{{value.value}}</td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil"
+                    (click)="showEditFeatureValueDialog(value.id, value.value)"
+                    class="p-button-outlined p-button-warning ml-2"></button>
+            <button pButton pRipple  (click)="deleteFeatureValue(value.id)"
+                    icon="pi pi-trash" class="p-button-outlined p-button-danger"></button>
+          </td>
+        </tr>
+      </ng-template>
+
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="4">هیچ مقداری ثبت نشده است.</td>
+        </tr>
+      </ng-template>
+
+    </p-table>
+  </div>
+  </td>
+  </tr>
+  </ng-template>
+  <ng-template pTemplate="emptymessage">
+    <tr>
+      <td colspan="5">هیچ رکوردی یافت نشد.</td>
+    </tr>
+  </ng-template>
+  </p-table>
+
+</div>
+</div>

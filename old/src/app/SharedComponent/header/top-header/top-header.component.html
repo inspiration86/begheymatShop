@@ -1,0 +1,63 @@
+<div class="site-header__topbar topbar">
+  <div class="topbar__container container">
+    <div class="topbar__row">
+      <div class="topbar__item topbar__item--link">
+        <a class="topbar-link" [routerLink]="['/']">صفحه اصلی</a>
+      </div>
+      <div class="topbar__item topbar__item--link">
+        <a class="topbar-link" [routerLink]="['/home/about']">درباره ما</a>
+      </div>
+      <div class="topbar__item topbar__item--link">
+        <a class="topbar-link" [routerLink]="['/home/help']">راهنمای خرید</a>
+      </div>
+      <div class="topbar__spring"></div>
+      <div class="topbar__item">
+        <div #accountDropDown class="topbar-dropdown">
+          <button type="button" class="topbar-dropdown__btn"
+                  (mouseover)="openAccountDropDown()"
+                  (click)="toggleAccountDropDown()"
+                  (clickOutside)="closeAccountDropDown()">
+
+            <svg fill="#777777" xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="ml-1">
+              <path
+                d="M13.7 10.7C15.1 9.6 16 7.9 16 6c0-3.3-2.7-6-6-6S4 2.7 4 6c0 1.9.9 3.6 2.3 4.7C2.6 12.2 0 15.8 0 20h2c0-4.4 3.6-8 8-8s8 3.6 8 8h2c0-4.2-2.6-7.8-6.3-9.3zM6 6c0-2.2 1.8-4 4-4s4 1.8 4 4-1.8 4-4 4-4-1.8-4-4z"></path>
+            </svg>
+            <!--
+
+                      <i class="fa fa-user ml-2" style="font-size: 1rem;color: #777777"></i> -->
+            <span style="font-size: 14px">
+              حساب کاربری
+            </span>
+
+            <svg xmlns="http://www.w3.org/2000/svg" width="7" height="5" class="" style="margin-right: 10px">
+              <path
+                d="M.3.3c.4-.4 1-.4 1.3 0l1.9 2 1.9-2c.4-.4 1-.4 1.3 0 .4.4.4.9 0 1.3L3.5 5 .3 1.6C-.1 1.2-.1.6.3.3z"></path>
+            </svg>
+          </button>
+          <div class="topbar-dropdown__body" (mouseleave)="closeAccountDropDown()">
+            <div class="menu menu--layout--topbar">
+              <div class="menu__submenus-container"></div>
+              <ul class="menu__list">
+                <li class="menu__item" *ngIf="isLogged">
+                  <div class="menu__item-submenu-offset"></div>
+                  <a class="menu__item-link" [routerLink]="['/user/profile']">
+                    <i class="fa fa-user fa-1x ml-3" style="color:#777"></i>پنل کاربری</a>
+                </li>
+                <li class="menu__item" *ngIf="!isLogged">
+                  <div class="menu__item-submenu-offset"></div>
+                  <a class="menu__item-link" [routerLink]="['/home/account']">
+                    <i class="fa fa-sign-in fa-1x ml-3" style="color:#777"></i>ورود/ثبت نام
+                  </a>
+                </li>
+                <li class="menu__item" (click)="exitUser()" *ngIf="isLogged">
+                  <div class="menu__item-submenu-offset"></div>
+                  <a class="menu__item-link"><i class="fa fa-power-off fa-1x ml-3" style="color:#777"></i>خروج</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,38 @@
+<app-seller-header></app-seller-header>
+
+
+<div class="seller-features-lg text-right py-3" dir="rtl">
+  <div class="container">
+    <div class="row justify-content-center text-center">
+      <div class="seller-section-title col-lg-7">
+        <strong class="subtitle d-block">فرآیند فروش کالا </strong>
+        <h2 class="heading font-weight-bold">در به قیمت</h2>
+      </div>
+    </div>
+    <div class="container pt-3">
+      <div class="row">
+        <div class="col-12">
+          <p-timeline [value]="events1" align="alternate" styleClass="customized-timeline">
+            <ng-template pTemplate="marker" let-event>
+            <span class="custom-marker p-shadow-2" [style.backgroundColor]="event.color" [style.color]="event.iconcolor">
+               {{event.icon}}
+            </span>
+            </ng-template>
+            <ng-template pTemplate="content" let-event>
+              <p-card [header]="event.status">
+                <img *ngIf="event.image"
+                     [src]="'assets/bootstrap/img/svg/gradiant/' + event.image" [alt]="event.name"
+                     class="img-fluid"
+                     style="width: 50px;text-align: center;display: block;margin: auto;" />
+              </p-card>
+            </ng-template>
+          </p-timeline>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<app-seller-footer></app-seller-footer>

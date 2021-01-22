@@ -1,0 +1,285 @@
+.block-products-carousel__column {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  width: 100%;
+  padding: 15px;
+}
+
+.block-products-carousel__cell {
+  display: -ms-flexbox;
+  display: flex;
+  width: 100%;
+  -ms-flex-preferred-size: 100%;
+  flex-basis: 100%;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+.block-products-carousel__cell .product-card {
+  width: 100%;
+  background-color: #fff;
+  box-shadow: 0 0 11px rgba(33,33,33,.2);
+}
+.product-card--layout--grid {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  position: relative;
+}
+.product-card--layout--grid .product-card__actions-list {
+  position: absolute;
+  overflow: hidden;
+  z-index: 1;
+  left: 0;
+}
+.product-card .product-card__action {
+  position: relative;
+  display: block;
+  padding: 8px;
+  margin: 0;
+  border: none;
+  transition: color .08s,background .08s;
+  background-color: #fff;
+  color: #ccc;
+}
+.product-card .product-card__action:last-child {
+  border-bottom-left-radius: 2px;
+}
+.product-card--layout--grid .product-card__image {
+  display: block;
+  position: relative;
+}
+.image--type--category .image__body, .image--type--product .image__body {
+  padding-bottom: 100%;
+  position: relative;
+  width: 100%;
+}
+.owl-carousel .owl-item img {
+  display: block;
+  width: 100%;
+}
+.product-card--layout--grid .product-card__fit {
+  position: absolute;
+  bottom: 8px;
+  right: 13px;
+}
+.status-badge {
+  display: inline-block;
+  vertical-align: middle;
+  cursor: default;
+}
+.status-badge--style--success .status-badge__body {
+  background-color: #e2f2da;
+  color: #44782a;
+}
+.status-badge__body {
+  position: relative;
+  min-height: 23px;
+  border-radius: 11.5px;
+  min-width: 31px;
+}
+.status-badge__icon {
+  fill: #5C8B45;
+  position: absolute;
+  top: calc(50% - 6.5px);
+  opacity: .85;
+  left: 9px;
+}
+.product-card__actions-list button svg{
+  fill: #CCCCCC;
+}
+.product-card__actions-list button:hover svg{
+  fill: #CC3333;
+}
+.product-card--layout--grid .product-card__fit .status-badge__text {
+  display: none;
+}
+.status-badge--has-icon .status-badge__text {
+  padding-left: 28px;
+}
+.status-badge__text {
+  font-size: 13px;
+  line-height: 15px;
+  padding: 4px 12px;
+}
+.product-card--layout--grid .product-card__fit .status-badge__tooltip {
+  display: block;
+}
+.status-badge--has-text .status-badge__tooltip {
+  display: none;
+}
+.status-badge__tooltip {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+}
+.product-card--layout--grid .product-card__meta {
+  padding: 6px 16px;
+}
+.product-card .product-card__meta {
+  font-size: 12px;
+  line-height: 1;
+  color: #999;
+}
+.product-card--layout--grid .product-card__name {
+  padding: 0 16px;
+  line-height: 1.1875;
+  direction: rtl;
+}
+.product-card .product-card__name a {
+  color: inherit;
+}
+.product-card--layout--grid .product-card__footer {
+  padding: 16px;
+  -ms-flex-align: center;
+  align-items: center;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-order: 2;
+  order: 2;
+}
+.product-card--layout--grid .product-card__prices {
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+  font-size: 18px;
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: end;
+  align-items: flex-end;
+  -ms-flex-wrap: wrap;
+  flex-wrap: wrap;
+  direction: rtl;
+  font-family: IRANSans_Bold;
+}
+.product-card .product-card__price--new {
+  color: #262626;
+}
+.product-card--layout--grid .product-card__price--old {
+  font-size: 12px;
+  margin-left: 6px;
+}
+.product-card .product-card__price--old {
+  font-weight: 400;
+  text-decoration: line-through;
+  color: #999;
+}
+.product-card--layout--grid .product-card__addtocart-icon {
+  margin: -3px;
+}
+.product-card .product-card__addtocart-icon {
+  position: relative;
+  border: none;
+  padding: 8px;
+  border-radius: 2px;
+  background: transparent;
+  color: #CC3333;
+  z-index: 0;
+  transition: color .2s;
+}
+.product-card .product-card__addtocart-icon:before {
+  top: -2px;
+  left: -2px;
+  display: block;
+  content: "";
+  position: absolute;
+  width: calc(100% + 4px);
+  height: calc(100% + 4px);
+  background: transparent;
+  z-index: -1;
+  border-radius: 50%;
+  transform: scale(0);
+  transition: transform .2s,background .2s;
+}
+.product-card .product-card__addtocart-icon svg {
+  display: block;
+  fill: #CC3333;
+}
+
+.product-card--layout--grid:after {
+  display: block;
+  position: static;
+  content: "";
+  -ms-flex-order: 1;
+  order: 1;
+  -ms-flex-positive: 1;
+  flex-grow: 1;
+}
+img.image__tag {
+  padding: 15px;
+}
+.product-card--layout--grid .product-card__badges {
+  position: absolute;
+  top: 16px;
+  display: -ms-flexbox;
+  display: flex;
+  z-index: 1;
+  -ms-flex-direction: column;
+  flex-direction: column;
+  -ms-flex-align: start;
+  align-items: flex-start;
+  right: 16px;
+}
+.tag-badge--sale {
+  color: #fff;
+}
+.tag-badge {
+  display: inline-block;
+  position: relative;
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 500;
+  line-height: 1;
+  z-index: 0;
+  height: 18px;
+  padding: 4px 14px 0;
+}
+.tag-badge--sale:before {
+  background: #CC3333;
+}
+.tag-badge:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  z-index: -1;
+  border-radius: 2.5px;
+  transform-origin: center;
+  left: 3.5px;
+  right: 3.5px;
+  transform: skewX(20deg);
+}
+
+
+.block-products-carousel__cell .product-card:hover {
+  box-shadow: 0 0 20px rgba(33,33,33,.2);
+}
+
+.product-card:hover product-card__addtocart-icon svg {
+  fill: #ffffff!important;
+}
+.product-card:active .product-card__addtocart-icon:before,
+.product-card:hover .product-card__addtocart-icon:before {
+  transform: scale(1);
+  background: #CC3333;
+  background-image: initial;
+  background-position-x: initial;
+  background-position-y: initial;
+  background-size: initial;
+  background-repeat-x: initial;
+  background-repeat-y: initial;
+  background-attachment: initial;
+  background-origin: initial;
+  background-clip: initial;
+  background-color: rgb(204, 51, 51);
+}
+:host ::ng-deep .product-card:hover .product-card__addtocart-icon svg {
+  fill: #ffffff!important;
+}
+:host ::ng-deep .product-card__actions-list button:hover svg path {
+  fill: #CC3333!important;
+}

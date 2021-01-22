@@ -1,0 +1,69 @@
+<p-toast position="center"></p-toast>
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<div class="pnl-content p-3">
+    <div class="box text-right" dir="rtl">
+
+      <p-table #dt
+               [value]="comments"
+               dataKey="id"
+               [rows]="5"
+               [showCurrentPageReport]="true"
+               [rowsPerPageOptions]="[10, 25, 50]"
+               [paginator]="true"
+               currentPageReportTemplate="نمایش {first} تا {last} از {totalRecords} صفحه"
+               [filterDelay]="0"
+               [globalFilterFields]="[
+          'userName',
+          'commentText'
+        ]">
+
+        <ng-template pTemplate="caption">
+          <div class="table-header row">
+            <div class="col-sm-12">لیست دیدگاه ها</div>
+          </div>
+          <div class="col-sm-12">
+              <span class="p-input-icon-left w-100 mt-3">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  class="w-100"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  placeholder="جستجو کلی"
+                />
+              </span>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr class="title-table">
+            <th class="text-center">ردیف</th>
+            <th class="text-center">کاربر</th>
+            <th class="text-center">متن دیدگاه</th>
+            <th class="text-center">عملیات</th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-comment let-rowIndex="rowIndex">
+          <tr>
+            <td class="text-center">{{rowIndex + 1}}</td>
+            <td class="text-center">{{comment.userName}}</td>
+            <td class="text-center">{{comment.commentText}}</td>
+            <td class="text-center">
+              <button pButton pRipple icon="pi pi-check"
+                      (click)="active(comment._id)" [disabled]="comment.active === false"
+                      class="p-button-outlined p-button-success ml-2"></button>
+              <button pButton pRipple (click)="delete(comment._id)"
+                      icon="pi pi-trash" class="p-button-outlined p-button-danger"></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="4">هیچ رکوردی یافت نشد.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+
+    </div>
+</div>

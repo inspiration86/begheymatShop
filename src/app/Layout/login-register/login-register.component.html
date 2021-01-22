@@ -25,7 +25,7 @@
             <div class="row justify-content-center">
               <div class="col-12 text-center mx-auto align-self-center mt-4">
                 <a routerLink="/">
-                  <img src="../../../assets/bootstrap/img/svg/logo-side.svg" alt="Logo" height="45px">
+                  <img src="../../../assets/bootstrap/img/svg/logo-main.svg" alt="Logo" height="120px">
                 </a>
               </div>
             </div>
@@ -71,7 +71,7 @@
                   </div>
                 </div>
                 <div class="col-12 text-right">
-                <span class="float-right text-right login-link pointer">
+                <span class="float-right text-right login-link pointer" (click)="showDialogForgetPassword()">
                   <i class="pi pi-key text-dark ml-3"></i> کلمه عبور خود را فراموش کرده ام
                 </span>
                 </div>
@@ -89,9 +89,11 @@
             <div class="row justify-content-center">
               <div class="col-12 text-center mx-auto align-self-center mt-4">
                 <a routerLink="/">
-                  <img src="../../../assets/bootstrap/img/svg/logo-side.svg" alt="Logo" height="45px"> </a>
+                  <img src="../../../assets/bootstrap/img/svg/logo-main.svg" alt="Logo" height="120px">
+                </a>
               </div>
             </div>
+
             <form (ngSubmit)="sendSMS()" [formGroup]="registerForm" class="w-100">
               <div class="row justify-content-center p-4">
                 <div class="col-12 text-center">
@@ -210,10 +212,29 @@
     شده اشتباه می باشد
   </div>
   <p-footer dir="rtl" class="text-left mt-5 ">
-    <button pButton  type="submit" class="p-button-danger" label="ثبت نام " cornerStyleClass="text-center" [disabled]="validationBtnPay"
+    <button pButton type="submit" class="p-button-danger" label="ثبت نام " cornerStyleClass="text-center"
+            [disabled]="validationBtnPay"
     ></button>
     <button pButton type="submit" class="p-button-danger" label="مدت زمان باقیمانده:{{timeLeft}}"
             cornerStyleClass="text-center"
+    ></button>
+  </p-footer>
+</p-dialog>
+<p-dialog [(visible)]="displayForgetPassword" dir="rtl">
+  <p-header class="headerPanel">
+    فراموشی رمز عبور
+  </p-header>
+  <label class="text-titleboxsms mt-4 mb-4">شماره همراه را در کادر زیر وارد کنید.</label>
+  <br>
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid ">
+    <div class="ui-grid-row dialog">
+      <div>
+        <input type="text" pInputText [(ngModel)]="forgetPasswordMobile" style="width: 100%" />
+      </div>
+    </div>
+  </div>
+  <p-footer dir="rtl" class="text-left mt-5 ">
+    <button pButton (click)="forgetPassword()" type="submit" class="p-button-danger" label="تائید " cornerStyleClass="text-center"
     ></button>
   </p-footer>
 </p-dialog>

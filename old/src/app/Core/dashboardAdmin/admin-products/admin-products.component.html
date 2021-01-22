@@ -1,0 +1,227 @@
+<p-toast position="center"></p-toast>
+<p-confirmDialog
+  [style]="{ width: '50vw' }"
+  [baseZIndex]="10000"
+></p-confirmDialog>
+<div class="pnl-content p-3">
+    <div class="box text-right" dir="rtl">
+      <p-table
+        #dt
+        [value]="products"
+        dataKey="id"
+        [rows]="5"
+        [showCurrentPageReport]="true"
+        [rowsPerPageOptions]="[10, 25, 50]"
+        [loading]="loading"
+        styleClass="p-datatable-customers"
+        [paginator]="true"
+        currentPageReportTemplate="نمایش {first} تا {last} از {totalRecords} صفحه"
+        [filterDelay]="0"
+        [globalFilterFields]="[
+          'title',
+          'Category.title',
+          'subCategory',
+          'count',
+          'countSell',
+          'price',
+          'topText',
+          'offer',
+          'offerPercent',
+          'offerText',
+          'freeSend'
+        ]"
+      >
+        <ng-template pTemplate="caption">
+          <div class="table-header row">
+            <div class="col-sm-6">لیست محصولات</div>
+            <div class="col-sm-6 text-left">
+              <button
+                pButton
+                pRipple
+                label="جدید"
+                icon="pi pi-plus"
+                class="p-button-success p-mr-2 p-button-icon-right"
+                [routerLink]="['/admin/product/add']"
+              ></button>
+            </div>
+            <div class="col-sm-12">
+              <span class="p-input-icon-left w-100 mt-3">
+                <i class="pi pi-search"></i>
+                <input
+                  pInputText
+                  type="text"
+                  class="w-100"
+                  (input)="dt.filterGlobal($event.target.value, 'contains')"
+                  placeholder="جستجو کلی"
+                />
+              </span>
+            </div>
+          </div>
+        </ng-template>
+
+        <ng-template pTemplate="header">
+          <tr>
+            <th style="width: 3rem"></th>
+            <th pSortableColumn="image">تصویر</th>
+            <th pSortableColumn="title">
+              عنوان
+              <p-sortIcon field="title"></p-sortIcon>
+            </th>
+            <th pSortableColumn="Category.title">
+              عنوان دسته اول
+              <p-sortIcon field="Category.title"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="subCategory">
+              عنوان دسته دوم
+              <p-sortIcon field="subCategory"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="subCategory">
+              عنوان دسته سوم
+              <p-sortIcon field="subCategory"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="price">
+              قیمت
+              <p-sortIcon field="price"></p-sortIcon>
+            </th>
+
+            <th pSortableColumn="count">
+              تعداد
+              <p-sortIcon field="count"></p-sortIcon>
+            </th>
+            <th pSortableColumn="countSell">
+              تعداد فروش
+              <p-sortIcon field="countSell"></p-sortIcon>
+            </th>
+            <th pSortableColumn="offer">
+              محصول شما تخفیف دارد؟
+              <p-sortIcon field="offer"></p-sortIcon>
+            </th>
+            <th pSortableColumn="freeSend">
+              ارسال محصول رایگان است؟
+              <p-sortIcon field="freeSend"></p-sortIcon>
+            </th>
+            <th></th>
+          </tr>
+        </ng-template>
+        <ng-template pTemplate="body" let-product let-expanded="expanded">
+          <tr>
+            <td>
+              <button
+                type="button"
+                pButton
+                pRipple
+                [pRowToggler]="product"
+                class="p-button-text p-button-rounded p-button-plain"
+                [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+              ></button>
+            </td>
+            <td>
+              <img [src]="product.image" class="img-fluid" />
+            </td>
+            <td>
+              {{ product.title }}
+            </td>
+            <td>
+              {{ product.Category[0].title }}
+            </td>
+            <td>
+              {{ product.SubCategory[0].title }}
+            </td>
+            <td>
+              {{ product.SubSubCategory[0].title }}
+            </td>
+            <td>{{ product.price | number }} تومان</td>
+            <td>
+              {{ product.count }}
+            </td>
+            <td>
+              {{ product.countSell }}
+            </td>
+            <td>
+              {{ product.offer ? "بله" : "خیر" }}
+            </td>
+            <td>
+              {{ product.freeSend ? "بله" : "خیر" }}
+            </td>
+            <td>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-pencil"
+                [routerLink]="['/admin/product/edit', product.id]"
+                class="p-button-outlined p-button-warning ml-2"
+              ></button>
+              <button
+                pButton
+                pRipple
+                icon="pi pi-trash"
+                (click)="delete(product.id)"
+                class="p-button-outlined p-button-danger"
+              ></button>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="rowexpansion" let-product>
+          <tr>
+            <td colspan="12">
+              <div class="p-p-3">
+                <p-table [value]="product.ProductFeature" dataKey="id" class="bg-light-table mr-4">
+                  <ng-template pTemplate="header">
+                    <tr>
+                      <th pSortableColumn="featuresID">
+                        ویژگی
+                        <p-sortIcon field="Feature.titleFarsi"></p-sortIcon>
+                      </th>
+                      <th pSortableColumn="valueID">
+                        مقدار
+                        <p-sortIcon field="FeaturesValue.value"></p-sortIcon>
+                      </th>
+                      <th>عملیات</th>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="body" let-feature>
+                    <tr>
+                      <td>
+                        {{
+                          feature.Feature.length > 0
+                            ? feature.Feature[0].titleFarsi
+                            : "--"
+                        }}
+                      </td>
+                      <td>{{ feature.FeaturesValue[0].value }}</td>
+                      <td>
+                        <button
+                          pButton
+                          pRipple
+                          (click)="deleteFeature(feature._id)"
+                          icon="pi pi-trash"
+                          class="p-button-outlined p-button-danger"
+                        ></button>
+                      </td>
+                    </tr>
+                  </ng-template>
+
+                  <ng-template pTemplate="emptymessage">
+                    <tr>
+                      <td colspan="3">هیچ مقداری ثبت نشده است.</td>
+                    </tr>
+                  </ng-template>
+                </p-table>
+              </div>
+            </td>
+          </tr>
+        </ng-template>
+
+        <ng-template pTemplate="emptymessage">
+          <tr>
+            <td colspan="12">هیچ رکوردی یافت نشد.</td>
+          </tr>
+        </ng-template>
+      </p-table>
+    </div>
+</div>

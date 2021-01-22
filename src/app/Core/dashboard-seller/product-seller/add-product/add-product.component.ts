@@ -19,6 +19,7 @@ export class AddProductComponent implements OnInit {
   index: number = 0;
   titleCategory: string[] = [];
   commissionPersent: string;//حق کمیسیون
+  commissionPersentFlag:boolean=false
   activeState: boolean[] = [true, true, true];
   errorMessages = {
     title: [
@@ -89,6 +90,14 @@ export class AddProductComponent implements OnInit {
     this.createform();
     this.getCategories();
     this.getFeatures();
+    this.getTokenPost();
+  }
+
+  getTokenPost() {
+    this.sellerService.getTokenPost().subscribe((response) => {
+      // this.access_token = response['access_token'];
+      console.log(response);
+    });
   }
 
   createform(): void {
@@ -241,7 +250,7 @@ export class AddProductComponent implements OnInit {
     let category = e.value;
     this.getCommission(category._id);
     this.form.patchValue({categoryID: category._id});
-    this.titleCategory[0] = category.title
+    this.titleCategory[0] = category.title;
     this.subCategory = category.SubCategory;
   }
 
@@ -259,9 +268,9 @@ export class AddProductComponent implements OnInit {
 
     this.titleCategory[2] = '';
     let category = e.value;
-    this.getCommission(category._id)
-    this.form.patchValue({subCategory: category._id})
-    this.titleCategory[1] = category.title
+    this.getCommission(category._id);
+    this.form.patchValue({subCategory: category._id});
+    this.titleCategory[1] = category.title;
     this.subSubCategory = category.SubSubCategory;
   }
 
@@ -269,7 +278,7 @@ export class AddProductComponent implements OnInit {
     let category = e.value;
     this.titleCategory[2] = category.title;
     this.getCommission(category._id);
-    this.form.patchValue({subSubCategory: category._id})
+    this.form.patchValue({subSubCategory: category._id});
   }
 
   getFeatures(): any {
@@ -283,26 +292,16 @@ export class AddProductComponent implements OnInit {
   }
 
   submitForm(): void {
-
-    const category = this.form.controls.categoryID.value;
-    const subcategory = this.form.controls.subCategory.value;
-    const subSubCategory = this.form.controls.subSubCategory.value;
     this.form.controls.sellerID.setValue(this.localstorage.userJson['_id']);
-    // this.form.controls.categoryID.setValue(category._id);
-    // this.form.controls.subCategory.setValue(subcategory._id);
-    // this.form.controls.subSubCategory.setValue(subSubCategory._id);
-    console.log(this.form.value);
     this.sellerService.addProduct(this.form.value).subscribe((response) => {
-
       if (response.success === true) {
-
         const value = {
           productID: response.result._id,
           productFeature: this.showSelectedFeatures,
         };
         console.log(value);
         this.sellerService.addProductFeature(value).subscribe((res) => {
-          console.log(res)
+          console.log(res);
           if (res.success === true) {
             console.log(res.success);
           } else {
@@ -319,7 +318,7 @@ export class AddProductComponent implements OnInit {
   getFeatureValues(event): void {
     this.values = event.value['FeaturesValue'];
     this.featuresID = event.value['_id'];
-    this.featuresTitle = event.value['titleFarsi']
+    this.featuresTitle = event.value['titleFarsi'];
   }
 
   addSelectedValues(event: any): void {
@@ -336,11 +335,11 @@ export class AddProductComponent implements OnInit {
   }
 
   deleteFeature(item: any) {
-    this.showSelectedFeatures.splice(item, 1)
+    this.showSelectedFeatures.splice(item, 1);
   }
 
   onTabClose(event) {
-    this.messageService.add({severity: 'info', summary: 'Tab Closed', detail: 'Index: ' + event.index})
+    this.messageService.add({severity: 'info', summary: 'Tab Closed', detail: 'Index: ' + event.index});
   }
 
   onTabOpen(event) {
@@ -349,12 +348,13 @@ export class AddProductComponent implements OnInit {
 
   toggle(index: number) {
     this.activeState[index] = !this.activeState[index];
-    console.log(this.activeState)
+    console.log(this.activeState);
   }
 
   openNext(e) {
     this.index = (this.index === e.index) ? 0 : this.index + 1;
   }
+
   openPrev(e) {
     this.index = (this.index === e.index) ? 2 : this.index - 1;
   }
@@ -362,10 +362,14 @@ export class AddProductComponent implements OnInit {
 
   getCommission(id) {
     this.sellerService.getSearchCommission(id).subscribe((response) => {
+      console.log(response)
       if (response['success'] === true) {
         let data: any[] = response['data'][0];
-        this.commissionPersent = data['percent']
+        this.commissionPersent = data['percent'];
+        this.commissionPersentFlag = true;
+      } else {
+        this.commissionPersentFlag = false;
       }
-    })
+    });
   }
 }

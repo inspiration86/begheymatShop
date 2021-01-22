@@ -1,0 +1,578 @@
+<header>
+  <p-toast [baseZIndex]="999999999" dir="rtl" position="center"></p-toast>
+  <div class="container-fluid top-container top-menu-pc" dir="rtl">
+    <div class="row justify-content-center">
+      <div class="col-sm-12 col-lg-12 align-items-center">
+        <div class="row justify-content-center">
+          <div class="col-2 align-items-center text-right logo-img d-block m-auto">
+            <img height="20px" src="./assets/bootstrap/img/logo-fa.png" width="100px">
+          </div>
+          <div class="col-8 align-items-center">
+            <!--            <span class="p-input-icon-left">-->
+            <!--    <i class="pi pi-search" />-->
+            <!--    <input type="text"  placeholder="Search">-->
+            <!--</span>-->
+            <div class="c-search">
+              <input (input)="search($event)" autocapitalize="off"
+                     autocorrect="off" class="form-control search"
+                     placeholder="جستجو در به قیمت ..."  spellcheck="off" type="text">
+
+              <i class="pi pi-search" style="margin-top: -34px;margin-right:-2rem;z-index: 999999;position: absolute;font-size: 1.2rem"></i>
+
+            </div>
+
+            <!--            <div class="p-inputgroup">-->
+            <!--              <input (input)="search($event)" autocapitalize="off"-->
+            <!--                     autocorrect="off" class="form-control search"-->
+            <!--                     placeholder="جستجو در به قیمت ..." spellcheck="off" type="text">-->
+            <!--              <span class="p-inputgroup-addon"><i class="pi pi-search"></i></span>-->
+            <!--            </div>-->
+
+            <!--               <span class="p-input-icon-left">-->
+            <!--    <i class="pi pi-search"></i>-->
+            <!--    <input type="text" pInputText placeholder="Search" style="width: 100%"/>-->
+            <!--</span>-->
+
+
+
+            <!--            <mat-list *ngIf="successSearch">-->
+            <!--              <mat-list-item (click)="onSelect(item)" *ngFor="let item of listResultSearch; let i=index">-->
+            <!--                <i class="pi pi-search"></i>-->
+            <!--                <div mat-line class="text-right">{{item.label}}</div>-->
+            <!--                <mat-divider></mat-divider>-->
+            <!--              </mat-list-item>-->
+            <!--            </mat-list>-->
+            <!--        <span class="p-input-icon-left w-100">-->
+            <!--              <i class="pi pi-search"></i>-->
+            <!--              <input type="text" style="margin-right: 10px" pInputText class="w-100" placeholder="جستجو در به قیمت"/>-->
+            <!--            </span>-->
+          </div>
+          <div class="col-2 align-items-center">
+            <ul class="d-flex w-100 h-100 pull-left list-inline align-items-center justify-content-end">
+
+              <li (click)="showModalDialogLogin()" class="list-inline-item pointer">
+                <span class="p-overlay-badge" dir="rtl">
+                  <i class="fa fa-user fa-2x"></i>
+                </span>
+              </li>
+              <li (click)="showModalShoppingCart()" class="list-inline-item pointer">
+                <span class="p-overlay-badge" dir="rtl">
+                   <span class="p-badge">{{countBadge}}</span>
+                  <i class="fa fa-shopping-cart fa-2x"></i>
+                </span>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <div class="pc">
+    <nav class="navbar main-menu navbar-expand-lg" dir="rtl">
+      <button aria-controls="navbarSupportedContent2" aria-expanded="false" aria-label="Toggle navigation"
+              class="navbar-toggler"
+              data-target="#navbarSupportedContent2" data-toggle="collapse" type="button">
+        <i class="fa fa-bars"></i>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarSupportedContent2">
+        <ul class="navbar-nav ml-auto">
+
+          <li class="nav-item active" routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+            <a class="nav-link"> صفحه اصلی</a>
+          </li>
+          <li class="nav-item dropdown mega-dropdown" routerLinkActive="active">
+            <a aria-expanded="false" aria-haspopup="true" class="nav-link dropdown-toggle mr-3"
+               data-toggle="dropdown" id="products">محصولات
+            </a>
+            <div aria-labelledby="products"
+                 class="dropdown-menu mega-menu z-depth-1 py-5 px-3">
+              <div class="row text-right">
+                <div class="col-md-6 col-xl-3 sub-menu mb-xl-0 mb-4">
+                  <h6 class="sub-title">کالای دیجیتال</h6>
+                  <ul class="list-unstyled">
+                    <li>
+                      <a class="menu-item pl-0" routerLink="/home/product">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>گوشی موبایل
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" [routerLink]="['home/product']">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>تبلت
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" routerLink="/home/product">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>لوازم جاتبی گوشی
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" routerLink="/home/product">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>لوازم خانگی
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" routerLink="/home/product">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>تجهبزات ایمنی و کار
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6 col-xl-3 sub-menu mb-xl-0 mb-4">
+                  <h6 class="sub-title">زیبایی و آرایشی</h6>
+                  <ul class="list-unstyled">
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>آرایش چشم
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>آرایش لب
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>آرایش ابرو
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>آرایش پوست
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>پاکسازی پوست
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6 col-xl-3 sub-menu mb-md-0 mb-xl-0 mb-4">
+                  <h6 class="sub-title">بهداشت و سلامت</h6>
+                  <ul class="list-unstyled">
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>ماسک
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>ژل ضد عفونی کننده
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>دستکش
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>الکل ضد عفونی کننده
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>محلول ضد عفونی کننده
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6 col-xl-3 sub-menu mb-0">
+                  <h6 class="sub-title">مد و پوشاک</h6>
+                  <ul class="list-unstyled">
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>پوشاک مردانه
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>پوشاک زنانه
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>پوشاک بچگانه
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>پوشاک نوزاد
+                      </a>
+                    </li>
+                    <li>
+                      <a class="menu-item pl-0" href="#!">
+                        <i class="fas fa-caret-left pl-1 pr-3"></i>پوشاک مجلسی
+                      </a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </li>
+          <li class="nav-item" routerLinkActive="active">
+            <a class="nav-link">تخفیف ها و پیشنهادها</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" [routerLink]="['/seller/register']">فروشنده شو</a>
+          </li>
+          <li class="nav-item" [routerLink]="['/home/faq']" >
+            <a class="nav-link">سوال داری؟</a>
+          </li>
+          <li class="nav-item" [routerLink]="['/home/about']" >
+            <a class="nav-link">ارتباط با ما</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+  </div>
+  <div class="mobile container " style="margin-top: 10px">
+    <div class="row pt-2 mb-2 justify-content-center" dir="rtl">
+      <div class="col align-items-center text-right">
+
+        <i class="pi pi-bars" style="font-size: 1.5rem;margin-top: 5px" (click)="showMobileMenu()"></i>
+      </div>
+      <div class="col align-items-center d-block m-auto text-center">
+        <img height="20px" src="./assets/bootstrap/img/logo-fa.png" width="100px">
+      </div>
+      <div class="col align-items-center text-center">
+
+        <ul class="w-100 h-100 pull-left list-inline text-left">
+          <li (click)="showModalDialogLogin()" class="list-inline-item pointer userli">
+            <i class="fa fa-user fa-2x"></i>
+          </li>
+          <li (click)="showModalShoppingCart()" class="list-inline-item pointer cartli">
+
+                <span class="p-overlay-badge " dir="rtl">
+                   <span class="p-badge">{{countBadge}}</span>
+    <i class="fa fa-shopping-cart fa-2x"></i>
+
+</span>
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+    <div class="c-search mb-3 " dir="rtl">
+      <input (input)="search($event)" autocapitalize="off"
+             autocorrect="off" class="form-control search"
+             placeholder="جستجو در به قیمت ..."  spellcheck="off" type="text" >
+
+      <i class="pi pi-search" style="margin-top: -34px;margin-right:-2rem;z-index: 999999;position: absolute;font-size: 1.2rem"></i>
+
+    </div>
+
+    <p-sidebar class="" Scroll [(visible)]="displayMobileMenu" [blockScroll]="true" [modal]="true" position="right">
+      <div class=" text-center shoppingMe">
+        <img height="20px" src="./assets/bootstrap/img/logo-fa.png" width="100px">
+      </div>
+      <div class="d-flxe flex-column">
+        <div class="">
+          <p-panelMenu [model]="items" [style]="{'width':'100%'}"></p-panelMenu>
+        </div>
+      </div>
+    </p-sidebar>
+
+  </div>
+</header>
+
+<p-sidebar Scroll [(visible)]="display" [blockScroll]="true" [modal]="true" position="left">
+  <div class=" text-center shoppingMe">سبد خرید من</div>
+  <div class="d-flex flex-column">
+    <div class="mb-auto">
+      <mat-list dir="rtl">
+        <div *ngFor="let item of cartlist">
+          <mat-list-item class="mb-3" dir="rtl">
+            <mat-icon class="text-left" mat-list-icon><img [src]="item['product']['cartList'].image"
+                                                           style="border-left: #e0e0e0  solid 1.3px;height: 70px;width: 90px;margin-top: -10px;margin-left:-30px">
+            </mat-icon>
+            <div class="text-right  mt-4 titleProduct mr-5" mat-line>{{item['product']['cartList'].title}}</div>
+            <div class="d-flex flex-row" mat-line>
+              <div class="ml-auto textPrice text-success mr-5 mt-1">
+                {{item['product']['cartList'].price}} تومان
+              </div>
+              <div>
+                <i (click)="onDeleteCart(item)" class="fa fa-trash text-danger fa-2x"></i>
+              </div>
+
+            </div>
+
+          </mat-list-item>
+          <mat-divider></mat-divider>
+        </div>
+
+
+        <div class="d-flex flex-row justify-content-center mt-3">
+          <div class=" text-muted titleProduct ml-1"> مجموع سبد خرید:</div>
+
+          <div class="text-success textPrice">
+            {{sumOfPrice}} تومان
+          </div>
+        </div>
+      </mat-list>
+    </div>
+    <div class="mt-5 d-flex flex-row justify-content-center">
+      <button class="mr-auto p-button-success p-button-text" label="تکمیل و ثبت سفارش" pButton [routerLink]="['/home/cart']"
+              type="button"></button>
+      <!--      <button type="button" pButton label=" نمایش سبد خرید" class="p-button-secondary p-button-text"></button>-->
+    </div>
+  </div>
+</p-sidebar>
+<p-dialog [(visible)]="displayModalLogin" [baseZIndex]="10000" [draggable]="false" [modal]="false"
+          [resizable]="false"
+          [style]="{width:'30em',borderRadius:'20px'}"
+          dir="rtl" position="center">
+
+  <div class="row justify-content-center" dir="rtl">
+
+    <div class="col-12 align-items center">
+      <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a aria-controls="login" aria-selected="false" class="nav-link active" data-toggle="tab" href="#login"
+             id="attorney-tab"
+             role="tab">ورود</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a aria-controls="register" aria-selected="true" class="nav-link" data-toggle="tab" href="#register"
+             id="user-tab"
+             role="tab">ثبت نام</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="loginTab">
+        <div aria-labelledby="login-tab" class="tab-pane fade show active" id="login" role="tabpanel">
+          <form (ngSubmit)="login()" [formGroup]="formUser" class="w-100">
+            <div class="row login-wrap rtl">
+              <div class="col-12 text-center">
+                <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input [(ngModel)]="userRegister.mobile" class="form-control" formControlName="mobile" maxlength="11"
+                         minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>                  </span>
+
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                </div>
+              </div>
+              <div class="col-12 text-right">
+                <span (click)="showModalDialogForgetPassword()" class="float-right text-right login-link pointer">
+                  <i class="pi pi-key text-dark ml-3"></i> کلمه عبور خود را فراموش کرده ام
+                </span>
+              </div>
+              <div class="col-md-12 col-lg-12 pt-4">
+                <div class="text-center">
+                  <button [disabled]="formUser.invalid" class="btn btn-block btn-primary" mat-raised-button
+                          type="submit">ورود
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div aria-labelledby="register-tab" class="tab-pane fade" id="register" role="tabpanel">
+          <form (ngSubmit)="register()" [formGroup]="formUser" class="w-100">
+            <div class="row login-wrap rtl">
+              <div class="col-12 text-center">
+                <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input [(ngModel)]="userRegister.mobile" class="form-control"
+                         formControlName="mobile" maxlength="11" minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>                  </span>
+
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-12 pt-4">
+                <div class="text-center">
+                  <button [disabled]="formUser.invalid" class="btn btn-block btn-primary" mat-raised-button
+                          type="submit">ثبت نام
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="row rule-area justify-content-center mt-2">
+            <div class="col-12 text-right align-self-center">
+              <p>
+                با ثبت نام در فروشگاه اینترنتی به قیمت، شما <a style="color: red">شرایط و قوانین</a> استفاده از سرویس
+                های سایت به قیمت و<a style="color: red"> قوانین حریم خصوصی</a> آن را پذیرفته اید.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</p-dialog>
+
+
+<p-dialog [(visible)]="displayModalSellerLogin" [baseZIndex]="10000" [draggable]="false" [modal]="false"
+          [resizable]="false"
+          [style]="{width:'30em',borderRadius:'20px'}"
+          dir="rtl" position="center">
+
+  <div class="row justify-content-center" dir="rtl">
+
+    <div class="col-12 align-items center">
+      <ul class="nav nav-tabs text-center" id="SellerTab" role="tablist">
+        <li class="nav-item" role="presentation">
+          <a aria-controls="login" aria-selected="false" class="nav-link active" data-toggle="tab" href="#login"
+             id="login-seller-tab"
+             role="tab">ورود</a>
+        </li>
+        <li class="nav-item" role="presentation">
+          <a aria-controls="register" aria-selected="true" class="nav-link" data-toggle="tab" href="#register"
+             id="register-seller-tab"
+             role="tab">ثبت نام</a>
+        </li>
+      </ul>
+      <div class="tab-content" id="login-seller">
+        <div aria-labelledby="login-seller-tab" class="tab-pane fade show active" id="seller-login" role="tabpanel">
+          <form (ngSubmit)="login()" [formGroup]="formUser" class="w-100">
+            <div class="row login-wrap rtl">
+              <div class="col-12 text-center">
+                <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input [(ngModel)]="userRegister.mobile" class="form-control" formControlName="mobile" maxlength="11"
+                         minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>                  </span>
+
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                </div>
+              </div>
+              <div class="col-12 text-right">
+                <span (click)="showModalDialogForgetPassword()" class="float-right text-right login-link pointer">
+                  <i class="pi pi-key text-dark ml-3"></i> کلمه عبور خود را فراموش کرده ام
+                </span>
+              </div>
+              <div class="col-md-12 col-lg-12 pt-4">
+                <div class="text-center">
+                  <button [disabled]="formUser.invalid" class="btn btn-block btn-primary" mat-raised-button
+                          type="submit">ورود
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div aria-labelledby="register-seller-tab" class="tab-pane fade" id="seller-register" role="tabpanel">
+          <form (ngSubmit)="register()" [formGroup]="formUser" class="w-100">
+            <div class="row login-wrap rtl">
+              <div class="col-12 text-center">
+                <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                    <i class="pi pi-user text-dark"></i>
+                  <input [(ngModel)]="userRegister.mobile" class="form-control"
+                         formControlName="mobile" maxlength="11" minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>                  </span>
+
+                </div>
+              </div>
+              <div class="col-12 text-center">
+                <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <i class="pi pi-eye text-dark"></i>
+                  <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
+                         minlength="6"
+                         name="password" pInputText
+                         placeholder="کلمه عبور" required type="password">
+                  </span>
+                </div>
+              </div>
+              <div class="col-md-12 col-lg-12 pt-4">
+                <div class="text-center">
+                  <button [disabled]="formUser.invalid" class="btn btn-block btn-primary" mat-raised-button
+                          type="submit">ثبت نام
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+
+          <div class="row rule-area justify-content-center mt-2">
+            <div class="col-12 text-right align-self-center">
+              <p>
+                با ثبت نام در فروشگاه اینترنتی به قیمت، شما <a style="color: red">شرایط و قوانین</a> استفاده از سرویس
+                های سایت به قیمت و<a style="color: red"> قوانین حریم خصوصی</a> آن را پذیرفته اید.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+
+</p-dialog>
+<p-dialog [(visible)]="displayForgetpassword" [baseZIndex]="190000" [draggable]="false" [modal]="false"
+          [resizable]="false"
+          [style]="{width:'30em',borderRadius:'20px'}"
+          dir="rtl"
+          header="بازیابی کلمه عبور" position="center">
+  <div class="row justify-content-center" dir="rtl">
+    <div class="col-12 align-items center">
+      <form (ngSubmit)="register()" class="w-100">
+        <div class="row login-wrap rtl">
+          <div class="col-12 text-center">
+            <div class="form-group">
+              <span class="p-input-icon-right w-100">
+                <i class="pi pi-user text-dark"></i>
+              <input class="form-control" maxlength="11"
+                     minlength="11" name="mobile"
+                     pInputText placeholder="شماره موبایل">                  </span>
+
+            </div>
+          </div>
+          <div class="col-md-12 col-lg-12 pt-4">
+            <div class="text-center">
+              <button class="btn btn-block btn-primary" mat-raised-button type="submit">ارسال ایمیل بازیابی</button>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+</p-dialog>
+

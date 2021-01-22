@@ -1,0 +1,139 @@
+<p-toast [baseZIndex]="999999999" dir="rtl" position="center" class="text-right"></p-toast>
+
+<div class="container-fluid" dir="rtl">
+  <div class="row pb-3 justify-content-center seller-login">
+    <div class="col-sm-12 col-md-8 align-items-center">
+      <div class="row mt-5 justify-content-center text-center">
+        <div class="col-sm-12 col-md-8">
+          <h2>
+            به خانواده بزرگ فروشندگان <b>به قیمت</b> بپیوندید
+          </h2>
+          <h4>
+            به قیمت، فروشگاه بیش از ۱۰۰ هزار کسب و کار ایرانی
+          </h4>
+        </div>
+      </div>
+      <div class="row mt-3 justify-content-center">
+
+        <div class="col-sm-12 col-md-8">
+          <div class="box">
+            <form (ngSubmit)="sendSMS()" [formGroup]="form" class="w-100">
+              <div class="row">
+                <div class="col-12 text-center">
+                  <div class="form-group">
+                  <span class="p-input-icon-right w-100">
+                  <input pKeyFilter="int" class="form-control"
+                         formControlName="mobile"
+                         maxlength="11"
+                         minlength="11"
+                         name="mobile" pInputText
+                         placeholder="شماره موبایل" required>
+                  </span>
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.mobile">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="form.get('mobile').hasError(error.type)
+                            && (form.get('mobile').dirty
+                            || form.get('mobile').touched)">
+                        {{ error.message }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+                <div class="col-12 text-center">
+                  <div class="form-group mb-3">
+                    <span class=" p-input-icon-right w-100">
+                    <input class="form-control" formControlName="password"
+                           minlength="5"
+                           name="password" pInputText
+                           placeholder="کلمه عبور" required type="password">
+                    </span>
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.password">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="form.get('password').hasError(error.type)
+                            && (form.get('password').dirty
+                            || form.get('password').touched)">
+                        {{ error.message }}
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="col-12 text-center">
+                  <div class="form-group mb-3">
+                  <span class=" p-input-icon-right w-100">
+                  <input class="form-control" formControlName="confirmPassword"
+                         minlength="5"
+                         name="confirmPassword" pInputText
+                         placeholder="تکرار کلمه عبور" required type="password">
+                  </span>
+                    <ul class="mt-1 text-right list-inline" *ngFor="let error of errorMessages.confirmPassword">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="form.get('confirmPassword').hasError(error.type)
+                            && (form.get('confirmPassword').dirty
+                            || form.get('confirmPassword').touched)">
+                        {{ error.message }}
+                      </li>
+                    </ul>
+                    <ul class="mt-0 text-right list-inline">
+                      <li class="font-small text-danger font-weight-bold list-inline-item"
+                          *ngIf="form.errors?.passwordNotMatch
+                            && (form.get('confirmPassword').dirty
+                            || form.get('confirmPassword').touched)">
+                        تکرار کلمه عبور مطابقت ندارد.
+                      </li>
+                    </ul>
+                  </div>
+                </div>
+
+                <div class="col-12 text-right">
+                  <a routerLink="/sellerBe/login">قبلا ثبت نام کرده اید؟</a>
+                </div>
+
+                <div class="col-md-12 col-lg-12 pt-4">
+                  <div class="text-center">
+                    <button [disabled]="form.invalid" class="btn btn-block btn-primary" mat-raised-button
+                            type="submit">ثبت نام
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+<p-dialog [(visible)]="display">
+  <p-header class="headerPanel">
+    اعتبارسنجی شماره همراه
+  </p-header>
+  <label class="text-titleboxsms mt-4 mb-4">کد ارسال شده به شماره همراه در کادر زیر وارد
+    نمائید</label>
+  <br>
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid ">
+    <div class="ui-grid-row dialog">
+
+      <div>
+        <ng-otp-input #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="{length:6,allowNumbersOnly:true}"
+                      dir="ltr"
+                      style="font-family: IRANSansWeb" class="text-center"></ng-otp-input>
+        <!--        <p-inputMask mask="9999" class="inputSMS"></p-inputMask>-->
+      </div>
+    </div>
+  </div>
+  <div *ngIf="resendSMS">
+    <a class="text-titleboxsms mt-5 mb-5" (click)="sendSMS()">ارسال مجدد کد</a>
+  </div>
+  <div class="alert alert-danger mt-4 mb-3 text-center" *ngIf="invalidSMS" style="font-family: IRANSansWeb_Bold">کد وارد
+    شده اشتباه می باشد
+  </div>
+  <p-footer dir="rtl" class="text-left mt-5 ">
+    <button pButton  type="submit" class="p-button-danger" label="ثبت نام " cornerStyleClass="text-center" [disabled]="validationBtnPay"
+    ></button>
+    <button pButton type="submit" class="p-button-danger" label="مدت زمان باقیمانده:{{timeLeft}}"
+            cornerStyleClass="text-center"
+    ></button>
+  </p-footer>
+</p-dialog>

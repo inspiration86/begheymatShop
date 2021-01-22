@@ -1,0 +1,44 @@
+<div class="container-fluid mt-3" dir="rtl">
+  <div class="row justify-content-center">
+    <div class="col col-12 align-items-center">
+      <div class="section-title text-right">
+        <h2>پیشنهاد هدیه</h2>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container-fluid mt-4 gift-container">
+  <div class="row justify-content-center gift-bg py-4">
+    <div class="col-12">
+      <owl-carousel-o [options]="customOptions">
+        <ng-template carouselSlide *ngFor="let i of gifts">
+          <a [href]="i['linkUrl']" target="_blank">
+            <div class="direct-gift py-3">
+              <div class="image">
+                <img [src]="i['giftSvg']" class="d-block img-fluid mx-auto"></div>
+              <div class="is-button-pink"><span class="caption">{{i['giftTitle']}}</span></div>
+            </div>
+          </a>
+        </ng-template>
+      </owl-carousel-o>
+    </div>
+  </div>
+</div>
+<!--<div class="container-fluid mt-4 gift-container horizontal-scrollable" dir="rtl">-->
+<!--  <div class="row gift-bg">-->
+<!--    <div class="col-sm-6 col-lg-2 col-lg-offset-1">-->
+
+<!--    </div>-->
+<!--    <div class="col-sm-6 col-lg-2">-->
+
+<!--    </div>-->
+<!--    <div class="col-sm-6 col-lg-2">-->
+
+<!--    </div>-->
+<!--    <div class="col-sm-6 col-lg-2">-->
+
+<!--    </div>-->
+<!--    <div class="col-sm-6 col-lg-2">-->
+<!--    </div>-->
+<!--  </div>-->
+<!--</div>-->

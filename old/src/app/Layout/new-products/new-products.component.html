@@ -1,0 +1,185 @@
+<div class="container-fluid">
+  <div class="row mt-4 justify-content-center feature-row" dir="rtl">
+
+        <div class="col-md-3" style="padding-left: -30px">
+      <div class="card mb-3">
+        <div class="row no-gutters">
+          <div class="col-md-2 text-center blue lighten-5 ">
+            <img src="./assets/bootstrap/img/1.png" class="card-img mt-3" style="height: 50px;width: 50px;">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h5 class="card-title">ارسال رایگان</h5>
+              <p class="card-text">برای خریدهای بالای 200هزار تومان</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3" style="padding-left: -30px">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-2 text-center blue lighten-5">
+            <img src="../../../assets/bootstrap/img/2.png" class="card-img mt-3" style="height: 50px;width: 50px">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h5 class="card-title">امکان خرید</h5>
+              <p class="card-text"> در تمام نقاط کشور</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3" style="padding-left: -30px">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-2 text-center ">
+            <img src="../../../assets/bootstrap/img/3.png" class="card-img  mt-3" style="height: 50px;width: 50px">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h5 class="card-title">اصل بودن کالا</h5>
+              <p class="card-text"> ضمانت اصل بودن تمامی کالاها </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-3">
+      <div class="card mb-3" style="max-width: 540px;">
+        <div class="row no-gutters">
+          <div class="col-md-2 text-center  light-blue accent-2 text-white">
+            <img src="../../../assets/bootstrap/img/4.png" class="card-img  mt-3" style="height: 50px;width: 50px">
+          </div>
+          <div class="col-md-10">
+            <div class="card-body">
+              <h5 class="card-title">۴۸ ساعت ضمانت تعویض</h5>
+              <p class="card-text">۴۸ ساعت ضمانت تعویض </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+  </div>
+</div>
+<p-panel dir="rtl" class="mb-5">
+  <p-header class="d-flex justify-content-center w-100" dir="rtl" style="margin-bottom: -20px">
+    <!--    <div class="d-flex justify-content-center" dir="rtl">-->
+    <div class="ml-auto">
+      <p class=" title ">محصولات جدید</p>
+    </div>
+    <div class="text-left">
+      <p class=" titleAll">مشاهده ادامه لیست <i class="pi pi-arrow-left" style="font-size: 1rem"></i></p>
+
+    </div>
+
+    <!--    </div>-->
+
+  </p-header>
+  <div class="row" dir="rtl">
+    <div class="col-md-3" *ngFor="let item of product;let i =index">
+      <p-card>
+        <p-header dir="rtl">
+          <label class="text-right headerLabel text-white danger-color  border border-right-0" dir="rtl">جدید</label>
+        </p-header>
+        <div class="productContent">
+          <img class=" imageProduct" [src]="item.image" alt="" style="height: 200px">
+          <h5 class="text-right titleProducts">{{item.type}}</h5>
+          <p class="text-center detailProduct">{{item.title}}</p>
+          <div class="d-flex flex-row">
+            <div class="ml-auto">
+              <label class="text-info">قیمت:</label>
+            </div>
+            <div>
+              <label class="text-info">{{item.price}} تومان</label>
+            </div>
+          </div>
+
+        </div>
+
+        <p-footer>
+          <div class="d-flex justify-content-center flex-row">
+            <div class="mr-1">
+              <p-inputNumber [(ngModel)]="valueCountProduct[i]"  [min]="1" [showButtons]="true" buttonLayout="horizontal"
+                             inputId="horizontal" spinnerMode="horizontal" [step]="1" size="1"
+                             decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                             incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus" >
+              </p-inputNumber>
+            </div>
+            <div class="mr-auto">
+              <button pButton pRipple pTooltip="اضافه به سبد خرید" tooltipStyleClass="alert-tooltip"
+                      tooltipPosition="bottom" icon="pi pi-shopping-cart"
+                      class="p-button-rounded p-button-info " (click)="addCart(valueCountProduct[i],item)"></button>
+            </div>
+            <div class="mr-auto">
+              <button pButton pRipple type="button" icon="pi pi-heart" pTooltip="علاقه مندی"
+                      tooltipStyleClass="alert-tooltip" tooltipPosition="bottom"
+                      class="p-button-rounded p-button-info "></button>
+            </div>
+            <div class="mr-auto">
+              <button pButton pRipple (click)="showDialog(item,i)" type="button" pTooltip="مشاهده جزئیات"
+                      tooltipStyleClass="alert-tooltip"
+                      tooltipPosition="bottom" icon="pi pi-eye" class="p-button-rounded p-button-info "></button>
+            </div>
+          </div>
+        </p-footer>
+      </p-card>
+    </div>
+
+  </div>
+</p-panel>
+
+<p-dialog header="{{viewProduct.title}}" [(visible)]="display"
+          [style]="{width: '80vw'}">
+  <div class="row" dir="rtl">
+    <div class="col-md-4 text-right">
+      <img [src]="viewProduct.image">
+    </div>
+    <div class="col-md-8">
+      <p-tabView>
+        <p-tabPanel header="مشخصات" leftIcon="pi pi-list">
+          <div class="row" dir="rtl">
+            <div class="col-md-4">
+              <p class="text-right titleProducts">دسته:{{viewProduct.type}}</p>
+              <p class="text-right detailProduct">{{viewProduct.title}}</p>
+            </div>
+            <div class="col-md-4 d-flex">
+              <p-inputNumber [(ngModel)]="viewProduct.number" [min]="0" [showButtons]="true" buttonLayout="horizontal"
+                             inputId="horizontal" spinnerMode="horizontal" [step]="1" size="1"
+                             decrementButtonClass="p-button-danger" incrementButtonClass="p-button-success"
+                             incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus">
+              </p-inputNumber>
+              <div class="mr-auto">
+                <button pButton pRipple pTooltip="اضافه به سبد خرید" tooltipStyleClass="alert-tooltip"
+                        tooltipPosition="bottom" icon="pi pi-shopping-cart"
+                        class="p-button-rounded p-button-info "></button>
+              </div>
+
+            </div>
+            <div class="col-md-4">
+              <p-rating [cancel]="false" [(ngModel)]="viewProduct.viewCount" [readonly]="false" [stars]="5"></p-rating>
+            </div>
+
+
+          </div>
+
+        </p-tabPanel>
+        <p-tabPanel header="توضیحات" leftIcon="pi pi-sliders-h">
+         <div class="text-right detailProduct" [innerHTML]="viewProduct.detail"></div>
+        </p-tabPanel>
+        <p-tabPanel header="نظرات" leftIcon="pi pi-comment">
+          <p>
+            نقد وبررسی
+            نقد بررسی یافت نشد...
+            اولین نفر باشید که نقد و بررسی ارسال میکنید... "محلول ضدعفونی کننده دست 60 درصد الکل با بهرین قیمت و بهترین
+            کیفیت"
+          </p>
+        </p-tabPanel>
+      </p-tabView>
+    </div>
+  </div>
+</p-dialog>
+

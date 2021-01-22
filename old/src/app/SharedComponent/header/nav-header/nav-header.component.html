@@ -1,0 +1,172 @@
+<div class="site-header__nav-panel">
+  <div class="nav-panel nav-panel--sticky">
+    <div class="nav-panel__container container">
+      <div class="nav-panel__row">
+
+
+        <div class="nav-panel__departments">
+          <div class="departments">
+            <button class="departments__button" (click)="toggleNavBar()" (mouseover)="openNavBar()">
+              <svg version="1.1" xmlns="http://www.w3.org/2000/svg" width="18" height="14"
+                   class="departments__button-icon" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                   viewBox="0 0 1000 1000" enable-background="new 0 0 1000 1000" xml:space="preserve">
+<metadata> Svg Vector Icons : http://www.onlinewebfonts.com/icon </metadata>
+                <g><path d="M732.1,732.1H990V990H732.1V732.1z M371.1,732.1h257.9V990H371.1V732.1z M10,732.1h257.9V990H10V732.1z M732.1,371.1H990v257.9H732.1V371.1z M732.1,10H990v257.9H732.1V10z M371.1,371.1h257.9v257.9H371.1V371.1z M371.1,10h257.9v257.9H371.1V10z M10,371.1h257.9v257.9H10V371.1z M10,10h257.9v257.9H10V10z"/></g>
+</svg>
+              دسته بندی محصولات
+              <svg xmlns="http://www.w3.org/2000/svg" width="9" height="6" class="departments__button-arrow">
+                <path
+                  d="M.2.4c.4-.4 1-.5 1.4-.1l2.9 3 2.9-3c.4-.4 1.1-.4 1.4.1.3.4.3.9-.1 1.3L4.5 6 .3 1.6C-.1 1.3-.1.7.2.4z"></path>
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div class="nav-links nav-panel__nav-links">
+          <ul class="nav-links__list">
+            <li class="nav-links__item">
+              <a class="nav-links__item-link">
+                <div class="nav-links__item-body" [routerLink]="['/sellerBe']" target="_blank">
+                  فروشنده شو
+                </div>
+              </a>
+            </li>
+            <li class="nav-links__item">
+              <a class="nav-links__item-link">
+                <div class="nav-links__item-body" [routerLink]="['/home/faq']">
+                  سوال داری؟
+                </div>
+              </a>
+            </li>
+          </ul>
+        </div>
+        <div class="nav-panel__indicators">
+          <div class="indicator">
+            <a class="indicator__button" routerLink="/home/wishlist">
+              <span class="indicator__area">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="">
+                  <path
+                    d="M14 3c2.2 0 4 1.8 4 4 0 4-5.2 10-8 10S2 11 2 7c0-2.2 1.8-4 4-4 1 0 1.9.4 2.7 1L10 5.2 11.3 4c.8-.6 1.7-1 2.7-1m0-2c-1.5 0-2.9.6-4 1.5C8.9 1.6 7.5 1 6 1 2.7 1 0 3.7 0 7c0 5 6 12 10 12s10-7 10-12c0-3.3-2.7-6-6-6z"></path>
+                </svg>
+                <span class="indicator__value">{{wishListService.wishListCount}}</span>
+              </span>
+            </a>
+          </div>
+          <div class="indicator" #basketDropDown (clickOutside)="closeBasketDropDown()"
+               (mouseleave)="closeBasketDropDown()">
+            <a class="indicator__button" (click)="toggleBasketDropDown()" (mouseover)="openBasketDropDown()">
+              <span class="indicator__area">
+                <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" class="">
+                  <circle cx="7" cy="17" r="2"></circle>
+                  <circle cx="15" cy="17" r="2"></circle>
+                  <path
+                    d="M20 4.4V5l-1.8 6.3c-.1.4-.5.7-1 .7H6.7c-.4 0-.8-.3-1-.7L3.3 3.9c-.2-.6-.7-.9-1.2-.9H.4C.2 3 0 2.8 0 2.6V1.4c0-.2.2-.4.4-.4h2.5c1 0 1.8.6 2.1 1.6l.1.4 2.3 6.8c0 .1.2.2.3.2h8.6c.1 0 .3-.1.3-.2l1.3-4.4c0-.2-.2-.4-.4-.4H9.4c-.2 0-.4-.2-.4-.4V3.4c0-.2.2-.4.4-.4h9.2c.8 0 1.4.6 1.4 1.4z"></path>
+                </svg>
+                <span class="indicator__value">{{countBadge}}</span>
+              </span>
+            </a>
+            <div class="indicator__dropdown" style="max-height: 458px;">
+              <div class="dropcart dropcart--style--dropdown">
+                <div class="dropcart__body">
+
+                  <div class="dropcart__products-list" *ngIf="lengthCartlist !== 0">
+                    <div class="dropcart__product" *ngFor="let item of cartlist">
+                      <div class="product-image dropcart__product-image">
+                        <a class="product-image__body">
+                          <img [src]="item['product']['cartList'].image" alt="" class="product-image__img">
+                        </a>
+                      </div>
+                      <div class="dropcart__product-info">
+                        <div class="dropcart__product-name">
+                          <a>{{item['product']['cartList'].title}}</a>
+                        </div>
+                        <div class="dropcart__product-meta">
+                          <span class="dropcart__product-quantity">{{item['product']['number']}}</span>
+                          ×
+                          <span class="dropcart__product-quantity" *ngIf="item['product']['cartList'].offer">{{((item['product']['cartList'].price-((item['product']['cartList'].price *item['product']['cartList'].offerPercent)/100)|number)) }}تومان </span>
+
+                          <span class="dropcart__product-quantity" *ngIf="!item['product']['cartList'].offer">{{item['product']['cartList'].price|number }}تومان </span>
+                          <!--                          <span class="dropcart__product-price">{{item['product']['cartList'].price|number}}-->
+                          <!--                            تومان-->
+                          <!--                          </span>-->
+                        </div>
+                      </div>
+                      <i class="fa fa-close fa-1x mr-auto" style="color:#c33" (click)="onDeleteCart(item)"></i>
+                    </div>
+                  </div>
+                  <div class="dropcart__products-list" *ngIf="lengthCartlist === 0">
+                    <p class="text-center">
+                      سبد خرید شما خالی است.
+                    </p>
+                  </div>
+                  <div class="dropcart__totals">
+                    <table>
+                      <tbody>
+                      <tr>
+                        <th>جمع کل</th>
+                        <td>{{sumOfPrice|number}} تومان</td>
+                      </tr>
+                      </tbody>
+                    </table>
+                  </div>
+                  <div class="dropcart__buttons">
+                    <button class="btn" style="background-color: #c33;color: #ffffff;font-size: 14px"
+                            [routerLink]="['/home/cart']" [disabled]="showCartList">مشاهده سبد و تکمیل خرید
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+
+    </div>
+
+
+    <div class="nav-panel-inner-row" (clickOutside)="closeNavBar()" (mouseleave)="closeNavBar()">
+      <div class="nav-row" #navBar>
+        <ul class="nav clearfix justify-content-around">
+          <li class="nav-item">
+            <a (click)="goProduct(0, 0, 0)"
+               class="nav-link">
+              همه محصولات
+            </a>
+          </li>
+          <li class="nav-item" *ngFor="let cat of categories" (click)="toggleCategory(cat._id)"
+              (mouseover)="openCategory(cat._id)">
+            <a class="nav-link">
+              {{cat.title}}
+              <svg *ngIf="cat.SubCategory.length > 0" xmlns="http://www.w3.org/2000/svg" width="6" height="9"
+                   class="link-arrow">
+                <path
+                  d="M.4 8.8c-.4-.4-.5-1-.1-1.4l3-2.9-3-2.9C-.1 1.2-.1.5.4.2c.4-.3.9-.3 1.3.1L6 4.5 1.6 8.7c-.3.4-.9.4-1.2.1z"></path>
+              </svg>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="category-row container-fluid" #category (clickOutside)="closeCategory()" (mouseleave)="closeCategory()">
+        <div class="row justify-content-center p-3">
+          <div class="col-sm-12 mb-1">
+            <h6 (click)="goProduct(currentCat, 0, 0)" class="sub-title border-bottom">همه</h6>
+          </div>
+          <div *ngFor="let sub of subCategories" class="col sub-menu mb-xl-0 mb-3">
+            <h6 (click)="goProduct(sub.categoryID, sub._id, 0)" class="sub-title border-bottom pb-2">{{sub.title}}</h6>
+            <ul *ngIf="sub.SubSubCategory" class="list-unstyled">
+              <li *ngFor="let subSub of sub.SubSubCategory" class="sub-sub-title">
+                <a class="menu-item pl-0" (click)="goProduct(sub.categoryID, sub._id, subSub._id)">
+                  <i class="fas fa-caret-left pl-2 pr-3"></i>{{subSub.title}}
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

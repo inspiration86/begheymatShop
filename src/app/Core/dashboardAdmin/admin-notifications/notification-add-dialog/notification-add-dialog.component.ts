@@ -1,19 +1,18 @@
 import { Component, OnInit } from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {AdminserviceService} from '../../adminservice.service';
-import {DynamicDialogConfig, DynamicDialogRef} from 'primeng/dynamicdialog';
-import {MessageService} from 'primeng/api';
-
+import {DynamicDialogRef} from 'primeng/dynamicdialog';
+import {MessageService} from 'primeng/api'
+import {DateAdapter} from '@angular/material/core';
 @Component({
   selector: 'app-notification-add-dialog',
   templateUrl: './notification-add-dialog.component.html',
   styleUrls: ['./notification-add-dialog.component.css'],
   providers: [
     MessageService
-  ]
+  ],
 })
 export class NotificationAddDialogComponent implements OnInit {
-  date: any;
   public form: FormGroup;
   errorMessages = {
     title: [
@@ -26,15 +25,16 @@ export class NotificationAddDialogComponent implements OnInit {
       {type: 'required', message: 'متن اطلاعیه را وارد کنید.'}
     ]
   };
-
   constructor(private formBuilder: FormBuilder,
               private service: AdminserviceService,
               public ref: DynamicDialogRef,
+              private dateAdapter: DateAdapter<any>,
               public messageService: MessageService) {
   }
 
   ngOnInit(): void {
     this.createform();
+    this.dateAdapter.setLocale('fa-IR');
   }
 
   createform(): void {
@@ -60,6 +60,10 @@ export class NotificationAddDialogComponent implements OnInit {
     });
   }
 
+  show(){
+    console.log(this.form.value);
+    console.log(this.form.controls.date);
+  }
   submitForm(): void {
     // console.log(this.form.value);
     this.service.addNotification(this.form.value).subscribe((response) => {

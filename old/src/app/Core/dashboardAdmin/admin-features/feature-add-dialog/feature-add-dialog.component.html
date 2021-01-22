@@ -1,0 +1,46 @@
+<p-toast position="center"></p-toast>
+<div style="direction: rtl; text-align: right">
+  <form [formGroup]="form" (ngSubmit)="submitForm()" class="w-100 mt-3">
+
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label for="titleFarsi">عنوان فارسی</label>
+        <input id="titleFarsi" type="text" pInputText
+               formControlName="titleFarsi">
+        <ul class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.titleFarsi">
+          <li class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="form.get('titleFarsi').hasError(error.type)
+                            && (form.get('titleFarsi').dirty
+                            || form.get('titleFarsi').touched)">
+            {{ error.message }}
+          </li>
+        </ul>
+      </div>
+      <div class="p-field p-col">
+        <label for="titleLatin">عنوان انگلیسی</label>
+        <input id="titleLatin" type="text" pInputText
+               formControlName="titleLatin">
+        <ul class="mt-1 text-right list-inline"
+            *ngFor="let error of errorMessages.titleLatin">
+          <li class="font-small text-danger font-weight-bold list-inline-item"
+              *ngIf="form.get('titleLatin').hasError(error.type)
+                            && (form.get('titleLatin').dirty
+                            || form.get('titleLatin').touched)">
+            {{ error.message }}
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <div class="float-left">
+          <button pButton label="ثبت" class="ui-button-success"
+                  icon="pi pi-check" iconPos="left" [disabled]="form.invalid"></button>
+        </div>
+      </div>
+    </div>
+
+  </form>
+</div>

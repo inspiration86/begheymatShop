@@ -22,21 +22,23 @@ export class SellerRegisterComponent implements OnInit {
   resendSMS: boolean = false;
   form: FormGroup;
   mobileRegix = /^0?9[123]\d{8}$/;
+    passwordRegix = /^(?=.*[A-Z])(?=.*[\W])(?=.*[0-9])(?=.*[a-z]).{9,}$/;
   errorMessages = {
-    mobile: [
-      {type: 'required', message: 'شماره موبایل را وارد کنید.'},
-      {type: 'minlength', message: 'شماره موبایل باید 11 رقم باشد.'},
-      {type: 'maxlength', message: 'شماره موبایل باید 11 رقم باشد.'},
-      {type: 'pattern', message: 'لطفا شماره موبایل معتبر وارد کنید.'}
-    ],
-    password: [
-      {type: 'required', message: 'کلمه عبور را وارد کنید.'},
-      {type: 'minlength', message: 'کلمه عبور نمی تواند کمتر از 5 کاراکتر باشد.'}
-    ],
-    confirmPassword: [
-      {type: 'required', message: 'تکرار کلمه عبور را وارد کنید.'},
-      {type: 'minlength', message: 'تکرار کلمه عبور نمی تواند کمتر از 5 کاراکتر باشد.'}
-    ],
+      mobile: [
+        { type: 'required', message: 'شماره موبایل را وارد کنید.' },
+        { type: 'minlength', message: 'شماره موبایل باید 11 رقم باشد.' },
+        { type: 'maxlength', message: 'شماره موبایل باید 11 رقم باشد.' },
+        { type: 'pattern', message: 'لطفا شماره موبایل معتبر وارد کنید.' }
+      ],
+      password: [
+        { type: 'required', message: 'کلمه عبور را وارد کنید.' },
+        { type: 'minlength', message: 'کلمه عبور نمی تواند کمتر از 8 کاراکتر باشد.' },
+        { type: 'pattern', message: 'کلمه عبور باید شامل حروف کوچک و بزرگ لاتین و اعداد و اشکال باشد..' }
+      ],
+      confirmPassword: [
+        { type: 'required', message: 'تکرار کلمه عبور را وارد کنید.' },
+        { type: 'minlength', message: 'تکرار کلمه عبور نمی تواند کمتر از 8 کاراکتر باشد.' }
+      ],
   };
 
   constructor(private formBuilder: FormBuilder, private layoutService: LayoutService,
@@ -51,33 +53,34 @@ export class SellerRegisterComponent implements OnInit {
     });
 
     this.form = this.formBuilder.group(
-      {
-        mobile: new FormControl(
-          null,
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(11),
-            Validators.maxLength(11),
-            Validators.pattern(this.mobileRegix)
-          ])
-        ),
-        password: new FormControl(
-          null,
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(5)
-          ])
-        ),
-        confirmPassword: new FormControl(
-          null,
-          Validators.compose([
-            Validators.required,
-            Validators.minLength(5)
-          ])
-        ),
-      }, {
-        validators: this.password.bind(this)
-      });
+          {
+               mobile: new FormControl(
+                 null,
+                 Validators.compose([
+                   Validators.required,
+                   Validators.minLength(11),
+                   Validators.maxLength(11),
+                   Validators.pattern(this.mobileRegix)
+                 ])
+               ),
+               password: new FormControl(
+                 null,
+                 Validators.compose([
+                   Validators.required,
+                   Validators.minLength(8),
+                   Validators.pattern(this.passwordRegix)
+                 ])
+               ),
+               confirmPassword: new FormControl(
+                 null,
+                 Validators.compose([
+                   Validators.required,
+                   Validators.minLength(8)
+                 ])
+               ),
+             }, {
+               validators: this.password.bind(this)
+             });
   }
 
   password(formGroup: FormGroup): any {

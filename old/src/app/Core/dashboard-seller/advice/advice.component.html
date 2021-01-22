@@ -1,0 +1,92 @@
+<p-confirmDialog [style]="{width: '50vw'}" [baseZIndex]="10000"></p-confirmDialog>
+<div class="pnl-content p-3">
+  <div class="box text-right" dir="rtl">
+
+    <p-table #dt [value]="advices" dataKey="id"
+             [rows]="10" [showCurrentPageReport]="true"
+             [rowsPerPageOptions]="[10,25,50]" [loading]="loading"
+             styleClass="p-datatable-customers"
+             [paginator]="true"
+             currentPageReportTemplate="نمایش {first} تا {last} از {totalRecords} صفحه"
+             [filterDelay]="0"
+             [globalFilterFields]="['question','answer']">
+      <ng-template pTemplate="caption">
+        <div class="table-header row">
+          <div class="col-sm-12"> لیست مشاوره های محصول
+          </div>
+          <div class="col-sm-12">
+              <span class="p-input-icon-left w-100 mt-3">
+                <i class="pi pi-search"></i>
+                <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')"
+                       placeholder="جستجو کلی"/>
+              </span>
+          </div>
+        </div>
+      </ng-template>
+      <ng-template pTemplate="header">
+        <tr>
+          <th style="width: 3rem"></th>
+          <th pSortableColumn="User[0].firstName + ' ' + User[0].lastName">نام و نام خانوادگی
+            <p-sortIcon field="User[0].firstName + ' ' + User[0].lastName"></p-sortIcon>
+          </th>
+          <th pSortableColumn="Product[0].title">محصول
+            <p-sortIcon field="Product[0].title"></p-sortIcon>
+          </th>
+          <th pSortableColumn="question">سوال
+            <p-sortIcon field="question"></p-sortIcon>
+          </th>
+          <th></th>
+          <th></th>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="body" let-advice let-expanded="expanded">
+        <tr>
+          <td>
+            <button type="button" pButton pRipple [pRowToggler]="advice" [disabled] = "advice.answer === null"
+                    class="p-button-text p-button-rounded p-button-plain"
+                    [icon]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"></button>
+          </td>
+          <td>
+            {{advice.User[0].firstName + ' ' + advice.User[0].lastName}}
+          </td>
+          <td>
+            {{advice.Product[0].title}}
+          </td>
+          <td>
+            {{advice.question}}
+          </td>
+          <td>
+            <button pButton pRipple label="ثبت پاسخ" [disabled] = "advice.answer !== null"
+                    (click)="showAddAnswerAdviceDialog(advice._id, advice.answer)"
+                    class="p-button-success p-ml-2 text-white"></button>
+          </td>
+          <td>
+            <button pButton pRipple icon="pi pi-eye"
+                    (click)="viewProduct(advice._id)"
+                    class="p-button-rounded p-button-info p-ml-2 text-white"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="rowexpansion" let-advice>
+        <tr>
+          <td colspan="5">
+            پاسخ: {{advice.answer}}
+          </td>
+          <td>
+            <button pButton pRipple icon="pi pi-pencil"
+                    (click)="showEditAnswerAdviceDialog(advice._id, advice.answer)"
+                    class="p-button-rounded p-button-warning p-ml-2 text-white"></button>
+            <button pButton pRipple (click)="delete(advice._id)"
+                    icon="pi pi-trash" class="p-button-rounded p-button-danger text-white"></button>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="6">هیچ رکوردی یافت نشد.</td>
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+</div>

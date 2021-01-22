@@ -1,0 +1,244 @@
+.seller-features-section {
+  background-color: #F2F5F9;
+  color: #4d4d4d;
+  font-family: IRANSans_Bold;
+  padding: 70px 0;
+}
+
+
+.subtitle {
+  color: #CC3333;
+  font-size: 36px;
+  font-family: IRANSans_Bold;
+}
+
+.seller-faq-dark .subtitle {
+  color: #ffffff;
+  font-size: 36px;
+  font-family: IRANSans_Bold;
+}
+
+.seller-section-title .heading {
+  font-size: 30px;
+  margin-top: 12px;
+  font-family: IRANSans_Bold;
+}
+
+.seller-faq-dark .heading {
+  color: #ffffff;
+}
+
+
+.gutter-v1 {
+  margin-right: -20px;
+  margin-left: -20px;
+}
+
+.seller-features-section .seller-feature {
+  padding: 20px 40px;
+}
+
+.seller-features-section .img-wrap {
+  background: #ffffff;
+  border-radius: 30px;
+  display: inline-block;
+  height: 90px;
+  width: 90px;
+  -webkit-box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.05);
+  box-shadow: 0 15px 30px 0 rgba(0, 0, 0, 0.05);
+  margin-bottom: 20px;
+  position: relative;
+}
+
+.seller-features-section .img-wrap img {
+  position: absolute;
+  max-height: 50px;
+  top: 50%;
+  left: 50%;
+  -webkit-transform: translate(-50%, -50%);
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.seller-features-section .seller-feature h3 {
+  font-size: 18px;
+  font-weight: 700;
+  font-family: IRANSans_Bold;
+}
+
+.seller-features-section .seller-feature p {
+  font-size: 14px;
+  font-family: IRANSans_Bold;
+}
+
+
+.seller-features-lg {
+  background-color: #F2F5F9;
+  color: #4d4d4d;
+  font-family: IRANSans_Bold;
+}
+
+.seller-features-lg .seller-feature {
+  padding: 70px 0;
+}
+
+.btn.btn-primary {
+  background: #CC3333;
+  border-color: #CC3333;
+}
+
+.seller-features-section .slant-dark {
+  position: absolute;
+  width: calc(100% + 2px);
+  height: 380px;
+  bottom: -2px;
+  left: -2px;
+  z-index: 1;
+  background-size: cover;
+  background-position: left top;
+  background-repeat: no-repeat;
+}
+
+
+.seller-faq-dark {
+  background: #CC3333;
+  padding-top: 40px;
+  padding-bottom: 40px;
+
+
+}
+
+mat-expansion-panel {
+  border: #ffffff 1px solid;
+  box-sizing: unset;
+  border-radius: 0px;
+  transition: none;
+  box-shadow: none;
+}
+
+mat-expansion-panel-header {
+  font-size: 15px;
+  font-weight: 600;
+  height: 60px;
+
+}
+
+mat-expansion-panel.mat-expanded {
+  border: none;
+
+}
+
+mat-expansion-panel.mat-expanded mat-expansion-panel-header {
+  background-color: #F2F5F9;
+}
+
+mat-expansion-panel.mat-expanded mat-expansion-panel-header mat-panel-title {
+  color: #4d4d4d !important;
+}
+
+mat-expansion-panel.mat-expanded p {
+  text-align: justify;
+  font-size: 14px;
+  padding: 20px 5px 5px 20px;
+  margin-bottom: 0;
+  color: #202040;
+}
+
+:host::ng-deep mat-expansion-panel.mat-expanded .mat-expansion-indicator:after {
+  color: white;
+}
+
+/*mat-expansion-panel-header:hover {*/
+/*}*/
+/*mat-expansion-panel-header:hover mat-panel-title{*/
+/*  color: #ffffff!important;*/
+/*}*/
+/*::ng-deep mat-expansion-panel-header:hover .mat-expansion-indicator:after {*/
+/*  color: white;*/
+/*}*/
+.mat-accordion .mat-expansion-panel:last-of-type {
+  border-bottom-right-radius: 0px;
+  border-bottom-left-radius: 0px;
+}
+
+.mat-accordion .mat-expansion-panel:first-of-type {
+  border-top-right-radius: 0px;
+  border-top-left-radius: 0px;
+}
+
+mat-expansion-panel {
+  margin-bottom: 15px;
+}
+
+
+.custom-marker {
+  display: flex;
+  width: 2rem;
+  height: 2rem;
+  align-items: center;
+  justify-content: center;
+  color: #ffffff;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+::ng-deep .p-timeline-event-content,
+::ng-deep .p-timeline-event-opposite {
+  line-height: 1;
+}
+
+
+@media screen and (max-width: 960px) {
+  ::ng-deep .customized-timeline .p-timeline-event:nth-child(even) {
+    flex-direction: row !important;
+  }
+
+  ::ng-deep .customized-timeline .p-timeline-event-content {
+    text-align: left !important;
+  }
+}
+
+.p-timeline-event-opposite {
+  flex: 0;
+}
+
+.p-card {
+  margin-top: 1rem;
+}
+
+:host ::ng-deep .p-card .p-card-title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 0.5rem;
+  font-family: IRANSans_Bold;
+}
+
+:host ::ng-deep .custom-marker {
+  color: #4d4d4d;
+}
+
+:host ::ng-deep .p-card .p-card-title {
+  font-size: 1rem !important;
+  font-weight: 500 !important;
+}
+
+
+@media screen and (max-width: 960px) {
+  ::ng-deep .customized-timeline .p-timeline-event:nth-child(even) {
+    flex-direction: row !important;
+  }
+
+  ::ng-deep .customized-timeline .p-timeline-event-content {
+    text-align: left !important;
+  }
+
+  ::ng-deep .customized-timeline .p-timeline-event-opposite {
+    flex: 0;
+  }
+
+  ::ng-deep .customized-timeline .p-card {
+    margin-top: 1rem;
+  }
+
+}

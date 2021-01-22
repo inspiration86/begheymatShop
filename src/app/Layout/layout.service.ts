@@ -122,7 +122,7 @@ export class LayoutService {
   }
 
   getTokenPost(data: any) {
-    console.log(data);
+
     const headers = {'content-type': 'application/x-www-form-urlencoded'};
     return this.http.post('http://svc.ebazaar-post.ir/RestApi/token', data, {'headers': headers});
   }
@@ -187,6 +187,8 @@ export class LayoutService {
   getSliders(): any {
     return this.http.get('http://194.5.175.25:3005/api/v1/admin/slider');
   }
-
+  onfindSeller(data: any) {
+    return this.http.post('http://194.5.175.25:3005/api/v1/seller/seller', data);
+  }
 
 }

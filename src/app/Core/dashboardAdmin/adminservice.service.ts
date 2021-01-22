@@ -172,6 +172,10 @@ export class AdminserviceService {
     return this.http.get('http://194.5.175.25:3005/api/v1/admin/category');
   }
 
+  getSubCategoryParent(id: any): any {
+    return this.http.get('http://194.5.175.25:3005/api/v1/admin/searchParentSubCategory/' + id);
+  }
+
   addCategory(data: any): any {
     return this.http.post('http://194.5.175.25:3005/api/v1/admin/registerCategory', data);
   }
@@ -237,18 +241,71 @@ export class AdminserviceService {
   getAllNotifications(): any {
     return this.http.get('http://194.5.175.25:3005/api/v1/admin/allNotification');
   }
+
   getNotificationById(id: any): any {
     return this.http.get('http://194.5.175.25:3005/api/v1/admin/singleNotification/' + id);
   }
+
   addNotification(data: any): any {
     return this.http.post('http://194.5.175.25:3005/api/v1/admin/registerNotification', data);
   }
+
   editNotification(id: any, data: any): any {
     return this.http.put('http://194.5.175.25:3005/api/v1/admin/updateNotification/' + id, data);
   }
 
   deleteNotification(id: any): any {
     return this.http.delete('http://194.5.175.25:3005/api/v1/admin/deleteNotification/' + id);
+  }
+
+  //#endregion
+
+  //# region ContractSeller-Apis
+  getAllSellerContracts(): any {
+    return this.http.get('http://194.5.175.25:3005/api/v1/admin/allContractSellerbe');
+  }
+
+  getSellerContractById(id: any): any {
+    return this.http.get('http://194.5.175.25:3005/api/v1/admin/singleContractSellerbe/' + id);
+  }
+
+  editSellerContract(id: any, data: any): any {
+    return this.http.put('http://194.5.175.25:3005/api/v1/admin/updateContractSellerbe/' + id, data);
+  }
+
+  deleteSellerContract(id: any): any {
+    return this.http.delete('http://194.5.175.25:3005/api/v1/admin/deleteContractSellerbe/' + id);
+  }
+
+  activeSellerContract(id: any): any {
+    return this.http.put('http://194.5.175.25:3005/api/v1/admin/activeContractSellerbe/' + id, null);
+  }
+
+  deactiveSellerContract(id: any): any {
+    return this.http.put('http://194.5.175.25:3005/api/v1/admin/deactiveContractSellerbe/' + id, null);
+  }
+
+  //#endregion
+
+  //# region Commissions-Apis
+  getAllCommissions(): any {
+    return this.http.get('http://194.5.175.25:3005/api/v1/admin/allCommission');
+  }
+
+  getCommissionById(id: any): any {
+    return this.http.get('http://194.5.175.25:3005/api/v1/admin/singleCommission/' + id);
+  }
+
+  addCommission(data: any): any {
+    return this.http.post('http://194.5.175.25:3005/api/v1/admin/registerCommission', data);
+  }
+
+  editCommission(id: any, data: any): any {
+    return this.http.put('http://194.5.175.25:3005/api/v1/admin/updateCommission/' + id, data);
+  }
+
+  deleteCommission(id: any): any {
+    return this.http.delete('http://194.5.175.25:3005/api/v1/admin/deleteCommission/' + id);
   }
 
   //#endregion

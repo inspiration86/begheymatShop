@@ -1,0 +1,12 @@
+:host ::ng-deep .p-inputtext {
+  width: 100%;
+  background-color: #f8f9fa;
+  border-radius: 4px;
+}
+:host ::ng-deep .p-inputtext:focus {
+  background-color: #ffffff;
+}
+:host ::ng-deep .p-dialog.p-dynamic-dialog {
+  direction: rtl;
+  background-color: rgba(0, 0, 0, 0.4);
+}

@@ -122,7 +122,18 @@ export class SellerService {
   getSearchCommission(id: any) {
     return this.http.get('http://194.5.175.25:3005/api/v1/admin/searchCommission/' + id);
   }
-  generateContractSeller(data:any) {
-    return this.http.post('http://194.5.175.25:3005/api/v1/seller/generateContractSellerbe',data);
+
+  generateContractSeller(data: any) {
+    return this.http.post('http://194.5.175.25:3005/api/v1/seller/generateContractSellerbe', data);
+  }
+
+  getTokenPost() {
+    const headers = {'content-type': 'application/x-www-form-urlencoded'};
+    return this.http.post<any>('http://svc.ebazaar-post.ir/RestApi/token',
+      'username=asd@123&password=SZj%5dClivUx&grant_type=password'
+
+    );
+
+
   }
 }

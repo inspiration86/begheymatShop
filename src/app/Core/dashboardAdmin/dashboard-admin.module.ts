@@ -44,6 +44,12 @@ import { AdminNotificationsComponent } from './admin-notifications/admin-notific
 import { NotificationAddDialogComponent } from './admin-notifications/notification-add-dialog/notification-add-dialog.component';
 import { NotificationEditDialogComponent } from './admin-notifications/notification-edit-dialog/notification-edit-dialog.component';
 import { NotificationDetailDialogComponent } from './admin-notifications/notification-detail-dialog/notification-detail-dialog.component';
+import { AdminSellerContractsComponent } from './admin-seller-contracts/admin-seller-contracts.component';
+import { SellerContractEditDialogComponent } from './admin-seller-contracts/seller-contract-edit-dialog/seller-contract-edit-dialog.component';
+import { AdminCommissionComponent } from './admin-commission/admin-commission.component';
+import { CommissionAddDialogComponent } from './admin-commission/commission-add-dialog/commission-add-dialog.component';
+import { CommissionEditDialogComponent } from './admin-commission/commission-edit-dialog/commission-edit-dialog.component';
+import {SplitButtonModule} from 'primeng/splitbutton';
 
 @NgModule({
   declarations: [
@@ -80,7 +86,12 @@ import { NotificationDetailDialogComponent } from './admin-notifications/notific
     AdminNotificationsComponent,
     NotificationAddDialogComponent,
     NotificationEditDialogComponent,
-    NotificationDetailDialogComponent
+    NotificationDetailDialogComponent,
+    AdminSellerContractsComponent,
+    SellerContractEditDialogComponent,
+    AdminCommissionComponent,
+    CommissionAddDialogComponent,
+    CommissionEditDialogComponent
   ],
     imports: [
         CommonModule,
@@ -93,7 +104,8 @@ import { NotificationDetailDialogComponent } from './admin-notifications/notific
         MatStepperModule,
         MatRadioModule,
         InputMaskModule,
-        EditorModule
+        EditorModule,
+        SplitButtonModule
     ],
   schemas: [
     CUSTOM_ELEMENTS_SCHEMA
@@ -115,7 +127,10 @@ import { NotificationDetailDialogComponent } from './admin-notifications/notific
     SellerDetailDialogComponent,
     NotificationAddDialogComponent,
     NotificationEditDialogComponent,
-    NotificationDetailDialogComponent
+    NotificationDetailDialogComponent,
+    SellerContractEditDialogComponent,
+    CommissionAddDialogComponent,
+    CommissionEditDialogComponent
   ]
 })
 export class DashboardAdminModule {

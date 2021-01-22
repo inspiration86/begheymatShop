@@ -1,0 +1,107 @@
+:host::ng-deep.p-inputtext {
+  /*border: 1px solid #bdbdbd ;*/
+}
+.titlePanel{
+  font-family: IRANSans_Bold;
+}
+.subTitlePanel{
+  font-family: IRANSans_Light;
+}
+:host::ng-deep.p-panel .p-panel-header {
+  border: 1px solid #dee2e6;
+  background: #0099CC!important;
+  color: white!important;
+}
+:host::ng-deep.p-panel .p-panel-content {
+  /*border: 1px solid #0099CC!important; ;*/
+}
+:host::ng-deep.p-dropdown.p-dropdown-clearable .p-dropdown-label {
+  text-align: right!important;
+  margin-right: 20px!important;
+}
+:host::ng-deep.p-dropdown .p-dropdown-clear-icon {
+  right: 1rem!important;
+}
+:host::ng-deep.p-dropdown-panel .p-dropdown-items {
+  font-family: IRANSans_Bold!important;
+  text-align: right!important;
+}
+label,input{
+  font-family: IRANSans_Light;
+}
+:host::ng-deep.p-tabview .p-tabview-nav li .p-tabview-nav-link {
+  font-family: IRANSans_Light!important;
+}
+:host::ng-deep.p-tabview-nav{
+  background-color: #546e7a!important;
+}
+:host::ng-deep.p-tabview .p-tabview-nav li .p-tabview-nav-link{
+  background-color:#546e7a!important;
+  color: white!important;
+}
+
+:host::ng-deep.p-tabview .p-tabview-panels{
+
+  background-color:#eceff1!important;
+}
+.pnl-content .box{
+  box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+  transition: all 0.3s cubic-bezier(.25,.8,.25,1);
+}
+:host::ng-deep .mat-radio-button.mat-accent .mat-radio-inner-circle, .mat-radio-button.mat-accent .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-accent:active .mat-radio-persistent-ripple {
+  background-color: #cc3333;
+}
+:host::ng-deep .mat-radio-button.mat-accent.mat-radio-checked .mat-radio-outer-circle {
+  border-color: #cc3333;
+}
+:host::ng-deep .p-dropdown{
+  height: 38px;
+}
+:host::ng-deep .p-dropdown-items-wrapper {
+  text-align: right!important;
+  direction: rtl;
+}
+:host::ng-deep .p-dropdown-items {
+  text-align: right!important;
+  direction: rtl;
+}
+:host::ng-deep .p-button .p-button-icon-left {
+  margin-right: unset;
+  margin-left: 0.5rem;
+}
+
+
+:host ::ng-deep .p-toast .p-toast-message .p-toast-message-content .p-toast-message-text{
+  margin: 0 1rem 0 0!important;
+}
+:host ::ng-deep .p-toast .p-toast-message.p-toast-message-error {
+  border-width: 0 6px 0 0px!important;
+}
+:host ::ng-deep .p-toast .p-toast-message.p-toast-message-success {
+  border-width: 0 6px 0 0px!important;
+}
+:host ::ng-deep .mat-step-text-label{
+  font-family: IRANSans_Bold;
+}
+:host ::ng-deep .mat-step-icon-selected, :host ::ng-deep .mat-step-icon-state-edit {
+  background-color: #CC3333;
+  color: #fff;
+}
+/*datePicker*/
+::ng-deep.mat-calendar-table-header{
+  font-family: IRANSans_Bold!important;
+
+}
+::ng-deep.mat-calendar-body-label{
+  font-family: IRANSans_Bold!important;
+  color: #2e6da4!important;
+
+}
+::ng-deep.mat-calendar-body{
+  font-family: IRANSans_Bold!important;
+
+}
+::ng-deep.mat-calendar-body-selected {
+  background-color: #CC3333!important;
+  color: #fff;
+}

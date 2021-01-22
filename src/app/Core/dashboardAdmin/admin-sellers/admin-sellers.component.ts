@@ -21,6 +21,7 @@ export class AdminSellersComponent implements OnInit {
 
   sellers: any[] = [];
   ref: DynamicDialogRef;
+  items: MenuItem[];
 
   constructor(private service: AdminserviceService,
               private router: Router,

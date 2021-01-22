@@ -36,7 +36,7 @@
               <td class="text-center">{{rowIndex + 1}}</td>
               <td class="text-center">{{product['product']['cartList'].title}}</td>
               <td class="text-center">
-                <input   type="text"  style="width: 100px" value="{{product['product'].number}}"   (change)="addCart(items[rowIndex],$event.target)"/>
+                <input type="text" pInputText pKeyFilter="int" style="width: 100px" value="{{product['product'].number}}"   (change)="addCart(items[rowIndex],$event.target)"/>
               </td>
               <td class="text-center" *ngIf="product['product']['cartList'].offer">{{product['product']['cartList'].price-((product['product']['cartList'].price *product['product']['cartList'].offerPercent)/100)|number}}</td>
               <td class="text-center" *ngIf="product['product']['cartList'].offer">{{(product['product']['cartList'].price-((product['product']['cartList'].price *product['product']['cartList'].offerPercent)/100)) * product['product'].number|number}}</td>
@@ -96,12 +96,12 @@
           <ul class="nav nav-tabs text-center" id="myTab" role="tablist">
             <li class="nav-item" role="presentation">
               <a aria-controls="login" aria-selected="false" class="nav-link active" data-toggle="tab" href="#login"
-                 id="attorney-tab"
+                 id="login-tab"
                  role="tab">ورود</a>
             </li>
             <li class="nav-item" role="presentation">
               <a aria-controls="register" aria-selected="true" class="nav-link" data-toggle="tab" href="#register"
-                 id="user-tab"
+                 id="register-tab"
                  role="tab">ثبت نام</a>
             </li>
           </ul>
@@ -113,19 +113,20 @@
                     <div class="form-group">
                   <span class="p-input-icon-right w-100">
                     <i class="pi pi-user text-dark"></i>
-                  <input [(ngModel)]="userRegister.mobile" class="form-control" formControlName="mobile" maxlength="11"
+                  <input [(ngModel)]="userRegister.mobile" class="form-control"
+                         pKeyFilter="int"
+                         formControlName="mobile" maxlength="11"
                          minlength="11"
                          name="mobile" pInputText
                          placeholder="شماره موبایل" required>                  </span>
-
                     </div>
                   </div>
                   <div class="col-12 text-center">
                     <div class="form-group mb-3">
                   <span class=" p-input-icon-right w-100">
                   <i class="pi pi-eye text-dark"></i>
-                  <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
-                         minlength="6"
+                  <input [(ngModel)]="userRegister.password" class="form-control"
+                         formControlName="password"
                          name="password" pInputText
                          placeholder="کلمه عبور" required type="password">
                   </span>
@@ -279,7 +280,11 @@
             <div class="p-field p-grid">
               <label for="title" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شماره تلفن ثابت:</label>
               <div class="p-col-12 p-md-9">
-                <input id="title" type="text" [(ngModel)]="userInfo.phone" pInputText formControlName="phone">
+                <input type="text" [(ngModel)]="userInfo.phone" pInputText
+                       formControlName="phone"
+                       pKeyFilter="int"
+                       maxlength="11"
+                       minlength="11">
               </div>
             </div>
             <div class="p-field p-grid">
@@ -303,38 +308,36 @@
             <div class="p-field p-grid">
               <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شهر:</label>
               <div class="p-col-12 p-md-9">
-<!--                <p-dropdown appendTo="body" emptyFilterMessage="نتیجه ای یافت نشد"-->
-<!--                            [options]="cities"-->
-<!--                            formControlName="city"-->
-<!--                            [(ngModel)]="userInfo.city"-->
-<!--                            optionLabel="label" [filter]="true"-->
-<!--                            (onChange)="cityOnChange($event)"-->
-<!--                >-->
-<!--                </p-dropdown>-->
-                <select id="inputState" class="form-control" formControlName="city" [(ngModel)]="userInfo.city">
+                <select class="form-control" formControlName="city" [(ngModel)]="userInfo.city">
                   <option *ngFor="let i of cities " [value]="i.Code">{{i.pName}}</option>
-
                 </select>
-
               </div>
             </div>
             <div class="p-field p-grid">
               <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">آدرس:</label>
               <div class="p-col-12 p-md-9">
-                <textarea [rows]="5" [cols]="30" pInputTextarea [(ngModel)]="userInfo.address" autoResize="autoResize"
-                          formControlName="address"></textarea>
+                <textarea [rows]="5" [cols]="30" pInputTextarea [(ngModel)]="userInfo.address"
+                          autoResize="autoResize"
+                          formControlName="address" required="required"></textarea>
               </div>
             </div>
             <div class="p-field p-grid">
-              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">کد پستی:</label>
+              <label class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">کد پستی:</label>
               <div class="p-col-12 p-md-9">
-                <input id="type" type="text" [(ngModel)]="userInfo.postalCode" pInputText formControlName="postalCode">
+                <input type="text" [(ngModel)]="userInfo.postalCode"
+                       pInputText formControlName="postalCode"
+                       pKeyFilter="int"
+                       maxlength="10"
+                       minlength="10" required="required">
               </div>
             </div>
             <div class="p-field p-grid">
-              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">پلاک :</label>
+              <label for="plaque" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">پلاک :</label>
               <div class="p-col-12 p-md-9">
-                <input id="type" type="text" [(ngModel)]="userInfo.plaque" pInputText formControlName="plaque">
+                <input id="plaque" type="text" [(ngModel)]="userInfo.plaque" pInputText
+                       pKeyFilter="int"
+                       required="required"
+                       formControlName="plaque">
               </div>
             </div>
           </div>
@@ -350,9 +353,7 @@
           <li>
             1- قبل از ادامه , از صحت و دقت اطلاعات تحویل گیرنده اطمینان حاصل فرمایید , اطلاعات اشتباه منجر به کسر هزینه
             و تاخیر در تحویل سفارش شما خواهد شد .
-
           </li>
-
           <li>2- جهت سهولت در ثبت سفارشات آینده می توانید آدرس یا آدرسهای منتخب خود را در صفحه کاربری نیز ثبت نمایید .
           </li>
         </ul>
@@ -383,14 +384,6 @@
               <li class="list-group-item">
                 <div class="row justify-content-center">
                   <div class="col-md-3">
-<!--                    <div class="p-field-radiobutton">-->
-<!--                      <p-radioButton name="city" value="0" [(ngModel)]="ServiceType" inputId="city1"></p-radioButton>-->
-<!--                      <label for="city1">سفارشی</label>-->
-<!--                    </div>-->
-<!--                    <div class="p-field-radiobutton">-->
-<!--                      <p-radioButton name="city" value="1" [(ngModel)]="ServiceType" inputId="city2"></p-radioButton>-->
-<!--                      <label for="city2">پیشتاز</label>-->
-<!--                    </div>-->
                     <mat-radio-group
                       aria-labelledby="example-radio-group-label"
                       class="example-radio-group"
@@ -457,11 +450,6 @@
 
                   <td class="text-center" *ngIf="!product['product']['cartList'].offer">{{product['product']['cartList'].price|number}}</td>
                   <td class="text-center" *ngIf="!product['product']['cartList'].offer">{{product['product']['cartList'].price * product['product'].number|number}}</td>
-
-
-<!--                  <td class="text-center">{{product['product']['cartList'].price|number}}</td>-->
-<!--                  <td class="text-center">{{product['product']['cartList'].price * product['product'].number|number}}</td>-->
-
 
                 </tr>
               </ng-template>
@@ -646,10 +634,12 @@
                     <div class="form-group">
                   <span class="p-input-icon-right w-100">
                     <i class="pi pi-user text-dark"></i>
-                  <input [(ngModel)]="userRegister.mobile" class="form-control" formControlName="mobile" maxlength="11"
+                  <input [(ngModel)]="userRegister.mobile" class="form-control"
+                         formControlName="mobile" maxlength="11"
                          minlength="11"
-                         name="mobile" pInputText
-                         placeholder="شماره موبایل" required>                  </span>
+                         name="mobile" pInputText pKeyFilter="int"
+                         placeholder="شماره موبایل" required="required">
+                  </span>
 
                     </div>
                   </div>
@@ -660,7 +650,7 @@
                   <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
                          minlength="6"
                          name="password" pInputText
-                         placeholder="کلمه عبور" required type="password">
+                         placeholder="کلمه عبور" required="required" type="password" >
                   </span>
                     </div>
                   </div>
@@ -688,8 +678,8 @@
                     <i class="pi pi-user text-dark"></i>
                   <input [(ngModel)]="userRegister.mobile" class="form-control"
                          formControlName="mobile" maxlength="11" minlength="11"
-                         name="mobile" pInputText
-                         placeholder="شماره موبایل" required>                  </span>
+                         name="mobile" pInputText pKeyFilter="int"
+                         placeholder="شماره موبایل" required="required">                  </span>
 
                     </div>
                   </div>
@@ -700,7 +690,7 @@
                   <input [(ngModel)]="userRegister.password" class="form-control" formControlName="password"
                          minlength="6"
                          name="password" pInputText
-                         placeholder="کلمه عبور" required type="password">
+                         placeholder="کلمه عبور" required="required" type="password">
                   </span>
                     </div>
                   </div>
@@ -726,39 +716,12 @@
             </div>
           </div>
         </div>
-
-
-        <!--    <div class="mt-4">-->
-        <!--      <span class="p-input-icon-right w-100">-->
-        <!--        <i class="pi pi-user text-dark"></i>-->
-        <!--        <input type="text" pInputText class="w-100 text-right" placeholder="نام کاربری">-->
-        <!--      </span>-->
-        <!--    </div>-->
-        <!--    <div class="mt-4">-->
-        <!--      <span class=" p-input-icon-right w-100">-->
-        <!--        <i class="pi pi-eye text-dark"></i>-->
-        <!--        <input type="password" pInputText class="w-100" placeholder="رمز عبور">-->
-        <!--      </span>-->
-        <!--      <span (click)="showModalDialogForgetPassword()" class="mt-1 float-right text-right login-link">-->
-        <!--        <i class="pi pi-key text-dark ml-3 mt-1"></i> کلمه عبور خود را فراموش کرده ام</span>-->
-        <!--    </div>-->
-
       </div>
-
       <div>
         <button matStepperNext class="mt-5 p-button-danger float-left" pButton type="button" label="مرحله بعدی"
                 icon="pi pi-angle-left" iconPos="left" [disabled]="successLogin"></button>
-
-        <!--          <button matStepperNext class="btn primary-color btn-rounded float-left text-white"-->
-        <!--                  [disabled]="formArray.get([1]).invalid"-->
-        <!--          >مرحله بعدی <i class="fab fa-1x text-white fa-angle-left ml-3"></i>-->
-        <!--          </button>-->
         <button matStepperPrevious class="mt-5 p-button-danger float-right" pButton type="button" label="برگشت "
                 icon="pi pi-angle-right" iconPos="left"></button>
-
-        <!--          <button matStepperPrevious class="btn primary-color btn-rounded  float-right text-white "><i-->
-        <!--            class="fas fa-1x text-white fa-angle-right mr-3"></i>برگشت-->
-        <!--          </button>-->
       </div>
 
     </mat-step>
@@ -782,15 +745,18 @@
               </div>
             </div>
             <div class="p-field p-grid">
-              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">نام خانوادگی:</label>
+              <label class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">نام خانوادگی:</label>
               <div class="p-col-12 p-md-9">
-                <input id="type" type="text" pInputText [(ngModel)]="userInfo.lastName" formControlName="lastName">
+                <input type="text" pInputText [(ngModel)]="userInfo.lastName" formControlName="lastName">
               </div>
             </div>
             <div class="p-field p-grid">
-              <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شماره همراه:</label>
+              <label class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شماره همراه:</label>
               <div class="p-col-12 p-md-9">
-                <input id="type" type="text" pInputText [(ngModel)]="userInfo.mobile" formControlName="mobile">
+                <input type="text" pInputText [(ngModel)]="userInfo.mobile"
+                       formControlName="mobile" maxlength="11"
+                       minlength="11" pKeyFilter="int"
+                       name="mobile" placeholder="شماره موبایل" required="required">
               </div>
             </div>
           </div>
@@ -810,9 +776,13 @@
         <div class="p-grid p-fluid">
           <div class="p-md-6">
             <div class="p-field p-grid">
-              <label for="title" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شماره تلفن ثابت:</label>
+              <label class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">شماره تلفن ثابت:</label>
               <div class="p-col-12 p-md-9">
-                <input id="title" type="text" [(ngModel)]="userInfo.phone" pInputText formControlName="phone">
+                <input type="text" [(ngModel)]="userInfo.phone"
+                       name="phone" formControlName="phone" required="required"
+                       pKeyFilter="int"
+                       maxlength="11"
+                       minlength="11">
               </div>
             </div>
             <div class="p-field p-grid">
@@ -838,14 +808,19 @@
             <div class="p-field p-grid">
               <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">آدرس:</label>
               <div class="p-col-12 p-md-9">
-                <textarea [rows]="5" [cols]="30" pInputTextarea [(ngModel)]="userInfo.address" autoResize="autoResize"
+                <textarea [rows]="5" [cols]="30" pInputTextarea required="required"
+                          [(ngModel)]="userInfo.address" autoResize="autoResize"
                           formControlName="address"></textarea>
               </div>
             </div>
             <div class="p-field p-grid">
               <label for="type" class="p-col-12 p-mb-2 p-md-3 p-mb-md-0">کد پستی:</label>
               <div class="p-col-12 p-md-9">
-                <input id="type" type="text" [(ngModel)]="userInfo.postalCode" pInputText formControlName="postalCode">
+                <input type="text" [(ngModel)]="userInfo.postalCode"
+                       pInputText formControlName="postalCode"
+                       pKeyFilter="int"
+                       maxlength="10"
+                       minlength="10" required="required">
               </div>
             </div>
             <div class="p-field p-grid">
@@ -965,7 +940,7 @@
                   تعداد:
                 </div>
                 <div>
-                  <input style="width: 40%;margin-left: 20px" value="{{product['product'].number}}" disabled>
+                  <input type="text" style="width: 40%;margin-left: 20px" pInputText pKeyFilter="int" value="{{product['product'].number}}" disabled>
                 </div>
               </div>
               <div class="product-list-action">

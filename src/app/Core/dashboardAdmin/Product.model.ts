@@ -1,6 +1,7 @@
 export class ProductModel {
 
   constructor(
+
     public title?: string,
     public type?: string,
     public count?: string,

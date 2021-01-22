@@ -1,0 +1,96 @@
+.about-us-wrapper .about-section .left-info-panel .about-us-intro h2 {
+  margin-bottom: 20px;
+}
+.about-us-wrapper .about-section .left-info-panel .about-us-intro p {
+  line-height: 26px;
+}
+.about-us-wrapper .about-section .left-info-panel .about-us-intro .accordions {
+  margin-top: 20px;
+}
+.about-us-wrapper .about-section .left-info-panel .about-us-intro .accordions .mat-expansion-panel {
+  margin-bottom: 10px;
+  box-shadow: none;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+}
+.mat-expansion-panel-header:not([aria-disabled=true]) {
+  cursor: pointer;
+}
+ .mat-expansion-panel-header {
+   display: flex;
+   flex-direction: row;
+   align-items: center;
+   padding: 0 24px;
+   border-radius: inherit;
+   transition: height 225ms cubic-bezier(0.4, 0, 0.2, 1);
+   font-family: IRANSans_Light;
+   font-size: 16px!important;
+ }
+.mat-expansion-panel-header p{
+  font-family: IRANSans_Light;
+  font-size: 16px!important;
+}
+.about-us-wrapper .about-section .left-info-panel .about-us-intro .accordions .mat-expansion-panel {
+  margin-bottom: 10px;
+  box-shadow: none;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
+}
+.mat-expansion-panel-body {
+  padding: 0 24px 16px;
+}
+.about-us-wrapper .about-section .left-info-panel .about-us-intro p {
+  line-height: 26px;
+}
+.about-us-wrapper .our-values {
+  /*background: #f5f5f5;*/
+}
+.about-us-wrapper .title-wrapper {
+  text-align: center;
+  margin-bottom: 35px;
+}
+.about-us-wrapper .title-wrapper h2 {
+  margin-bottom: 10px;
+}
+.about-us-wrapper .title-wrapper p {
+  color: #777;
+}
+.about-us-wrapper .our-values .box-wraper .box {
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.about-us-wrapper .our-values .box-wraper .box .content {
+  padding: 41px 20px 31px;
+  background: #fff;
+}
+.about-us-wrapper .our-values .box-wraper .box .content .icon-box i {
+  font-size: 55px;
+  color: #EF2B2F;
+}
+.about-us-wrapper .our-values .box-wraper .box .content h4 {
+  font-weight: 500;
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.about-us-wrapper .title-wrapper {
+  text-align: center;
+  margin-bottom: 35px;
+
+}
+h4{
+  font-family: IRANSans_Light;
+  font-size: 14px!important;
+  font-width: bold;
+}
+h2{
+  font-family: IRANSans_Bold;
+}
+h4{
+  font-family: IRANSans_Bold;
+}
+p{
+  font-family: IRANSans_Bold;
+  text-align: justify;
+  font-size: 13px;
+  line-height: 30px;
+}

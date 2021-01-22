@@ -1,0 +1,69 @@
+
+<div class="container-fluid d-flex justify-content-center mt-5">
+  <div class="col-md-4 col-md-offset-4">
+    <div class="row">
+      <form [formGroup]="formUser">
+      <mat-card>
+        <mat-card-title>
+          <img src="./assets/bootstrap/img/migmig.png"  >
+        </mat-card-title>
+        <mat-card-content>
+          <h3 class="text-right headerText">ورود/ثبت نام</h3>
+          <h5 class="text-right">کاربر گرامی برای ورود به صفحه لطفا شماره موبایل خود را وارد کنید</h5>
+          <div class="p-fluid p-grid">
+            <div class="p-field p-col-12">
+              <input pKeyFilter="int"  placeholder="شماره موبایل" formControlName="mobile"  [(ngModel)]="user.mobile" class="text-center" >
+            </div>
+            <div class="p-field p-col-12">
+              <input   placeholder="رمز عبور" formControlName="password"  class="text-center" [(ngModel)]="user.password">
+            </div>
+          </div>
+
+          <p-button label="ادامه" (onClick)="onLogin()"></p-button>
+        </mat-card-content>
+        <mat-card-footer>
+          <p>با ورود و یا ثبت نام در فروشگاه میگ میگ شما <a href="#">شرایط و قوانین</a> استفاده از سرویس های سایت میگ میگ و <a href="#">قوانین حریم خصوصی</a> آن را می‌پذیرید.</p>
+<!--          <a href="#" class="pull-left pass">فراموش کردن رمز عبور</a>-->
+        </mat-card-footer>
+      </mat-card>
+      </form>
+    </div>
+  </div>
+</div>
+
+
+<p-dialog [(visible)]="display">
+  <p-header class="headerPanel">
+    کد تایید را وارد نمایید
+  </p-header>
+  <label class="text-titleboxsms mt-4 mb-4">
+    کد تایید برای شماره موبایل ۰۹۳۹۹۵۶۷۳۲۸ ارسال گردید
+  </label>
+  <br>
+  <div class="ui-grid ui-grid-responsive ui-grid-pad ui-fluid ">
+    <div class="ui-grid-row dialog">
+
+      <div>
+        <ng-otp-input  #ngOtpInput (onInputChange)="onOtpChange($event)" [config]="{length:5,allowNumbersOnly:true}" dir="ltr"
+                       style="font-family: IRANSansWeb" class="text-center"></ng-otp-input>
+        <!--        <p-inputMask mask="9999" class="inputSMS"></p-inputMask>-->
+      </div>
+    </div>
+  </div>
+<!--  <div *ngIf="resendSMS">-->
+<!--    <a class="text-titleboxsms mt-5 mb-5" (click)="onSubmit()">ارسال مجدد کد</a>-->
+<!--  </div>-->
+<!--  <div class="alert alert-danger mt-4 mb-3 text-center" *ngIf="invalidSMS" style="font-family: IRANSansWeb_Bold">کد وارد شده اشتباه می باشد</div>-->
+  <p-footer dir="rtl" class="text-left mt-5 ">
+
+<p class="text-center text-muted">ارسال مجدد کد تا {{timeLeft}} ديگر</p>
+
+    <div class="p-fluid p-grid">
+      <div class="p-col-12">
+    <p-button   label=" تایید و ورود" style="width: 100%"
+            (click)="onRegister()"></p-button>
+      </div>
+    </div>
+
+  </p-footer>
+</p-dialog>

@@ -1,0 +1,143 @@
+<p-toast position="center"></p-toast>
+<div style="direction: rtl; text-align: right">
+  <form class="w-100 mt-3">
+
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">موبایل</label>
+        <label> {{seller.mobile}} </label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">وضعیت</label>
+        <label *ngIf="seller.active === true"> فعال </label>
+        <label *ngIf="seller.active === false"> غیرفعال </label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">نام فروشگاه</label>
+        <label> {{seller.shopName}} </label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">قصد فروش چه کالاهایی را دارید؟</label>
+        <label> {{seller.category}} </label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">شماره شبا (به نام شخص یا شرکت ثبت نام کننده)</label>
+        <label> {{seller.shabaNumber}} </label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">لوگو</label>
+        <img [src]="seller.logo" class="img-fluid" width="100">
+      </div>
+    </div>
+
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">استان</label>
+        <label>{{seller.state}}</label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">شهر</label>
+        <label>{{seller.city}}</label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">تلفن ثابت</label>
+        <label>{{seller.phone}}</label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">آدرس</label>
+        <label>{{seller.address}}</label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">نام</label>
+        <label>{{seller.firstName}}</label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">نام خانوادگی</label>
+        <label>{{seller.lastName}}</label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">شماره شناسنامه</label>
+        <label>{{seller.idNumber}}</label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">کد ملی</label>
+        <label>{{seller.nationalCode}}</label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col p-grid">
+        <label class="label-title">تاریخ تولد</label>
+        <label>{{seller.birthDay}}</label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">جنسیت</label>
+        <label *ngIf="seller.gender==='male'">مرد</label>
+        <label *ngIf="seller.gender==='female'">زن</label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title"> تصویر کارت ملی</label>
+        <img [src]="seller.imageNationalcard" class="img-fluid" width="100">
+      </div>
+    </div>
+
+
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">نام سازمان</label>
+        <label>{{seller.companyName}}</label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">حق امضا</label>
+        <label>{{seller.signCompany}}</label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">نوع شرکت</label>
+        <label>{{seller.typeCompany}}</label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">شماره ثبت</label>
+        <label>{{seller.regNumCompany}}</label>
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">کد اقتصادی</label>
+        <label>{{seller.economicCompany}}</label>
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">فایل رزومه</label>
+        <img [src]="seller.resume" class="img-fluid" width="100">
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">تصویر فروشنده</label>
+        <img [src]="seller.imageSeller" class="img-fluid" width="100">
+      </div>
+    </div>
+    <div class="p-fluid p-formgrid p-grid">
+      <div class="p-field p-col">
+        <label class="label-title">تصویر گواهی</label>
+        <img [src]="seller.imageCertificate" class="img-fluid" width="100">
+      </div>
+      <div class="p-field p-col">
+        <label class="label-title">تصویر فروشگاه</label>
+        <img [src]="seller.imageCompany" class="img-fluid" width="100">
+      </div>
+    </div>
+  </form>
+</div>

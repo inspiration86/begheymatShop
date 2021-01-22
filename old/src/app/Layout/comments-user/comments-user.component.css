@@ -1,0 +1,56 @@
+.container-fluid{
+  background: #d4c6c5;
+  margin-top: 30px;
+  border-radius: 40px;
+}
+.container-fluid .col-md-12 .row{
+  margin-top: 10px;
+  text-align: center;
+}
+.container-fluid .col-md-12 .row span{
+  font-family:IRANSans_Bold;
+  font-size: 24px;
+  margin-top: 20px;
+  margin-right: 20px;
+  line-height: 2;
+}
+.container-fluid .col-md-12 .row p{
+  font-family: IRANSans_Light;
+  line-height: 2;
+  font-size: 16px;
+}
+.container-fluid .col-md-6{
+  padding: 20px 40px;
+  margin: 20px 0px;
+  border-radius: 10px;
+  -webkit-transition: all 1s;
+  -moz-transition: all 1s;
+  -ms-transition: all 1s;
+  -o-transition: all 1s;
+  transition: all 1s;
+}
+.container-fluid .col-md-6:hover{
+  box-shadow: 0px 5px 5px 0px #f6f2f1;
+  -webkit-transition: all .5s;
+  -moz-transition: all .5s;
+  -ms-transition: all .5s;
+  -o-transition: all .5s;
+  transition: all .5s;
+}
+.container-fluid .col-md-6 .col-command .media-body span{
+  font-family: IRANSans_Light;
+  font-size: 14px;
+  line-height: 2;
+  color: #ffffff;
+  font-size: 16px;
+}
+.container-fluid .col-md-6 .col-command .media-body p a{
+  font-family: IRANSans_Bold;
+  font-size: 20px;
+  line-height: 3;
+  text-decoration: none;
+  color: #000000;
+}
+.container-fluid .col-md-6 .col-command .media-body p:hover a{
+  color: #9a3786;
+}
